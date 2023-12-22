@@ -1,23 +1,25 @@
 import Image from "next/image";
 import React from "react";
 
-const Header = () => {
+const Header = ({handleClick}) => {
+
+
   return (
     <>
       <header>
-        <div className="container">
-          <div className="flex justify-between items-center z-1 absolute py-4">
-            <div className="">
-              <Image src="/svg/logo.svg" alt="logo" width={100} height={100} />
+        <div className="container absolute top-0 z-10">
+          <div className="flex justify-between items-center z-1  py-4 w-full">
+            <div className="cursor-pointer"  onClick={()=>handleClick()}>
+              <Image src="/svg/logo.svg" alt="logo" width={230} height={40} />
             </div>
             <div className="flex gap-x-10 items-center">
-              <div className="">
-                <Image src="/svg/icon1.svg" alt="logo" width={25} height={25}/>
-                <Image src="/svg/icon2.svg" alt="logo" width={25} height={25}/>
-                <Image src="/svg/icon3.svg" alt="logo" width={25} height={25}/>
+              <div className="flex gap-x-3 items-center ">
+                <Image src="/svg/icon1.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
+                <Image src="/svg/icon2.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
+                <Image src="/svg/icon3.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
               </div>
-              <div className="">
-                <Image src="/svg/menu.svg" alt="logo" width={35} height={35}/>
+              <div className="cursor-pointer">
+                <Image src="/svg/menu.svg" alt="logo" width={25} height={25}/>
               </div>
             </div>
           </div>

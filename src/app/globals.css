@@ -1,25 +1,18 @@
-/* styles/VideoBackground.css */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 
 body {
   padding: 0;
   margin: 0;
+  font-family: var(--font-montserrat);
 }
-button:focus-visible{
+button:focus-visible {
   outline: none;
 }
 .container {
-  width: 80%;
-  /* max-width: 1200px; */
-  margin: 0 auto;
-  padding: 20px;
-}
-
-
-/* Media query for smaller screens */
-@media (max-width: 600px) {
-  .container {
-    width: 90%;
-  }
+  padding: 0 20px;
 }
 
 .video-background {
@@ -45,7 +38,7 @@ button:focus-visible{
   justify-content: center;
   align-items: center;
   /* background-color: black; */
-  
+
   /* z-index: 1; */
 }
 
@@ -58,10 +51,9 @@ button:focus-visible{
   background-size: cover;
   background-position: center;
   /* / transition: transform 1s ease-in-out; / */
- 
 }
 
-.overlay{
+.overlay {
   content: "";
   position: absolute;
   top: 0;
@@ -69,25 +61,27 @@ button:focus-visible{
   width: 100%;
   height: 100vh;
   /* background-color: rgba(0, 0, 0, 0.5); */
-  z-index: 1; 
-  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 15.66%), linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.68) 33.89%, rgba(0, 0, 0, 0.00) 62.1%);
+  z-index: 1;
+  background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0) 15.66%),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.82) 0%,
+      rgba(0, 0, 0, 0.68) 33.89%,
+      rgba(0, 0, 0, 0) 62.1%
+    );
 }
 
 .animate-exit {
-  /* / transform: translate(-100%, -100%); / */
-  animation: exitToLeftTop 800ms linear forwards;
-  
+  animation: exitToLeftTop 800ms ease-out forwards;
 }
 
 .animate-enter {
-  /* background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 15.66%), linear-gradient(90deg, rgba(0, 0, 0, 0.82) 0%, rgba(0, 0, 0, 0.68) 33.89%, rgba(0, 0, 0, 0.00) 62.1%); */
-  animation: enterFromRightBottom 800ms  linear forwards;
+  animation: enterFromRightBottom 800ms ease-out forwards;
 }
-
 
 /* para section */
 
-.main-inner{
+.main-inner {
   position: absolute;
   /* top: 50%; */
   /* bottom: 50%; */
@@ -96,43 +90,111 @@ button:focus-visible{
   width: 100%;
 }
 
-.headCont{
+.headCont {
+  position: absolute;
+  z-index: 11;
+  top: 47%;
+  bottom: 53%;
+}
+
+.headContTwo {
+  position: absolute;
+  top: 57%;
+  bottom: 43%;
+  /* left: 10px; */
+  z-index: 11;
+}
+.headContThree {
   position: absolute;
   /* top: 50%; */
-  /* bottom: 50%; */
+  bottom: 25%;
   /* left: 10px; */
-  /* transform: translate(-50%, -50%); */
+  min-height: 35px;
   z-index: 11;
-  /* padding-left: 100px; */
-} 
-.hidden{
+}
+.sub-headContThree {
+  position: absolute;
+  /* top: 57%; */
+  bottom: 32%;
+  min-height: 35px;
+  z-index: 11;
+}
+
+.hidden {
   display: none;
 }
 
-.header-enter{
-  animation: fadeInUp 1s linear  forwards;
+.header-enter {
+  animation: fadeInUp 1s ease-out forwards;
 }
-.header-exit{
-  animation: fadeOutUp 1s linear forwards;
+.header-exit {
+  animation: fadeOutUp 1s ease-out forwards;
 }
 
-button{
+.headerThree-enter {
+  animation: comeInUp 800ms ease-out forwards;
+}
+.headerThree-exit {
+  animation: comeOutUp 800ms ease-out forwards;
+}
+
+.serialCount {
+  position: absolute;
+  top: 80%;
+  bottom: 20%;
+  right: 5%;
+  min-height: 35px;
+  z-index: 11;
+}
+
+.serialCount p {
+  color: #fff;
+  font-size: 66px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 80px; /* 121.212% */
+  font-family: var(--font-teko);
+ 
+}
+
+button {
   z-index: 1111;
   cursor: pointer;
 }
 
-.main-heading{
-color: #FFF;
-
-font-family: Montserrat;
-font-size: 110px;
-font-style: normal;
-font-weight: 700;
-/* line-height: 70px; 63.636% */
-text-transform: uppercase;
-line-height: 0;
-    margin: 0;
+.main-heading {
+  color: #fff;
+  /* font-family: "Montserrat", sans-serif; */
+  font-size: 110px;
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0;
+  margin: 0;
 }
+.heading2 {
+  color: #fff;
+  font-family: "Montserrat", sans-serif;
+  font-family: var(--font-montserrat);
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  text-decoration-line: underline;
+}
+.heading3 {
+  color: #b3b3b3;
+  font-family: "Montserrat", sans-serif;
+   font-family: var(--font-montserrat);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 50px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+}
+
 
 @keyframes exitToLeftTop {
   from {
@@ -155,11 +217,9 @@ line-height: 0;
   }
 }
 
-
 @keyframes fadeOutUp {
   from {
     opacity: 1;
-    /* / transform: translateY(0); / */
   }
   to {
     opacity: 0;
@@ -177,30 +237,80 @@ line-height: 0;
   }
 }
 
-.next-btn{
+@keyframes comeOutUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+@keyframes comeInUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.next-btn {
   border-radius: 50%;
   height: 60px;
   width: 60px;
   position: absolute;
-  bottom: 30px;
-  border: #FFF;
+  bottom: 60px;
+  border: #fff;
+  z-index: 11;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
 
+.btnRotate {
+  animation: rotateUp 1s ease-out forwards;
+}
+
+@keyframes rotateUp {
+  from {
+    transform: rotateZ(0);
+  }
+  to {
+    transform: rotateZ(-180deg);
+  }
+}
 
 /* Media query for smaller screens */
 @media (max-width: 1500px) {
-  .main-heading{
-font-size: 90px;
+  .main-heading {
+    font-size: 80px;
   }
-  .next-btn{
+  .next-btn {
     height: 40px;
     width: 40px;
   }
+  .heading2 {
+    font-size: 31px;
+  }
+  .heading3 {
+    font-size: 14px;
+  }
+  .serialCount p {
+    font-size: 35px;
+  }
+  .main-head2{
+    font-size:78px;
+  }
+  
 }
 
 @media (max-width: 1200px) {
-  .main-heading{
-font-size: 70px;
+  .main-heading {
+    font-size: 70px;
   }
   .background {
     height: 100vh;
@@ -208,21 +318,20 @@ font-size: 70px;
   .containerImage {
     height: 100vh;
   }
+
+  .main-head2{
+    font-size:62px;
+  }
 }
 
-
 @media (max-width: 786px) {
-  .main-heading{
-font-size: 50px;
+  .main-heading {
+    font-size: 50px;
   }
-
 }
 
 @media (max-width: 520px) {
-  .main-heading{
-font-size: 35px;
+  .main-heading {
+    font-size: 35px;
   }
-
-
-
 }
