@@ -12,7 +12,6 @@ import Services from "./services/Services";
 import { myFont2 } from "../app/font";
 import ContactDetails from "./modal/ContactDetails";
 import EmailPopup from "./modal/EmailPopup";
-import ChatModal from "./modal/ChatModal";
 
 const backgrounds = [video1, video2, video3, video4];
 
