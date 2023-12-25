@@ -143,7 +143,7 @@ const New = () => {
                 <div
                   className={`headContTwo ${headanimate ? "header-enter" : ""}`}
                 >
-                  <h3 className="heading2 flex gap-x-12">
+                  <h3 className="heading2 flex md:gap-x-12 gap-x-6">
                     {current === 3 ? (
                       <>
                         <span

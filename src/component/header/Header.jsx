@@ -21,7 +21,7 @@ const [openDrawer, setOpenDrawer] = useState(false)
                 <Image src="/svg/icon2.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
                 <Image src="/svg/icon3.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
               </div>
-              <div className="cursor-pointer"> onClick={()=>setOpenDrawer(true)}
+              <div className="cursor-pointer" onClick={()=>setOpenDrawer(true)}> 
                 <Image src="/svg/menu.svg" alt="logo" width={25} height={25}/>
               </div>
             </div>
