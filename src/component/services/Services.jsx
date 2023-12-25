@@ -1,4 +1,5 @@
 "use client";
+import { myFont2 } from "@/app/font";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import video1 from "../../../public/video1.mp4";
@@ -120,7 +121,7 @@ console.log("curr",nextPage)
           </div>
 
           {/* count */}
-          <div>
+          <div className={`${myFont2.className}`}>
             <div
               ref={exitingRef}
               className={`serialCount ${

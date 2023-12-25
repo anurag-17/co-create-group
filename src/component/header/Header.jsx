@@ -17,12 +17,12 @@ const [openDrawer, setOpenDrawer] = useState(false)
             </div>
             <div className="flex gap-x-10 items-center">
               <div className="sm:flex gap-x-3 items-center hidden">
-                <Image src="/svg/icon1.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
-                <Image src="/svg/icon2.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
-                <Image src="/svg/icon3.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
+                <Image src="/svg/icon1.svg" alt="logo" width={20} height={20} className="cursor-pointer icon-hover" />
+                <Image src="/svg/icon2.svg" alt="logo" width={20} height={20} className="cursor-pointer icon-hover" />
+                <Image src="/svg/icon3.svg" alt="logo" width={20} height={20} className="cursor-pointer icon-hover" />
               </div>
               <div className="cursor-pointer" onClick={()=>setOpenDrawer(true)}> 
-                <Image src="/svg/menu.svg" alt="logo" width={25} height={25}/>
+                <Image src="/svg/menu.svg" alt="logo" width={25} height={25} className="icon-hover" />
               </div>
             </div>
           </div>

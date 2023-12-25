@@ -223,8 +223,8 @@ const New = () => {
               onClick={changeBackground}
               className={
                 current + 1 === backgrounds?.length
-                  ? "btnRotate next-btn"
-                  : "next-btn"
+                  ? "btnRotate next-btn icon-hover"
+                  : "next-btn icon-hover"
               }
             >
               <Image src="/svg/arrow.svg" width={30} height={30} alt="next" />
