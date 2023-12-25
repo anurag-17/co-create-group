@@ -1,14 +1,18 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
+import { Dialog, Transition } from "@headlessui/react";
+
 import video1 from "../../public/video1.mp4";
 import video2 from "../../public/video2.mp4";
 import video3 from "../../public/video3.mp4";
 import video4 from "../../public/video4.mp4";
 import Header from "./header/Header";
 import Services from "./services/Services";
-import {myFont2} from "../app/font"
-
+import { myFont2 } from "../app/font";
+import ContactDetails from "./modal/ContactDetails";
+import EmailPopup from "./modal/EmailPopup";
+import ChatModal from "./modal/ChatModal";
 
 const backgrounds = [video1, video2, video3, video4];
 
@@ -30,6 +34,9 @@ const New = () => {
   const exitingRef = useRef();
   const [headanimate, setHeadanimate] = useState(false);
   const [show, setShow] = useState(false);
+  let [openContactModal, setOpenContactModal] = useState(false);
+  let [openEmail, setOpenEmail] = useState(false);
+  let [openChat, setOpenChat] = useState(false);
 
   useEffect(() => {
     if (animate) {
@@ -68,6 +75,10 @@ const New = () => {
       setShow(true);
       console.log(current);
     }
+  };
+
+  const closeDeleteModal = () => {
+    setOpenContactModal(false);
   };
 
   return (
@@ -166,7 +177,9 @@ const New = () => {
                     headanimate ? "headerThree-exit" : "hidden"
                   }`}
                 >
-                  <p className="heading3 cursor-pointer">{headingThree[previous]}</p>
+                  <p className="heading3 cursor-pointer">
+                    {headingThree[previous]}
+                  </p>
                 </div>
 
                 <div
@@ -174,7 +187,10 @@ const New = () => {
                     headanimate ? "headerThree-enter" : ""
                   }`}
                 >
-                  <p className="heading3 cursor-pointer" onClick={handleHeadingClick}>
+                  <p
+                    className="heading3 cursor-pointer"
+                    onClick={handleHeadingClick}
+                  >
                     {headingThree[current]}
                   </p>
                 </div>
@@ -221,6 +237,156 @@ const New = () => {
           <Services setShow={setShow} />
         )}
       </div>
+
+      {/*------ contat details ------*/}
+      <Transition appear show={openContactModal} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={closeDeleteModal}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 px-[10px] xl:px-12 md:px-4 text-left align-middle shadow-xl transition-all relative">
+                  <div
+                    className="absolute right-[25px] top-[20px] cursor-pointer "
+                    onClick={closeDeleteModal}
+                  >
+                    <Image
+                      src="/svg/close.svg"
+                      alt="close"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                  <ContactDetails />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      {/* // Email */}
+      <Transition appear show={openEmail} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={closeDeleteModal}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full 2xl:max-w-[800px] sm:max-w-[700px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
+                  <div
+                    className="absolute right-[25px] top-[20px] cursor-pointer "
+                    onClick={() => setOpenEmail(false)}
+                  >
+                    <Image
+                      src="/svg/close.svg"
+                      alt="close"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                  <EmailPopup />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      {/* // Chat */}
+      <Transition appear show={openChat} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={closeDeleteModal}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full 2xl:max-w-[800px] sm:max-w-[700px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
+                  <div
+                    className="absolute right-[25px] top-[20px] cursor-pointer "
+                    onClick={() => setOpenChat(false)}
+                  >
+                    <Image
+                      src="/svg/close.svg"
+                      alt="close"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                  <ChatModal />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
     </>
   );
 };

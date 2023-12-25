@@ -4,7 +4,28 @@ import "./globals.css";
 
 const myFont = localFont({
   name: 'Montserrat',
-  src: '../fonts/montserrat/Montserrat-Bold.ttf',
+  src: [
+    {
+      path: '../fonts/montserrat/Montserrat-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/montserrat/Montserrat-Medium.ttf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/montserrat/Montserrat-SemiBold.ttf',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/montserrat/Montserrat-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
   variable: '--font-montserrat',
 })

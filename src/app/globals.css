@@ -275,6 +275,13 @@ button {
   animation: rotateUp 1s ease-out forwards;
 }
 
+.contact-details{
+  font-family: var(--font-montserrat);
+}
+
+.contact-details svg{
+  fill : white
+} 
 @keyframes rotateUp {
   from {
     transform: rotateZ(0);
@@ -328,10 +335,17 @@ button {
   .main-heading {
     font-size: 50px;
   }
+
 }
 
 @media (max-width: 520px) {
   .main-heading {
     font-size: 35px;
+  }
+}
+
+@media (max-width: 639.3px) {
+  .contact-details svg{
+    fill : black
   }
 }
