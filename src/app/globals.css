@@ -291,7 +291,7 @@ button {
 /* Media query for smaller screens */
 @media (max-width: 1800px) {
   .main-heading {
-    font-size: 90px;
+    font-size: 70px;
   }
 }
 
