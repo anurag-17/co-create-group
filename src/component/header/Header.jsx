@@ -10,7 +10,7 @@ const [openDrawer, setOpenDrawer] = useState(false)
   return (
     <>
       <header>
-        <div className="w-[80%] mx-auto absolute top-0 z-10 sm:left-[5%] sm:right-[5%] left-1 right-1" >
+        <div className="sm:w-[80%] w-full mx-auto absolute top-0 z-10 sm:left-[5%] sm:right-[5%] sm:px-0 px-[10px]" >
           <div className="flex justify-between items-center z-1  py-4 w-full">
             <div className="cursor-pointer"  onClick={()=>handleClick()}>
               <Image src="/svg/logo.svg" alt="logo" width={230} height={40} />
