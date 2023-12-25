@@ -1,8 +1,11 @@
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 const Header = ({handleClick}) => {
 
+  const headings = ["ABOUT US", "SERVICES", "CONTACT US", "HELP AND FAQS"];
+
+const [openDrawer, setOpenDrawer] = useState(false)
 
   return (
     <>
@@ -18,12 +21,24 @@ const Header = ({handleClick}) => {
                 <Image src="/svg/icon2.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
                 <Image src="/svg/icon3.svg" alt="logo" width={20} height={20} className="cursor-pointer" />
               </div>
-              <div className="cursor-pointer">
+              <div className="cursor-pointer"> onClick={()=>setOpenDrawer(true)}
                 <Image src="/svg/menu.svg" alt="logo" width={25} height={25}/>
               </div>
             </div>
           </div>
         </div>
+{/* 
+        <div className="absolute z-20 left-0 top-0 h-[100vh] w-[100%] bg-black py-4 px-4">
+          <div className="absolute text-right right-5">
+            <Image src="/svg/white-cross.svg" alt="close" height={20} width={20} />
+          </div>
+
+          <ul className="flex flex-col gap-10 justify-center items-center">
+            {headings.map((items,index)=>(
+              <li key={index} className="text-white text-16px font-[600]">{items}</li>
+            ))}
+          </ul>
+        </div> */}
       </header>
     </>
   );

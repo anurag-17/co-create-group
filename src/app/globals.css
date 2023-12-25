@@ -338,7 +338,23 @@ button {
   .main-heading {
     font-size: 50px;
   }
-
+  .containerImage {
+    background: linear-gradient(291deg, rgba(0,0,0,1) 0%, rgba(40,40,40,1) 22%, rgba(45,45,45,1) 39%, rgba(71,71,71,1) 68%, rgba(105,105,105,1) 100%, rgba(3,0,104,1) 100%, rgba(0,212,255,1) 100%);
+  }
+  .containerImage video{
+    height:auto;
+  }
+  .headCont{
+    bottom:40%;
+    top:60%;
+  }
+  .headContTwo{
+    bottom:30%;
+    top:65%;
+  }
+  .headContThree{
+    bottom:20%;
+  }
 }
 
 @media (max-width: 520px) {
