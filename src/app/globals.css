@@ -11,9 +11,6 @@ body {
 button:focus-visible {
   outline: none;
 }
-.container {
-  padding: 0 20px;
-}
 
 .video-background {
   position: fixed;
