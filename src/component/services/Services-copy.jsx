@@ -21,13 +21,17 @@ const headingThree = [
   "Direct Mentorship and Business Consulting",
 ];
 
-const Services = ({setShow, subPagesData}) => {
+const Services = ({setShow}) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [previousPage, setPreviousPage] = useState(0);
   const [nextPage, setNextPage] = useState(1);
   const [animate, setAnimate] = useState(true);
   const exitingRef = useRef();
   const [headanimate, setHeadanimate] = useState(true);
+
+
+  console.log("prev",previousPage)
+console.log("curr",nextPage)
 
   useEffect(() => {
     if (animate) {
@@ -49,9 +53,10 @@ const Services = ({setShow, subPagesData}) => {
     setAnimate(true);
     setPreviousPage(nextPage - 1);
     setCurrentPage(nextPage);
-    setNextPage((nextPage + 1) % subPagesData?.length);
+    setNextPage((nextPage + 1) % backgrounds.length);
   };
- 
+
+  
 
   return (
     <>
@@ -64,7 +69,7 @@ const Services = ({setShow, subPagesData}) => {
           muted
           className={`background ${animate ? "animate-exit" : ""}`}
         >
-          <source src={subPagesData[previousPage]?.bgUrl} type="video/mp4" />
+          <source src={backgrounds[previousPage]} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -76,7 +81,7 @@ const Services = ({setShow, subPagesData}) => {
           muted
           className={`background ${animate ? "animate-enter" : ""}`}
         >
-          <source src={subPagesData[currentPage]?.bgUrl} type="video/mp4" />
+          <source src={backgrounds[currentPage]} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
@@ -88,11 +93,11 @@ const Services = ({setShow, subPagesData}) => {
             ref={exitingRef}
             className={`headCont  ${headanimate ? "header-exit" : "hidden"}`}
           >
-            <h3 className="main-heading main-head2">{subPagesData[previousPage]?.title}</h3>
+            <h3 className="main-heading main-head2">WHAT DO WE DO?</h3>
           </div>
 
           <div className={`headCont ${headanimate ? "header-enter" : ""}`}>
-            <h3 className="main-heading main-head2">{subPagesData[currentPage]?.title}</h3>
+            <h3 className="main-heading main-head2">WHAT DO WE DO?</h3>
           </div>
 
     
@@ -103,7 +108,7 @@ const Services = ({setShow, subPagesData}) => {
                 headanimate ? "headerThree-exit" : "hidden"
               }`}
             >
-              <p className="heading3">{subPagesData[previousPage]?.paragraph}</p>
+              <p className="heading3">{headingThree[previousPage]}</p>
             </div>
 
             <div
@@ -111,11 +116,11 @@ const Services = ({setShow, subPagesData}) => {
                 headanimate ? "headerThree-enter" : ""
               }`}
             >
-              <p className="heading3">{subPagesData[currentPage]?.paragraph}</p>
+              <p className="heading3">{headingThree[currentPage]}</p>
             </div>
           </div>
 
-          {/*--------- count -----------*/}
+          {/* count */}
           <div className={`${myFont2.className}`}>
             <div
               ref={exitingRef}
@@ -140,11 +145,11 @@ const Services = ({setShow, subPagesData}) => {
           </div>
         </div>
 
-        {/*------------next button----------------- */}
+        {/* button */}
         <button
           onClick={changeBackgroundVid}
           className={
-            currentPage + 1 === subPagesData?.length
+            currentPage + 1 === backgrounds?.length
               ? "btnRotate next-btn"
               : "next-btn"
           }
