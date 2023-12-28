@@ -46,6 +46,9 @@ const MainPage = () => {
   const [isLoader, setLoader] = useState(false);
   const [dataLength, setDataLength] = useState(0);
   const [subPagesData, setSubPagesData] = useState([]);
+ 
+  const [contactDetails, setContactDetails] = useState([]);
+
 
   useEffect(() => {
     if (animate) {
@@ -85,6 +88,7 @@ const MainPage = () => {
 
   useEffect(() => {
     getAllData();
+    getContactData()
   }, []);
 
   const getAllData = () => {
@@ -151,7 +155,32 @@ const MainPage = () => {
         console.error("Error:", error);
       });
   };
- 
+
+  const getContactData = (pageNo) => {
+    setLoader(true);
+    const options = {
+      method: "GET",
+      url: `${BASE_URL}/api/contacts/getAllContacts`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+      .request(options)
+      .then((response) => {
+        if (response.status === 200) {
+          setLoader(false);
+          setContactDetails(response?.data?.contacts );
+        } else {
+          setLoader(false);
+          return;
+        }
+      })
+      .catch((error) => {
+        setLoader(false);
+        console.error("Error:", error);
+      });
+  };
 
   return (
     <>
@@ -369,7 +398,7 @@ const MainPage = () => {
                       width={20}
                     />
                   </div>
-                  <ContactDetails />
+                  <ContactDetails  contactDetails={contactDetails}/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

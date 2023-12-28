@@ -6,24 +6,26 @@ import Phone from "./svg/Phone";
 import { Dialog, Transition } from "@headlessui/react";
 import EmailPopup from "./EmailPopup";
 
-const ContactDetails = () => {
+const ContactDetails = ({contactDetails}) => {
   const [openEmail, setOpenEmail] = useState(false);
+
+  console.log(contactDetails)
 
   const contactData = [
     {
       label: "phone",
       url: <Phone />,
-      info: "+89 8974 4895 586",
+      info:contactDetails ? contactDetails[0]?.number : "+89 8974 4895 586",
     },
     {
       label: "email",
       url: <Email />,
-      info: "info@support.com",
+      info:  contactDetails ?contactDetails[0]?.email : "info@support.com",
     },
     {
       label: "location",
       url: <Location />,
-      info: "123 lorem ipsum, xyz colony, USA 452896",
+      info: contactDetails ? contactDetails[0]?.address : "123 lorem ipsum, xyz colony, USA 452896",
     },
   ];
 
