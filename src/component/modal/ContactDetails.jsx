@@ -29,6 +29,9 @@ const ContactDetails = () => {
 
   const array2 = ["schedule", "email", "chat"];
 
+  const handleClose = () => {
+    setOpenEmail(false)
+  }
   return (
     <>
       <div className=" 2xl:px-[30px] 2xl:py-[40px] py-[30px] contact-details">
@@ -105,7 +108,7 @@ const ContactDetails = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[800px] sm:max-w-[700px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[800px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
                   <div
                     className="absolute right-[25px] top-[20px] cursor-pointer "
                     onClick={() => setOpenEmail(false)}
@@ -117,7 +120,7 @@ const ContactDetails = () => {
                       width={20}
                     />
                   </div>
-                  <EmailPopup />
+                  <EmailPopup handleClose={handleClose}/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

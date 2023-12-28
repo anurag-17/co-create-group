@@ -3,10 +3,6 @@ import Image from "next/image";
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-import video1 from "../../public/video1.mp4";
-import video2 from "../../public/video2.mp4";
-import video3 from "../../public/video3.mp4";
-import video4 from "../../public/video4.mp4";
 import Header from "./header/Header";
 import Services from "./services/Services";
 import { myFont2 } from "../app/font";
@@ -16,17 +12,6 @@ import axios from "axios";
 import { BASE_URL } from "./config";
 import Loader from "./websiite-loader/Index";
 
-const backgrounds = [video1, video2, video3, video4];
-
-const headings = ["ABOUT US", "SERVICES", "CONTACT US", "HELP AND FAQS"];
-
-const headingtwo = ["", "", "I'm Ready!", "Help Desk "];
-const headingThree = [
-  "WHO ARE WE?",
-  "WHAT DO WE DO",
-  "LETS CONNECT!",
-  "SUPPORT",
-];
 
 const staticPages = [
   {
@@ -131,18 +116,18 @@ const MainPage = () => {
       });
   };
 
-  const handleHeadingClick = (subpage) => {
-    if (subpage?.isSubpage) {
-      getsubPageData(subpage)
+  const handleHeadingClick = (page) => {
+    if (page?.isSubpage) {
+      getsubPageData(page)
     }
   };
 
 
-  const getsubPageData = (subpage) => {
+  const getsubPageData = (main_page) => {
     setLoader(true);
     const options = {
       method: "GET",
-      url: `${BASE_URL}/api/subPages/getAllSubPages`,
+      url: `${BASE_URL}/api/subPages/subPages/${main_page?._id}`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -152,12 +137,9 @@ const MainPage = () => {
       .then((response) => {
         if (response.status === 200) {
           setLoader(false);
-          setShow(true)
-          
-          const filtArr = response?.data?.subPages?.filter((page) => {
-            return page?.pageId?._id === subpage?._id
-          });
-          setSubPagesData(filtArr);
+          // console.log(response?.data?.subpages)
+            setSubPagesData(response?.data?.subpages);
+            setShow(true)
 
         } else {
           setLoader(false);
@@ -181,11 +163,9 @@ const MainPage = () => {
             <>
               {/* -------------background video------------------ */}
               <video
-                // ref={videoRef}
                 autoPlay
                 loop
                 muted
-                // controls
                 className={`background ${animate ? "animate-exit" : ""}`}
               >
                 <source src={allData[previous]?.bgUrl} type="video/mp4" />
@@ -247,14 +227,14 @@ const MainPage = () => {
                     <h3 className="heading2 flex md:gap-x-12 gap-x-6">
                       {current === dataLength ? (
                         <>
-                          <span className="cursor-pointer"  // -------- for help desk modal
+                          <span className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"  // -------- for help desk modal
                             onClick={() => {
                               alert("modal one");
                             }}
                           >
                             {allData[current]?.subTitle}
                           </span>
-                          <span className="cursor-pointer"   // -------- for faq modal
+                          <span className="cursor-pointer hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"   // -------- for faq modal
                             onClick={() => {
                               alert("modal two");
                             }}
@@ -263,7 +243,7 @@ const MainPage = () => {
                           </span>
                         </>
                       ) : current === dataLength - 1 ? (    // -------- for contact page modal
-                        <span className="cursor-pointer"
+                        <span className="cursor-pointer hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"
                           onClick={() => setOpenContactModal(true)}
                         >
                           {allData[current]?.subTitle}
@@ -294,10 +274,10 @@ const MainPage = () => {
                     }`}
                   >
                     <p
-                      className={`heading3 ${allData[current]?.isSubpage ? "cursor-pointer" : "" }`}
+                      className={`heading3 ${allData[current]?.isSubpage ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300" : "" }`}
                       onClick={()=>handleHeadingClick(allData[current])}
                     >
-                      {allData[current]?.paragraph}
+                      {(allData[current]?.paragraph) ?  (allData[current]?.paragraph) : (allData[current]?.isSubpage) ? "View" : ""}
                     </p>
                   </div>
                 </div>

@@ -2,24 +2,6 @@
 import { myFont2 } from "@/app/font";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
-import video1 from "../../../public/video1.mp4";
-import video2 from "../../../public/video2.mp4";
-import video3 from "../../../public/video3.mp4";
-import video4 from "../../../public/video4.mp4";
-import Header from "../header/Header";
-
-const backgrounds = [video1, video2, video3, video4, video1, video2, video3];
-
-
-const headingThree = [
-  "Facilitation",
-  "Fractional C-Level Staffing",
-  "Board Development",
-  "IPO/SPC/Direct Listing/Merger Support",
-  "Access to Funding and Financing",
-  "Specialized Investment Trusts & Funds",
-  "Direct Mentorship and Business Consulting",
-];
 
 const Services = ({setShow, subPagesData}) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -33,7 +15,7 @@ const Services = ({setShow, subPagesData}) => {
     if (animate) {
       setTimeout(() => {
         setAnimate(false);
-      }, 1000); // Should match the CSS animation duration
+      }, 1000); 
     }
 
     if (headanimate) {
