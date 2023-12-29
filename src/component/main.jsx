@@ -142,9 +142,10 @@ const MainPage = () => {
         if (response.status === 200) {
           setLoader(false);
           // console.log(response?.data?.subpages)
-            setSubPagesData(response?.data?.subpages);
-            setShow(true)
-
+          if(Array.isArray(response?.data?.subpages) && response?.data?.subpages.length>0){
+              setSubPagesData(response?.data?.subpages);
+              setShow(true)
+            }
         } else {
           setLoader(false);
           return;
@@ -257,16 +258,16 @@ const MainPage = () => {
                       {current === dataLength ? (
                         <>
                           <span className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"  // -------- for help desk modal
-                            onClick={() => {
-                              alert("modal one");
-                            }}
+                            // onClick={() => {
+                            //   alert("modal one");
+                            // }}
                           >
                             {allData[current]?.subTitle}
                           </span>
                           <span className="cursor-pointer hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"   // -------- for faq modal
-                            onClick={() => {
-                              alert("modal two");
-                            }}
+                            // onClick={() => {
+                            //   alert("modal two");
+                            // }}
                           >
                             FAQs
                           </span>
