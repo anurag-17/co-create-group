@@ -195,7 +195,7 @@ const MainPage = () => {
               <video
                 autoPlay
                 loop
-                muted
+{/*                 muted */}
                 className={`background ${animate ? "animate-exit" : ""}`}
               >
                 <source src={allData[previous]?.bgUrl} type="video/mp4" />
@@ -207,7 +207,7 @@ const MainPage = () => {
               <video
                 autoPlay
                 loop
-                muted
+{/*                 muted */}
                 className={`background ${animate ? "animate-enter" : ""}`}
               >
                 <source src={allData[current]?.bgUrl} type="video/mp4" />
