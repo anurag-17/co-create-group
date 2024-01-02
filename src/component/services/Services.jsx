@@ -43,7 +43,7 @@ const Services = ({setShow, subPagesData}) => {
           // ref={videoRef}
           autoPlay
           loop
-          muted
+{/*           muted */}
           className={`background ${animate ? "animate-exit" : ""}`}
         >
           <source src={subPagesData[previousPage]?.bgUrl} type="video/mp4" />
@@ -55,7 +55,7 @@ const Services = ({setShow, subPagesData}) => {
         <video
           autoPlay
           loop
-          muted
+{/*           muted */}
           className={`background ${animate ? "animate-enter" : ""}`}
         >
           <source src={subPagesData[currentPage]?.bgUrl} type="video/mp4" />
