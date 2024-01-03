@@ -93,15 +93,15 @@ const MainPage = () => {
     getContactData()
    
   }, []);
-  useEffect(() => {
-    if (videoRef.current) {
-      if (autoPlay) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-    }
-  }, [autoPlay]);
+  // useEffect(() => {
+  //   if (videoRef.current) {
+  //     if (autoPlay) {
+  //       videoRef.current.pause();
+  //     } else {
+  //       videoRef.current.play();
+  //     }
+  //   }
+  // }, [autoPlay]);
 
   // useEffect(() => {
   //   if (videoRef.current && !isMuted) {
@@ -249,7 +249,7 @@ const MainPage = () => {
                   if (autoPlay && videoRef.current) {
                     videoRef.current.play();
                   }
-                  else if(videoRef.current) {
+                  else if(videoRef.current && !autoPlay) {
                     
                     videoRef.current.pause();
                   }
@@ -433,6 +433,7 @@ const MainPage = () => {
                       setDefaultModal(false)
                       setIsMuted(false)
                       playVideo_handler()
+                      setAutoPlay(true)
                     }}
                   >
                     Welcome to Co-Create-Group <span className="text-[30px]">→</span>
