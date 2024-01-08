@@ -353,21 +353,35 @@ button {
   }
   .containerImage video{
     height:auto;
+    top: auto;
+    bottom: 15px;
   }
   .headCont{
-    bottom:50%;
-    top:50%;
+    bottom: auto;
+    top: 25%;
   }
   .headContTwo{
-    bottom:40%;
-    top:55%;
+    bottom: auto;
+    top: 30%;
   }
   .headContThree{
-    bottom:30%;
+    bottom: auto;
+    top: 40%;
   }
   .heading2{
     font-size: 20px;
   }
+  .next-btn {
+    bottom: 40%;
+    top: auto;
+    height: 30px;
+    width: 30px;
+    padding: 7px;
+  }
+  .serialCount {
+    bottom: 55%;
+    top: 45%;
+}
 }
 
 @media (max-width: 520px) {

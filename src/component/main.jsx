@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { Fragment, useState, useEffect, useRef } from "react";
+import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
 
 import Header from "./header/Header";
@@ -8,7 +9,6 @@ import Services from "./services/Services";
 import { myFont2 } from "../app/font";
 import ContactDetails from "./modal/ContactDetails";
 import EmailPopup from "./modal/EmailPopup";
-import axios from "axios";
 import { BASE_URL } from "./config";
 import Loader from "./websiite-loader/Index";
 
@@ -51,6 +51,7 @@ const MainPage = () => {
   const videoRef = useRef(null);
   const [defaultModal, setDefaultModal] = useState(false)
   const [autoPlay, setAutoPlay] = useState(false)
+
   useEffect(() => {
     if (animate) {
       setTimeout(() => {
@@ -93,24 +94,7 @@ const MainPage = () => {
     getContactData()
    
   }, []);
-  // useEffect(() => {
-  //   if (videoRef.current) {
-  //     if (autoPlay) {
-  //       videoRef.current.pause();
-  //     } else {
-  //       videoRef.current.play();
-  //     }
-  //   }
-  // }, [autoPlay]);
-
-  // useEffect(() => {
-  //   if (videoRef.current && !isMuted) {
-  //     videoRef.current.play().catch(e => {
-  //       // Handle the error here
-  //       console.log('Error playing video:', e);
-  //     });
-  //   }
-  // }, [isMuted]);
+ 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
