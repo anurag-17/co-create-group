@@ -3,17 +3,14 @@ import Image from "next/image";
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 
-import video1 from "../../public/video1.mp4";
-import video2 from "../../public/video2.mp4";
-import video3 from "../../public/video3.mp4";
-import video4 from "../../public/video4.mp4";
+
 import Header from "./header/Header";
 import Services from "./services/Services";
 import { myFont2 } from "../app/font";
 import ContactDetails from "./modal/ContactDetails";
 import EmailPopup from "./modal/EmailPopup";
 
-const backgrounds = [video1, video2, video3, video4];
+const backgrounds = ["", "", "", ""];
 
 const headings = ["ABOUT US", "SERVICES", "CONTACT US", "HELP AND FAQS"];
 

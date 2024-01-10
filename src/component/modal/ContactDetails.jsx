@@ -43,7 +43,7 @@ const ContactDetails = ({contactDetails}) => {
           </h6>
         </div>
 
-        <div className="grid 2xl:grid-cols-3  lg:grid-cols-2   gap-5 lg:py-[40px] py-[20px]">
+        <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 lg:py-[40px] py-[20px]">
           {contactData.map((item, inx) => (
             // <div className="bg-[#F1F1F1] max-w-[330px] w-full sm:w-auto" key={inx}>
             <div

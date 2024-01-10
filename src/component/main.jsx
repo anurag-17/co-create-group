@@ -3,6 +3,8 @@ import Image from "next/image";
 import React, { Fragment, useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
+import video1 from "../../public/contact_us.mp4";
+import video2 from "../../public/help_faq.mp4";
 
 import Header from "./header/Header";
 import Services from "./services/Services";
@@ -19,16 +21,14 @@ const staticPages = [
     subTitle: "I'm Ready!",
     isSubpage: false,
     paragraph: "LETS CONNECT",
-    bgUrl:
-      "https://exerciseimage.s3.ap-south-1.amazonaws.com/2023-12-27/video1.mp4",
+    bgUrl:video1
   },
   {
     title: "HELP AND FAQS",
     subTitle: "Help Desk",
     isSubpage: false,
     paragraph: "SUPPORT",
-    bgUrl:
-      "https://exerciseimage.s3.ap-south-1.amazonaws.com/2023-12-27/video1.mp4",
+    bgUrl:video2
   },
 ];
 
