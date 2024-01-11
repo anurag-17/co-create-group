@@ -10,7 +10,6 @@ module.exports = {
             name: 'static/media/[name].[hash].[ext]',
           },
         },
-        images:['co-create-group.s3.amazonaws.com']
       });
   
       return config;
