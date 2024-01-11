@@ -54,7 +54,7 @@ const Services = ({ setShow, subPagesData ,isMuted}) => {
         muted
         className={`background ${animate ? "animate-exit" : ""}`}
       >
-        <source src={subPagesData[previousPage]?.bgUrl+ '?v=' + new Date().getTime()} type="video/mp4" />
+        <source src={subPagesData[previousPage]?.bgUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -68,7 +68,7 @@ const Services = ({ setShow, subPagesData ,isMuted}) => {
         key={currentPage + 2}
         className={`background ${animate ? "animate-enter" : ""}`}
       >
-        <source src={subPagesData[currentPage]?.bgUrl+ '?v=' + new Date().getTime()} type="video/mp4" />
+        <source src={subPagesData[currentPage]?.bgUrl} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 

@@ -214,10 +214,11 @@ const MainPage = () => {
                 autoPlay
                 loop
                 key={previous + 1}
+                
                 muted
                 className={`background ${animate ? "animate-exit" : ""}`}
               >
-                <source src={allData[previous]?.bgUrl + '?v=' + new Date().getTime()} type="video/mp4" />
+                <source src={allData[previous]?.bgUrl } type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
@@ -229,6 +230,7 @@ const MainPage = () => {
                 muted={isMuted}
                 ref={videoRef}
                 key={current + 2}
+                preload="auto"
                 onCanPlay={() => {
                   if (autoPlay && videoRef.current) {
                     videoRef.current.play();
@@ -241,7 +243,7 @@ const MainPage = () => {
                 }}
                 className={`background ${animate ? "animate-enter" : ""}`}
               >
-                <source src={allData[current]?.bgUrl + '?v=' + new Date().getTime()} type="video/mp4" />
+                <source src={allData[current]?.bgUrl } type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
