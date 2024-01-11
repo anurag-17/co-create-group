@@ -323,7 +323,7 @@ button {
     font-size: 35px;
   }
   .main-head2{
-    font-size:78px;
+    font-size:70px;
   }
   
 }
@@ -381,6 +381,10 @@ button {
   .serialCount {
     bottom: 55%;
     top: 45%;
+}
+.sub-headContThree {
+  top: 35%;
+  bottom: auto;
 }
 }
 
