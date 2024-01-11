@@ -52,6 +52,7 @@ const Services = ({ setShow, subPagesData ,isMuted}) => {
         key={previousPage + 1}
         loop
         muted
+        preload="auto"
         className={`background ${animate ? "animate-exit" : ""}`}
       >
         <source src={subPagesData[previousPage]?.bgUrl} type="video/mp4" />
@@ -66,6 +67,7 @@ const Services = ({ setShow, subPagesData ,isMuted}) => {
         muted={isMutedPage}
         ref={videoRef}
         key={currentPage + 2}
+        preload="auto"
         className={`background ${animate ? "animate-enter" : ""}`}
       >
         <source src={subPagesData[currentPage]?.bgUrl} type="video/mp4" />

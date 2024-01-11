@@ -179,6 +179,9 @@ button {
   line-height: 0;
   margin: 0;
 }
+.main-head2{
+  font-size:95px;
+}
 .heading2 {
   color: #fff;
   font-family: "Montserrat", sans-serif;
@@ -302,6 +305,9 @@ button {
 @media (max-width: 1800px) {
   .main-heading {
     font-size: 70px;
+  }
+  .main-head2{
+    font-size:70px;
   }
 }
 
