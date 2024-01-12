@@ -99,7 +99,7 @@ button:focus-visible {
 
 .headCont {
   position: absolute;
-  z-index: 11;
+  z-index: 1;
   top: 47%;
   bottom: 53%;
 }
@@ -109,7 +109,7 @@ button:focus-visible {
   top: 57%;
   bottom: 43%;
   /* left: 10px; */
-  z-index: 11;
+  z-index: 1;
 }
 .headContThree {
   position: absolute;
@@ -117,7 +117,7 @@ button:focus-visible {
   bottom: 25%;
   /* left: 10px; */
   min-height: 35px;
-  z-index: 11;
+  z-index: 1;
 }
 .sub-headContThree {
   position: absolute;
@@ -151,7 +151,7 @@ button:focus-visible {
   bottom: 20%;
   right: 5%;
   min-height: 35px;
-  z-index: 11;
+  z-index: 1;
 }
 
 .serialCount p {
@@ -273,7 +273,7 @@ button {
   position: absolute;
   bottom: 60px;
   border: #fff;
-  z-index: 11;
+  z-index: 1;
   background: white;
   display: flex;
   justify-content: center;

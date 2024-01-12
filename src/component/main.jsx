@@ -206,7 +206,7 @@ const MainPage = () => {
       {isLoader && <Loader />}
       {Array.isArray(allData) && allData.length > 0 && (
         <div className={`containerImage `} onClick={playAudio}>
-          <Header handleClick={onReset} />
+          <Header handleClick={onReset} data={contactDetails}/>
           {!show ? (
             <>
               {/* -------------background video------------------ */}

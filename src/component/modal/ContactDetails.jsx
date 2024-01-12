@@ -5,35 +5,38 @@ import Location from "./svg/Location";
 import Phone from "./svg/Phone";
 import { Dialog, Transition } from "@headlessui/react";
 import EmailPopup from "./EmailPopup";
+import Link from "next/link";
 
-const ContactDetails = ({contactDetails}) => {
+const ContactDetails = ({ contactDetails }) => {
   const [openEmail, setOpenEmail] = useState(false);
 
-  console.log(contactDetails)
+  console.log(contactDetails);
 
   const contactData = [
     {
       label: "phone",
       url: <Phone />,
-      info:contactDetails ? contactDetails[0]?.number : "+89 8974 4895 586",
+      info: contactDetails ? contactDetails[0]?.number : "+89 8974 4895 586",
     },
     {
       label: "email",
       url: <Email />,
-      info:  contactDetails ?contactDetails[0]?.email : "info@support.com",
+      info: contactDetails ? contactDetails[0]?.email : "info@support.com",
     },
     {
       label: "location",
       url: <Location />,
-      info: contactDetails ? contactDetails[0]?.address : "123 lorem ipsum, xyz colony, USA 452896",
+      info: contactDetails
+        ? contactDetails[0]?.address
+        : "123 lorem ipsum, xyz colony, USA 452896",
     },
   ];
 
   const array2 = ["schedule", "email", "chat"];
 
   const handleClose = () => {
-    setOpenEmail(false)
-  }
+    setOpenEmail(false);
+  };
   return (
     <>
       <div className=" 2xl:px-[30px] 2xl:py-[40px] py-[30px] contact-details">
@@ -57,9 +60,27 @@ const ContactDetails = ({contactDetails}) => {
                 <p className="2xl:text-[20px] text-[16px] font-[700] xl:leading-[30px] leading-[27px] uppercase">
                   {item.label}
                 </p>
-                <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                  {item.info}
-                </p>
+                {item.label === "email" ? (
+                  <Link href={`mailto:${item.info}`} target="_blank">
+                    <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
+                      {item.info}
+                    </p>
+                  </Link>
+                ) : (
+                  <>
+                    {item.label == "phone" ? (
+                      <Link href={`tel:${item.info}`} target="_blank">
+                        <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
+                          {item.info}
+                        </p>
+                      </Link>
+                    ) : (
+                      <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
+                        {item.info}
+                      </p>
+                    )}
+                  </>
+                )}
               </div>
               {/* </div> */}
             </div>
@@ -122,7 +143,7 @@ const ContactDetails = ({contactDetails}) => {
                       width={20}
                     />
                   </div>
-                  <EmailPopup handleClose={handleClose}/>
+                  <EmailPopup handleClose={handleClose} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
