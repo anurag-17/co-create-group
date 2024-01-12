@@ -8,7 +8,7 @@ import Phone from "../modal/svg/Phone";
 
 const Header = ({ handleClick, data }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const encodedAddress = encodeURIComponent( data[0]?.address);
+  const encodedAddress = encodeURIComponent(data[0]?.address);
   const googleMapsUrl = `https://www.google.com/maps?q=${encodedAddress}`;
 
   const closeDrawer = () => {
@@ -32,7 +32,6 @@ const Header = ({ handleClick, data }) => {
       info: data ? data[0]?.address : "123 lorem ipsum, xyz colony, USA 452896",
     },
   ];
-
 
   return (
     <>
@@ -117,9 +116,19 @@ const Header = ({ handleClick, data }) => {
               <div className="contact-details">
                 <div className="flex flex-col md:gap-10 gap-8 lg:py-[40px] py-[20px] lg:px-[40px] px-[20px]">
                   {contactData.map((item, inx) => (
+                     <Link
+                      key={inx}
+                     href={
+                       item.label === "location"
+                         ? googleMapsUrl
+                         : item.label === "email"
+                         ? `mailto:${item.info}`
+                         : `tel:${item.info}`
+                     }
+                     target="_blank"
+                   >
                     <div
                       className="bg-[#F1F1F1] px-[15px] py-[20px] flex gap-3 items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300 rounded"
-                      key={inx}
                     >
                       <div className="2xl:w-[48px] 2xl:h-[48px] w-[38px] h-[38px] lg:p-2 p-1 rounded-[50%] flex  justify-center items-center sm:bg-[black]">
                         {item.url}
@@ -128,50 +137,20 @@ const Header = ({ handleClick, data }) => {
                         <p className="2xl:text-[20px] text-[16px] font-[700] xl:leading-[30px] leading-[27px] uppercase">
                           {item.label}
                         </p>
-                        {item.label === "email" ? (
-                          <Link href={`mailto:${item.info}`} target="_blank">
-                            <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                              {item.info}
-                            </p>
-                          </Link>
-                        ) : (
-                          <>
-                            {item.label == "phone" ? (
-                              <Link href={`tel:${item.info}`} target="_blank">
-                                <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                                  {item.info}
-                                </p>
-                              </Link>
-                            ) : (
-                              <Link href={googleMapsUrl} target="_blank">
-                              <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                                {item.info}
-                              </p>
-                            </Link>
-                            )}
-                          </>
-                        )}
-                        
+                       
+                          <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
+                            {item.info}
+                          </p>
                       </div>
                     </div>
+                        </Link>
                   ))}
                 </div>
               </div>
             </div>
           )}
         </div>
-        {/* 
-        <div className="absolute z-20 left-0 top-0 h-[100vh] w-[100%] bg-black py-4 px-4">
-          <div className="absolute text-right right-5">
-            <Image src="/svg/white-cross.svg" alt="close" height={20} width={20} />
-          </div>
-
-          <ul className="flex flex-col gap-10 justify-center items-center">
-            {headings.map((items,index)=>(
-              <li key={index} className="text-white text-16px font-[600]">{items}</li>
-            ))}
-          </ul>
-        </div> */}
+        
       </header>
     </>
   );

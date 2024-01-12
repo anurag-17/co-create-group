@@ -75,12 +75,14 @@ const MainPage = () => {
   };
 
   const onReset = () => {
-    setCurrent(0);
-    setPrevious(0);
-    setNext(1);
-    setAnimate(true);
-    setHeadanimate(true);
-    setShow(false);
+    // setCurrent(0);
+    // setPrevious(0);
+    // setNext(1);
+    // setAnimate(true);
+    // setHeadanimate(true);
+    // setShow(false);
+    // getAllData()
+    window.location.reload()
   };
 
 
@@ -218,7 +220,7 @@ const MainPage = () => {
                 muted
                 className={`background ${animate ? "animate-exit" : ""}`}
               >
-                <source src={allData[previous]?.bgUrl } type="video/mp4" />
+                <source src={`${allData[previous]?.bgUrl}`} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
@@ -243,7 +245,7 @@ const MainPage = () => {
                 }}
                 className={`background ${animate ? "animate-enter" : ""}`}
               >
-                <source src={allData[current]?.bgUrl } type="video/mp4" />
+                <source src={`${allData[current]?.bgUrl}`} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 

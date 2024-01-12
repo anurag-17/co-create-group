@@ -11,7 +11,7 @@ const ContactDetails = ({ contactDetails }) => {
   const [openEmail, setOpenEmail] = useState(false);
 
   // console.log(contactDetails);
-  const encodedAddress = encodeURIComponent( contactDetails[0]?.address);
+  const encodedAddress = encodeURIComponent(contactDetails[0]?.address);
   const googleMapsUrl = `https://www.google.com/maps?q=${encodedAddress}`;
 
   const contactData = [
@@ -50,10 +50,18 @@ const ContactDetails = ({ contactDetails }) => {
 
         <div className="grid 2xl:grid-cols-3 lg:grid-cols-2 gap-5 lg:py-[40px] py-[20px]">
           {contactData.map((item, inx) => (
-            // <div className="bg-[#F1F1F1] max-w-[330px] w-full sm:w-auto" key={inx}>
+              <Link
+              href={
+                item.label === "location"
+                  ? googleMapsUrl
+                  : item.label === "email"
+                  ? `mailto:${item.info}`
+                  : `tel:${item.info}`
+              }
+              target="_blank"
+            >
             <div
               className="bg-[#F1F1F1] px-[15px] py-[20px] flex gap-3 items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300"
-              key={inx}
             >
               <div className="2xl:w-[48px] 2xl:h-[48px] w-[38px] h-[38px] lg:p-2 p-1 rounded-[50%] flex  justify-center items-center sm:bg-[black]">
                 {item.url}
@@ -62,33 +70,13 @@ const ContactDetails = ({ contactDetails }) => {
                 <p className="2xl:text-[20px] text-[16px] font-[700] xl:leading-[30px] leading-[27px] uppercase">
                   {item.label}
                 </p>
-                {item.label === "email" ? (
-                  <Link href={`mailto:${item.info}`} target="_blank">
-                    <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                      {item.info}
-                    </p>
-                  </Link>
-                ) : (
-                  <>
-                    {item.label == "phone" ? (
-                      <Link href={`tel:${item.info}`} target="_blank">
-                        <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                          {item.info}
-                        </p>
-                      </Link>
-                    ) : (
-                      <Link href={googleMapsUrl} target="_blank">
-                        <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                          {item.info}
-                        </p>
-                      </Link>
-                      
-                    )}
-                  </>
-                )}
+              
+                  <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
+                    {item.info}
+                  </p>
               </div>
-              {/* </div> */}
             </div>
+                </Link>
           ))}
         </div>
 
