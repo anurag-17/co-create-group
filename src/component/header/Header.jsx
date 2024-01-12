@@ -8,6 +8,8 @@ import Phone from "../modal/svg/Phone";
 
 const Header = ({ handleClick, data }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const encodedAddress = encodeURIComponent( data[0]?.address);
+  const googleMapsUrl = `https://www.google.com/maps?q=${encodedAddress}`;
 
   const closeDrawer = () => {
     setOpenDrawer(false);
@@ -141,9 +143,11 @@ const Header = ({ handleClick, data }) => {
                                 </p>
                               </Link>
                             ) : (
+                              <Link href={googleMapsUrl} target="_blank">
                               <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
                                 {item.info}
                               </p>
+                            </Link>
                             )}
                           </>
                         )}

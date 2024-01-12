@@ -10,7 +10,9 @@ import Link from "next/link";
 const ContactDetails = ({ contactDetails }) => {
   const [openEmail, setOpenEmail] = useState(false);
 
-  console.log(contactDetails);
+  // console.log(contactDetails);
+  const encodedAddress = encodeURIComponent( contactDetails[0]?.address);
+  const googleMapsUrl = `https://www.google.com/maps?q=${encodedAddress}`;
 
   const contactData = [
     {
@@ -75,9 +77,12 @@ const ContactDetails = ({ contactDetails }) => {
                         </p>
                       </Link>
                     ) : (
-                      <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
-                        {item.info}
-                      </p>
+                      <Link href={googleMapsUrl} target="_blank">
+                        <p className="2xl:text-[16px] text-[14px] font-[500] lg:leading-[23px] leading-normal">
+                          {item.info}
+                        </p>
+                      </Link>
+                      
                     )}
                   </>
                 )}
