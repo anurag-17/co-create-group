@@ -51,6 +51,7 @@ const MainPage = () => {
   const videoRef = useRef(null);
   const [defaultModal, setDefaultModal] = useState(false)
   const [autoPlay, setAutoPlay] = useState(false)
+  const [isOpenPrivacy, setIsOpenPrivacy] = useState(true)
 
   useEffect(() => {
     if (animate) {
@@ -91,7 +92,7 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    setDefaultModal(true)
+    // setDefaultModal(true)
     getAllData();
     getContactData()
    
@@ -214,7 +215,7 @@ const MainPage = () => {
               {/* -------------background video------------------ */}
               <video
                 autoPlay
-                loop
+                // loop
                 key={previous + 1}
                 
                 muted
@@ -228,7 +229,7 @@ const MainPage = () => {
 
               <video
                 autoPlay
-                loop
+                // loop
                 muted={isMuted}
                 ref={videoRef}
                 key={current + 2}
@@ -414,7 +415,7 @@ const MainPage = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black/70 py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                   <div
                     className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
                     onClick={() =>   {
@@ -422,9 +423,10 @@ const MainPage = () => {
                       setIsMuted(false)
                       playVideo_handler()
                       setAutoPlay(true)
+                      setIsOpenPrivacy(false)
                     }}
                   >
-                    Welcome to Co-Create-Group <span className="text-[30px]">→</span>
+                   WAIT! Stay informed and up to date with our latest content by signing up for our monthly newsletter... We'll even give you 10% off your first order for joining <span className="text-[30px]">→</span>
                   </div>
 
                 </Dialog.Panel>
@@ -526,6 +528,59 @@ const MainPage = () => {
                     />
                   </div>
                   <EmailPopup />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      <Transition appear show={isOpenPrivacy} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={()=>{}}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel  className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black/70 py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                  <div
+                     className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
+                    // onClick={() => setOpenEmail(false)}
+                  >
+                    <p className="">Terms and Conditions</p>
+                   <button
+                      type="submit"
+                      className="w-[200px] bg-[#1f2432] font-medium text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
+                      onClick={()=>{ 
+                        setDefaultModal(true)
+                        setIsOpenPrivacy(false)}}
+                    >
+                     Agree
+                    </button>
+                  </div>
+                  {/* <EmailPopup /> */}
                 </Dialog.Panel>
               </Transition.Child>
             </div>
