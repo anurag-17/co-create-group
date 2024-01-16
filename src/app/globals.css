@@ -9,6 +9,12 @@
   .icon-hover{
     @apply  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 
   }
+  .custom_input{
+    @apply  bg-[#F2F2F2] placeholder:text-[#A9A9A9] text-[16px] placeholder:text-[14px] font-[500] leading-[26px] 2xl:h-[53px] h-[48px] w-full focus-visible:outline-none px-[20px]
+  }
+  .custom_button{
+    @apply  bg-black px-3 2xl:text-[18px] text-[15px] font-[700] leading-[28px] uppercase text-white sm:max-w-[160px] w-full 2xl:h-[53px] h-[42px] 
+  }
   
 }
 
@@ -122,9 +128,9 @@ button:focus-visible {
 .sub-headContThree {
   position: absolute;
   /* top: 57%; */
-  bottom: 32%;
+  bottom: 25%;
   min-height: 35px;
-  z-index: 11;
+  z-index: 1;
 }
 
 .hidden {
@@ -265,13 +271,16 @@ button {
     transform: translateY(0);
   }
 }
+.arrow-btn{
+  position: absolute;
+  bottom: 60px;
+}
 
 .next-btn {
+
   border-radius: 50%;
   height: 60px;
   width: 60px;
-  position: absolute;
-  bottom: 60px;
   border: #fff;
   z-index: 1;
   background: white;
@@ -279,8 +288,11 @@ button {
   justify-content: center;
   align-items: center;
   padding: 10px;
+  /* transform: rotate(270deg) */
 }
-
+.prev-btn{
+  transform: rotate(180deg) !important;
+}
 .btnRotate {
   animation: rotateUp 1s ease-out forwards;
 }
@@ -389,7 +401,7 @@ button {
     top: 45%;
 }
 .sub-headContThree {
-  top: 35%;
+  top: 40%;
   bottom: auto;
 }
 }

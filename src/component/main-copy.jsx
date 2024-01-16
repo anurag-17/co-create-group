@@ -14,20 +14,21 @@ import EmailPopup from "./modal/EmailPopup";
 import { BASE_URL } from "./config";
 import Loader from "./websiite-loader/Index";
 
+
 const staticPages = [
   {
     title: "contact US",
-    paragraph: "I'm Ready!",
-    // isSubpage: false,
-    // paragraph: "LETS CONNECT",
-    bgUrl: video1,
+    subTitle: "I'm Ready!",
+    isSubpage: false,
+    paragraph: "LETS CONNECT",
+    bgUrl:video1
   },
   {
     title: "HELP AND FAQS",
-    paragraph: "Help Desk",
-    // isSubpage: false,
-    // paragraph: "SUPPORT",
-    bgUrl: video2,
+    subTitle: "Help Desk",
+    isSubpage: false,
+    paragraph: "SUPPORT",
+    bgUrl:video2
   },
 ];
 
@@ -39,19 +40,18 @@ const MainPage = () => {
   const exitingRef = useRef();
   const [headanimate, setHeadanimate] = useState(false);
   const [show, setShow] = useState(false);
+  const [openContactModal, setOpenContactModal] = useState(false);
+  const [openEmail, setOpenEmail] = useState(false);
   const [allData, setAllData] = useState([]);
   const [isLoader, setLoader] = useState(false);
   const [dataLength, setDataLength] = useState(0);
   const [subPagesData, setSubPagesData] = useState([]);
-  const [isMuted, setIsMuted] = useState(true);
+  const [isMuted, setIsMuted] = useState(true)
   const [contactDetails, setContactDetails] = useState([]);
   const videoRef = useRef(null);
-  const [autoPlay, setAutoPlay] = useState(false);
-  // popup
-  const [openContactModal, setOpenContactModal] = useState(false);
-  const [openEmail, setOpenEmail] = useState(false);
-  const [defaultModal, setDefaultModal] = useState(false);
-  const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
+  const [defaultModal, setDefaultModal] = useState(false)
+  const [autoPlay, setAutoPlay] = useState(false)
+  const [isOpenPrivacy, setIsOpenPrivacy] = useState(true)
 
   useEffect(() => {
     if (animate) {
@@ -75,20 +75,10 @@ const MainPage = () => {
     setNext((next + 1) % allData?.length);
   };
 
-  const prevBackground = () => {
-    setHeadanimate(true);
-    setAnimate(true);
-
-    if (previous >= 0) {
-      setPrevious((prev) => prev - 1);
-      setCurrent((prev) => prev - 1);
-      setNext((prev) => prev - 1);
-    }
-  };
-
   const onReset = () => {
-    window.location.reload();
+    window.location.reload()
   };
+
 
   const closeDeleteModal = () => {
     setOpenContactModal(false);
@@ -96,9 +86,10 @@ const MainPage = () => {
 
   useEffect(() => {
     getAllData();
-    getContactData();
+    getContactData()
+   
   }, []);
-
+ 
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.muted = isMuted;
@@ -138,9 +129,10 @@ const MainPage = () => {
 
   const handleHeadingClick = (page) => {
     if (page?.isSubpage) {
-      getsubPageData(page);
+      getsubPageData(page)
     }
   };
+
 
   const getsubPageData = (main_page) => {
     setLoader(true);
@@ -157,12 +149,9 @@ const MainPage = () => {
         if (response.status === 200) {
           setLoader(false);
           // console.log(response?.data?.subpages)
-          if (
-            Array.isArray(response?.data?.subpages) &&
-            response?.data?.subpages.length > 0
-          ) {
+          if (Array.isArray(response?.data?.subpages) && response?.data?.subpages.length > 0) {
             setSubPagesData(response?.data?.subpages);
-            setShow(true);
+            setShow(true)
           }
         } else {
           setLoader(false);
@@ -201,22 +190,20 @@ const MainPage = () => {
       });
   };
   const playAudio = () => {
-    setIsMuted(false);
-  };
-  const playVideo_handler = () => {
+    setIsMuted(false)
+  }
+  const playVideo_handler = () =>{
     if (videoRef.current) {
       videoRef.current.play();
     }
-  };
-
- 
+  }
 
   return (
     <>
       {isLoader && <Loader />}
       {Array.isArray(allData) && allData.length > 0 && (
         <div className={`containerImage `} onClick={playAudio}>
-          <Header handleClick={onReset} data={contactDetails} />
+          <Header handleClick={onReset} data={contactDetails}/>
           {!show ? (
             <>
               {/* -------------background video------------------ */}
@@ -224,6 +211,7 @@ const MainPage = () => {
                 autoPlay
                 // loop
                 key={previous + 1}
+                
                 muted
                 className={`background ${animate ? "animate-exit" : ""}`}
               >
@@ -243,9 +231,12 @@ const MainPage = () => {
                 onCanPlay={() => {
                   if (autoPlay && videoRef.current) {
                     videoRef.current.play();
-                  } else if (videoRef.current && !autoPlay) {
+                  }
+                  else if(videoRef.current && !autoPlay) {
+                    
                     videoRef.current.pause();
                   }
+                  
                 }}
                 className={`background ${animate ? "animate-enter" : ""}`}
               >
@@ -257,9 +248,8 @@ const MainPage = () => {
                 {/* -------------heading 1------------------ */}
                 <div
                   ref={exitingRef}
-                  className={`headCont  ${
-                    headanimate ? "header-exit" : "hidden"
-                  }`}
+                  className={`headCont  ${headanimate ? "header-exit" : "hidden"
+                    }`}
                 >
                   <h3 className="main-heading">{allData[previous]?.title} </h3>
                 </div>
@@ -275,26 +265,49 @@ const MainPage = () => {
                 <div>
                   <div
                     ref={exitingRef}
-                    className={`headContTwo ${
-                      headanimate ? "header-exit" : "hidden"
-                    }`}
+                    className={`headContTwo ${headanimate ? "header-exit" : "hidden"
+                      }`}
                   >
                     <h3 className="heading2">
-                      <span>{allData[previous]?.subTitle}</span>
+                      {previous === dataLength - 1 ? (
+                        <span>{allData[previous]?.subTitle}</span>
+                      ) : (
+                        allData[previous]?.subTitle
+                      )}
                     </h3>
                   </div>
 
                   <div
-                    className={`headContTwo ${
-                      headanimate ? "header-enter" : ""
-                    }`}
+                    className={`headContTwo ${headanimate ? "header-enter" : ""
+                      }`}
                   >
                     <h3 className="heading2 flex md:gap-x-12 gap-x-6">
-                      <span
-                        className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300" // -------- for help desk modal
-                      >
-                        {allData[current]?.subTitle}
-                      </span>
+                      {current === dataLength ? (
+                        <>
+                          <span className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"  // -------- for help desk modal
+                          // onClick={() => {
+                          //   alert("modal one");
+                          // }}
+                          >
+                            {allData[current]?.subTitle}
+                          </span>
+                          <span className="cursor-pointer hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"   // -------- for faq modal
+                          // onClick={() => {
+                          //   alert("modal two");
+                          // }}
+                          >
+                            FAQs
+                          </span>
+                        </>
+                      ) : current === dataLength - 1 ? (    // -------- for contact page modal
+                        <span className="cursor-pointer hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300"
+                          onClick={() => setOpenContactModal(true)}
+                        >
+                          {allData[current]?.subTitle}
+                        </span>
+                      ) : (
+                        allData[current]?.subTitle
+                      )}
                     </h3>
                   </div>
                 </div>
@@ -303,9 +316,8 @@ const MainPage = () => {
                 <div>
                   <div
                     ref={exitingRef}
-                    className={`headContThree ${
-                      headanimate ? "headerThree-exit" : "hidden"
-                    }`}
+                    className={`headContThree ${headanimate ? "headerThree-exit" : "hidden"
+                      }`}
                   >
                     <p className="heading3 cursor-pointer">
                       {allData[previous]?.paragraph}
@@ -313,23 +325,14 @@ const MainPage = () => {
                   </div>
 
                   <div
-                    className={`headContThree ${
-                      headanimate ? "headerThree-enter" : ""
-                    }`}
+                    className={`headContThree ${headanimate ? "headerThree-enter" : ""
+                      }`}
                   >
                     <p
-                      className={`heading3 ${
-                        allData[current]?.isSubpage
-                          ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300"
-                          : ""
-                      }`}
+                      className={`heading3 ${allData[current]?.isSubpage ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300" : ""}`}
                       onClick={() => handleHeadingClick(allData[current])}
                     >
-                      {allData[current]?.paragraph
-                        ? allData[current]?.paragraph
-                        : allData[current]?.isSubpage
-                        ? "View"
-                        : ""}
+                      {(allData[current]?.paragraph) ? (allData[current]?.paragraph) : (allData[current]?.isSubpage) ? "View" : ""}
                     </p>
                   </div>
                 </div>
@@ -338,9 +341,8 @@ const MainPage = () => {
                 <div className={`${myFont2.className}`}>
                   <div
                     ref={exitingRef}
-                    className={`serialCount ${
-                      headanimate ? "headerThree-exit" : "hidden"
-                    }`}
+                    className={`serialCount ${headanimate ? "headerThree-exit" : "hidden"
+                      }`}
                   >
                     <p>
                       {previous + 1 === 0
@@ -350,9 +352,8 @@ const MainPage = () => {
                   </div>
 
                   <div
-                    className={`serialCount ${
-                      headanimate ? "headerThree-enter" : ""
-                    }`}
+                    className={`serialCount ${headanimate ? "headerThree-enter" : ""
+                      }`}
                   >
                     <p>{(current + 1)?.toString()?.padStart(2, "0")}</p>
                   </div>
@@ -360,56 +361,30 @@ const MainPage = () => {
               </div>
 
               {/*------------next button----------------- */}
-              <div className="flex absolute bottom-[60px] gap-x-5">
-                <button
-                  onClick={prevBackground}
-                  className={
-                    current + 1 === 1
-                      ? "hidden"
-                      : " next-btn icon-hover prev-btn"
-                  }
-                >
-                  <Image
-                    src="/svg/arrow.svg"
-                    width={30}
-                    height={30}
-                    alt="prev"
-                    className=""
-                  />
-                </button>
-                <button
-                  onClick={changeBackground}
-                  className={
-                    current + 1 === allData?.length
-                      ? " next-btn icon-hover"
-                      : "next-btn icon-hover"
-                  }
-                >
-                  <Image
-                    src="/svg/arrow.svg"
-                    width={30}
-                    height={30}
-                    alt="next"
-                  />
-                </button>
-              </div>
+              <button
+                onClick={changeBackground}
+                className={
+                  current + 1 === allData?.length
+                    ? "btnRotate next-btn icon-hover"
+                    : "next-btn icon-hover"
+                }
+              >
+                <Image src="/svg/arrow.svg" width={30} height={30} alt="next" />
+              </button>
             </>
           ) : (
-            <Services
-              setShow={setShow}
-              subPagesData={subPagesData}
-              isMuted={isMuted}
-              contactDetails={contactDetails}
-            />
+            <Services setShow={setShow} subPagesData={subPagesData} isMuted = {isMuted}/>
           )}
         </div>
       )}
 
-      <Transition appear show={defaultModal} as={Fragment} onClose={() => {}}>
+      
+      <Transition appear show={defaultModal} as={Fragment} onClose = {()=>{}}>
         <Dialog
           as="div"
           className="relative z-[111] bg-black/70"
-          onClose={() => {}}
+          onClose={()=>{
+          }}
         >
           <Transition.Child
             as={Fragment}
@@ -437,19 +412,66 @@ const MainPage = () => {
                 <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                   <div
                     className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
-                    onClick={() => {
-                      setDefaultModal(false);
-                      setIsMuted(false);
-                      playVideo_handler();
-                      setAutoPlay(true);
-                      setIsOpenPrivacy(false);
+                    onClick={() =>   {
+                      setDefaultModal(false)
+                      setIsMuted(false)
+                      playVideo_handler()
+                      setAutoPlay(true)
+                      setIsOpenPrivacy(false)
                     }}
                   >
-                    WAIT! Stay informed and up to date with our latest content
-                    by signing up for our monthly newsletter... We'll even give
-                    you 10% off your first order for joining{" "}
-                    <span className="text-[30px]">→</span>
+                   WAIT! Stay informed and up to date with our latest content by signing up for our monthly newsletter... We'll even give you 10% off your first order for joining <span className="text-[30px]">→</span>
                   </div>
+
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+{/*------ contat details ------*/}
+      <Transition appear show={openContactModal} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={closeDeleteModal}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/70" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 px-[10px] xl:px-12 md:px-4 text-left align-middle shadow-xl transition-all relative">
+                  <div
+                    className="absolute right-[25px] top-[20px] cursor-pointer "
+                    onClick={() => setOpenContactModal(false)}
+                  >
+                    <Image
+                      src="/svg/close.svg"
+                      alt="close"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                  <ContactDetails contactDetails={contactDetails} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
@@ -457,10 +479,13 @@ const MainPage = () => {
         </Dialog>
       </Transition>
 
-   
-
-      <Transition appear show={isOpenPrivacy} as={Fragment}>
-        <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
+      {/* // Email */}
+      <Transition appear show={openEmail} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={closeDeleteModal}
+        >
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -484,21 +509,69 @@ const MainPage = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[800px] sm:max-w-[700px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
                   <div
-                    className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
+                    className="absolute right-[25px] top-[20px] cursor-pointer "
+                    onClick={() => setOpenEmail(false)}
+                  >
+                    <Image
+                      src="/svg/close.svg"
+                      alt="close"
+                      height={20}
+                      width={20}
+                    />
+                  </div>
+                  <EmailPopup />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
+      <Transition appear show={isOpenPrivacy} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111]"
+          onClose={()=>{}}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black bg-opacity-25" />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel  className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                  <div
+                     className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
                     // onClick={() => setOpenEmail(false)}
                   >
                     <p className="">Terms and Conditions</p>
-                    <button
+                   <button
                       type="submit"
                       className="w-[200px] bg-[#1f2432] font-medium text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
-                      onClick={() => {
-                        setDefaultModal(true);
-                        setIsOpenPrivacy(false);
-                      }}
+                      onClick={()=>{ 
+                        setDefaultModal(true)
+                        setIsOpenPrivacy(false)}}
                     >
-                      Agree
+                     Agree
                     </button>
                   </div>
                   {/* <EmailPopup /> */}
