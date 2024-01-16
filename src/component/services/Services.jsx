@@ -50,11 +50,14 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
     setHeadanimate(true);
     setAnimate(true);
   
-    if (previousPage >= 0) {
-      setPreviousPage(prev => prev - 1);
-      setCurrentPage(prev => prev - 1);
-      setNextPage(prev => prev - 1);
-    }
+    // if (previousPage >= 0) {
+    //   setPreviousPage(prev => prev - 1);
+    //   setCurrentPage(prev => prev - 1);
+    //   setNextPage(prev => prev - 1);
+    // }
+    setNextPage(currentPage);
+    setCurrentPage(previousPage);
+    setPreviousPage((previousPage - 1 + subPagesData?.length) % subPagesData?.length);
   };
   
   const playAudio = () => {

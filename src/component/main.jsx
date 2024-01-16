@@ -80,12 +80,15 @@ const MainPage = () => {
     setAnimate(true);
 
     if (previous >= 0) {
-      setPrevious((prev) => prev - 1);
-      setCurrent((prev) => prev - 1);
-      setNext((prev) => prev - 1);
+      // setPrevious((prev) => prev - 1);
+      // setCurrent((prev) => prev - 1);
+      // setNext((prev) => prev - 1);
     }
+    setNext(current);
+    setCurrent(previous);
+    setPrevious((previous - 1 + allData?.length) % allData?.length);
   };
-
+console.log(previous, current, next);
   const onReset = () => {
     window.location.reload();
   };
