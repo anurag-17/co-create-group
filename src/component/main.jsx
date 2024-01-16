@@ -117,7 +117,7 @@ const MainPage = () => {
     axios
       .request(options)
       .then((response) => {
-        console.log(response?.data);
+        // console.log(response?.data);
         if (response.status === 200) {
           setLoader(false);
           setAllData(response?.data?.pages);
@@ -484,15 +484,15 @@ const MainPage = () => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                   <div
                     className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
                     // onClick={() => setOpenEmail(false)}
                   >
-                    <p className="">Terms and Conditions</p>
+                    <p className="mb-6 text-[18px] ">Terms and Conditions</p>
                     <button
                       type="submit"
-                      className="w-[200px] bg-[#1f2432] font-medium text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
+                      className="w-[200px] bg-[#1f2432] font-medium border hover:border-transparent text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
                       onClick={() => {
                         setDefaultModal(true);
                         setIsOpenPrivacy(false);

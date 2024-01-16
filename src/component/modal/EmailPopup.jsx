@@ -59,8 +59,7 @@ const EmailPopup = ({ handleClose }) => {
             email
           </h6>
           <p className="2xl:text-[16px] text-[14px] font-[500] md:leading-[26px] leading-normal">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry.
+         Please enter your mail
           </p>
 
           <form onSubmit={submitEmail}>

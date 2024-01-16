@@ -12,8 +12,8 @@ const ScheduleModal = ({ handleClose }) => {
   const [isLoading, setLoading] = useState(false);
   const [isMessage, setMessage] = useState("");
 
-  const formattedToday = new Date().toISOString().split('T')[0];
-
+  const formattedToday =  new Date().toISOString().slice(0, 16);
+// console.log(formattedToday)
   const InputHandler = (e) => {
     setFormData({...formData,[e.target.name]:e.target.value})
   }
