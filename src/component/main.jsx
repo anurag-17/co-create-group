@@ -5,6 +5,7 @@ import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
 import video1 from "../../public/contact_us.mp4";
 import video2 from "../../public/help_faq.mp4";
+import co_create from "../../public/co-create.mp4";
 
 import Header from "./header/Header";
 import Services from "./services/Services";
@@ -52,7 +53,8 @@ const MainPage = () => {
   const [openEmail, setOpenEmail] = useState(false);
   const [defaultModal, setDefaultModal] = useState(false);
   const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+const [isTransition, setIsTransition] = useState(false);
 
   useEffect(() => {
     if (animate) {
@@ -66,15 +68,19 @@ const MainPage = () => {
         setHeadanimate(false);
       }, 1000);
     }
-  }, [animate, next]);
+  }, [animate, next,isTransition]);
 
   const changeBackground = () => {
-    setIsPlaying(true);
-    setHeadanimate(true);
-    setAnimate(true);
-    setPrevious(next - 1);
-    setCurrent(next);
-    setNext((next + 1) % allData?.length);
+    // setIsTransition(true)
+    // setTimeout(() => {
+    //   setIsTransition(false)
+      setIsPlaying(true);
+      setHeadanimate(true);
+      setAnimate(true);
+      setPrevious(next - 1);
+      setCurrent(next);
+      setNext((next + 1) % allData?.length);
+    // }, 2000);
   };
 
   const prevBackground = () => {
@@ -262,7 +268,7 @@ const MainPage = () => {
                 }}
                 className={`background ${animate ? "animate-enter" : ""}`}
               >
-                <source src={`${allData[current]?.bgUrl}`} type="video/mp4" />
+                <source src={allData[current]?.bgUrl} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
 
@@ -481,6 +487,7 @@ const MainPage = () => {
                       playVideo_handler();
                       setAutoPlay(true);
                       setIsOpenPrivacy(false);
+                      setIsPlaying(true)
                     }}
                   >
                     WAIT! Stay informed and up to date with our latest content
