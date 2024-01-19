@@ -1,13 +1,12 @@
 "use client";
 import Image from "next/image";
-import React, { Fragment ,useState, useEffect, useRef } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { myFont2 } from "@/app/font";
 import ContactDetails from "../modal/ContactDetails";
 import EmailPopup from "../modal/EmailPopup";
 
-
-const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
+const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [previousPage, setPreviousPage] = useState(0);
   const [nextPage, setNextPage] = useState(1);
@@ -19,6 +18,7 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
 
   // popup
   const [openContactModal, setOpenContactModal] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     if (animate) {
@@ -39,6 +39,7 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
     }
   }, [isMutedPage]);
   const changeBackgroundVid = () => {
+    setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
     setPreviousPage(nextPage - 1);
@@ -47,9 +48,10 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
   };
 
   const prevBackgroundVid = () => {
+    setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
-  
+
     // if (previousPage >= 0) {
     //   setPreviousPage(prev => prev - 1);
     //   setCurrentPage(prev => prev - 1);
@@ -57,26 +59,26 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
     // }
     setNextPage(currentPage);
     setCurrentPage(previousPage);
-    setPreviousPage((previousPage - 1 + subPagesData?.length) % subPagesData?.length);
+    setPreviousPage(
+      (previousPage - 1 + subPagesData?.length) % subPagesData?.length
+    );
   };
-  
+
   const playAudio = () => {
     setIsMutedPage(false);
   };
 
   const handleClickOpen = (title) => {
     // console.log(title.toLowerCase().trim() == "help and faqs")
-    
-    if (title?.toLowerCase()?.trim()  == "contact us") {
+
+    if (title?.toLowerCase()?.trim() == "contact us") {
       //  alert(title)
-      setOpenContactModal(true)
-    }
-    else if(title.toLowerCase().trim() == "help and faqs"){
+      setOpenContactModal(true);
+    } else if (title.toLowerCase().trim() == "help and faqs") {
       // alert(title)
-      return
-    }
-    else{
-      return
+      return;
+    } else {
+      return;
     }
   };
 
@@ -84,7 +86,15 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
     setOpenContactModal(false);
   };
 
-
+  const playButton = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <>
@@ -139,31 +149,6 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
           </h3>
         </div>
 
-        {/*------ heading two --------*/}
-
-        {/* <div>
-          <div
-            ref={exitingRef}
-            className={`headContTwo ${headanimate ? "header-exit" : "hidden"}`}
-          >
-            <h3 className="heading2">
-               {subPagesData[previousPage]?.subTitle}
-            </h3>
-          </div>
-
-          <div className={`headContTwo ${headanimate ? "header-enter" : ""}`}>
-            <h3 className="heading2 flex md:gap-x-12 gap-x-6">
-            <span
-                    className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300" // -------- for help desk modal
-                    // onClick={() => {
-                    //   alert("modal one");
-                    // }}
-                  >
-                    {subPagesData[currentPage]?.subTitle}
-                  </span>
-            </h3>
-          </div>
-        </div> */}
         {/* -------------heading 3------------------ */}
         <div>
           <div
@@ -179,15 +164,14 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
             className={`sub-headContThree ${
               headanimate ? "headerThree-enter" : ""
             }`}
-
-            onClick={()=>handleClickOpen(subPagesData[currentPage]?.title)}
+            onClick={() => handleClickOpen(subPagesData[currentPage]?.title)}
           >
             <p className="heading3 flex gap-x-5">
-              <span className="cursor-pointer">{subPagesData[currentPage]?.paragraph}</span>
-              {
-              subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() == "help desk" &&
-              <span  className="cursor-pointer">FAQs</span>
-            }
+              <span className="cursor-pointer">
+                {subPagesData[currentPage]?.paragraph}
+              </span>
+              {subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
+                "help desk" && <span className="cursor-pointer">FAQs</span>}
             </p>
           </div>
         </div>
@@ -213,46 +197,63 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
             <p>{(currentPage + 1)?.toString()?.padStart(2, "0")}</p>
           </div>
         </div>
+
+        {/*------------play button----------------- */}
+        <button
+          onClick={playButton}
+          className={` play-btn icon-hover px-1 py-1 absolute  sm:bottom-[8%] z-[1]`}
+        >
+          {isPlaying ? (
+            <Image
+              src="/svg/pause.svg"
+              width={40}
+              height={40}
+              alt="pause"
+              className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
+            />
+          ) : (
+            <Image
+              src="/svg/play.svg"
+              width={40}
+              height={40}
+              alt="play"
+              className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
+            />
+          )}
+        </button>
       </div>
 
       {/*------------next button----------------- */}
-      {
-        subPagesData?.length>1 &&
-      <div className="flex absolute bottom-[60px] gap-x-5">
-                <button
-                  onClick={prevBackgroundVid}
-                  className={
-                    currentPage + 1 === 1
-                      ? "hidden"
-                      : " next-btn icon-hover prev-btn"
-                  }
-                >
-                  <Image
-                    src="/svg/arrow.svg"
-                    width={30}
-                    height={30}
-                    alt="prev"
-                    className=""
-                  />
-                </button>
-                <button
-                  onClick={changeBackgroundVid}
-                  className={
-                    currentPage + 1 === subPagesData?.length
-                      ? " next-btn icon-hover"
-                      : "next-btn icon-hover"
-                  }
-                >
-                  <Image
-                    src="/svg/arrow.svg"
-                    width={30}
-                    height={30}
-                    alt="next"
-                  />
-                </button>
-              </div>
-   }
-         {/*------ contat details ------*/}
+      {subPagesData?.length > 1 && (
+        <div className="flex absolute sm:bottom-[60px] gap-x-5">
+          <button
+            onClick={prevBackgroundVid}
+            className={
+              currentPage + 1 === 1 ? "hidden" : " next-btn icon-hover prev-btn"
+            }
+          >
+            <Image
+              src="/svg/arrow.svg"
+              width={30}
+              height={30}
+              alt="prev"
+              className=""
+            />
+          </button>
+          <button
+            onClick={changeBackgroundVid}
+            className={
+              currentPage + 1 === subPagesData?.length
+                ? " next-btn icon-hover"
+                : "next-btn icon-hover"
+            }
+          >
+            <Image src="/svg/arrow.svg" width={30} height={30} alt="next" />
+          </button>
+        </div>
+      )}
+
+      {/*------ contat details ------*/}
       <Transition appear show={openContactModal} as={Fragment}>
         <Dialog
           as="div"
@@ -301,7 +302,6 @@ const Services = ({ setShow, subPagesData, isMuted,contactDetails }) => {
           </div>
         </Dialog>
       </Transition>
-
     </>
   );
 };

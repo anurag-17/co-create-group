@@ -2,22 +2,17 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-
-
 @layer components {
- 
-  .icon-hover{
-    @apply  transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 
+  .icon-hover {
+    @apply transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300;
   }
-  .custom_input{
-    @apply  bg-[#F2F2F2] placeholder:text-[#A9A9A9] text-[16px] placeholder:text-[14px] font-[500] leading-[26px] 2xl:h-[53px] h-[48px] w-full focus-visible:outline-none px-[20px]
+  .custom_input {
+    @apply bg-[#F2F2F2] placeholder:text-[#A9A9A9] text-[16px] placeholder:text-[14px] font-[500] leading-[26px] 2xl:h-[53px] h-[48px] w-full focus-visible:outline-none px-[20px];
   }
-  .custom_button{
-    @apply  bg-black px-3 2xl:text-[18px] text-[15px] font-[700] leading-[28px] uppercase text-white sm:max-w-[160px] w-full 2xl:h-[53px] h-[42px] 
+  .custom_button {
+    @apply bg-black px-3 2xl:text-[18px] text-[15px] font-[700] leading-[28px] uppercase text-white sm:max-w-[160px] w-full 2xl:h-[53px] h-[42px];
   }
-  
 }
-
 
 body {
   padding: 0;
@@ -50,9 +45,6 @@ button:focus-visible {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: black; */
-
-  /* z-index: 1; */
 }
 
 .background {
@@ -60,10 +52,8 @@ button:focus-visible {
   top: 0;
   left: 0;
   width: 100%;
-  /* height: 100vh; */
   background-size: cover;
   background-position: center;
-  /* / transition: transform 1s ease-in-out; / */
 }
 
 .overlay {
@@ -167,7 +157,6 @@ button:focus-visible {
   font-weight: 400;
   line-height: 80px; /* 121.212% */
   font-family: var(--font-teko);
- 
 }
 
 button {
@@ -185,8 +174,8 @@ button {
   line-height: 0;
   margin: 0;
 }
-.main-head2{
-  font-size:95px;
+.main-head2 {
+  font-size: 95px;
 }
 .heading2 {
   color: #fff;
@@ -201,16 +190,14 @@ button {
 .heading3 {
   color: #b3b3b3;
   font-family: "Montserrat", sans-serif;
-   font-family: var(--font-montserrat);
+  font-family: var(--font-montserrat);
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
   line-height: 50px;
   text-transform: uppercase;
   letter-spacing: 1px;
-
 }
-
 
 @keyframes exitToLeftTop {
   from {
@@ -271,13 +258,12 @@ button {
     transform: translateY(0);
   }
 }
-.arrow-btn{
+.arrow-btn {
   position: absolute;
   bottom: 60px;
 }
 
 .next-btn {
-
   border-radius: 50%;
   height: 60px;
   width: 60px;
@@ -290,20 +276,20 @@ button {
   padding: 10px;
   /* transform: rotate(270deg) */
 }
-.prev-btn{
+.prev-btn {
   transform: rotate(180deg) !important;
 }
 .btnRotate {
   animation: rotateUp 1s ease-out forwards;
 }
 
-.contact-details{
+.contact-details {
   font-family: var(--font-montserrat);
 }
 
-.contact-details svg{
-  fill : white
-} 
+.contact-details svg {
+  fill: white;
+}
 @keyframes rotateUp {
   from {
     transform: rotateZ(0);
@@ -318,8 +304,8 @@ button {
   .main-heading {
     font-size: 70px;
   }
-  .main-head2{
-    font-size:70px;
+  .main-head2 {
+    font-size: 70px;
   }
 }
 
@@ -340,10 +326,9 @@ button {
   .serialCount p {
     font-size: 35px;
   }
-  .main-head2{
-    font-size:70px;
+  .main-head2 {
+    font-size: 70px;
   }
-  
 }
 
 @media (max-width: 1200px) {
@@ -357,36 +342,45 @@ button {
     height: 100vh;
   }
 
-  .main-head2{
-    font-size:62px;
+  .main-head2 {
+    font-size: 62px;
   }
 }
 
-@media (max-width: 786px) {
+@media (max-width: 767px) {
   .main-heading {
     font-size: 40px;
   }
   .containerImage {
-    background: linear-gradient(291deg, rgba(0,0,0,1) 0%, rgba(40,40,40,1) 22%, rgba(45,45,45,1) 39%, rgba(71,71,71,1) 68%, rgba(105,105,105,1) 100%, rgba(3,0,104,1) 100%, rgba(0,212,255,1) 100%);
+    background: linear-gradient(
+      291deg,
+      rgba(0, 0, 0, 1) 0%,
+      rgba(40, 40, 40, 1) 22%,
+      rgba(45, 45, 45, 1) 39%,
+      rgba(71, 71, 71, 1) 68%,
+      rgba(105, 105, 105, 1) 100%,
+      rgba(3, 0, 104, 1) 100%,
+      rgba(0, 212, 255, 1) 100%
+    );
   }
-  .containerImage video{
-    height:auto;
+  .containerImage video {
+    height: auto;
     top: auto;
-    bottom: 15px;
+    bottom: auto;
   }
-  .headCont{
+  .headCont {
     bottom: auto;
     top: 25%;
   }
-  .headContTwo{
+  .headContTwo {
     bottom: auto;
     top: 30%;
   }
-  .headContThree{
+  .headContThree {
     bottom: auto;
-    top: 40%;
+    top: 38%;
   }
-  .heading2{
+  .heading2 {
     font-size: 20px;
   }
   .next-btn {
@@ -399,11 +393,11 @@ button {
   .serialCount {
     bottom: 55%;
     top: 45%;
-}
-.sub-headContThree {
-  top: 40%;
-  bottom: auto;
-}
+  }
+  .sub-headContThree {
+    top: 37%;
+    bottom: auto;
+  }
 }
 
 @media (max-width: 520px) {
@@ -413,7 +407,36 @@ button {
 }
 
 @media (max-width: 639.3px) {
-  .contact-details svg{
-    fill : black
+  .contact-details svg {
+    fill: black;
+  }
+}
+@media screen and (max-width: 767px) {
+
+  .containerImage, .overlay{
+    min-height: 100vw;
+  }
+  .containerImage video {
+    min-height: 100vw;
+    width: 100vh; 
+    height: 100vw; 
+    object-fit: cover;
+    top: 0;
+  }
+
+  body {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    min-height: 100vw;
+    width: 100vh;
+    height: 100vw;
+    overflow-x: hidden;
+    position: fixed;
+    top: 100%;
+    left: 0;
+  }
+
+  .header {
+    display: none; 
   }
 }

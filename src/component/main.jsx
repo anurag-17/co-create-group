@@ -52,6 +52,7 @@ const MainPage = () => {
   const [openEmail, setOpenEmail] = useState(false);
   const [defaultModal, setDefaultModal] = useState(false);
   const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   useEffect(() => {
     if (animate) {
@@ -68,6 +69,7 @@ const MainPage = () => {
   }, [animate, next]);
 
   const changeBackground = () => {
+    setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
     setPrevious(next - 1);
@@ -76,6 +78,7 @@ const MainPage = () => {
   };
 
   const prevBackground = () => {
+    setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
 
@@ -88,7 +91,7 @@ const MainPage = () => {
     setCurrent(previous);
     setPrevious((previous - 1 + allData?.length) % allData?.length);
   };
-console.log(previous, current, next);
+  // console.log(previous, current, next);
   const onReset = () => {
     window.location.reload();
   };
@@ -212,8 +215,15 @@ console.log(previous, current, next);
     }
   };
 
- 
-
+  const playButton = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
   return (
     <>
       {isLoader && <Loader />}
@@ -360,10 +370,34 @@ console.log(previous, current, next);
                     <p>{(current + 1)?.toString()?.padStart(2, "0")}</p>
                   </div>
                 </div>
+
+                 {/*------------next button----------------- */}
+              <button
+                onClick={playButton}
+                className={` play-btn icon-hover px-1 py-1 absolute  sm:bottom-[8%] z-[1]`}
+              >
+                {isPlaying ? (
+                  <Image
+                    src="/svg/pause.svg"
+                    width={40}
+                    height={40}
+                    alt="pause"
+                    className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
+                  />
+                ) : (
+                  <Image
+                    src="/svg/play.svg"
+                    width={40}
+                    height={40}
+                    alt="play"
+                    className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
+                  />
+                )}
+              </button>
               </div>
 
               {/*------------next button----------------- */}
-              <div className="flex absolute bottom-[60px] gap-x-5">
+              <div className="flex absolute sm:bottom-[60px] gap-x-5">
                 <button
                   onClick={prevBackground}
                   className={
@@ -396,6 +430,7 @@ console.log(previous, current, next);
                   />
                 </button>
               </div>
+             
             </>
           ) : (
             <Services
@@ -459,8 +494,6 @@ console.log(previous, current, next);
           </div>
         </Dialog>
       </Transition>
-
-   
 
       <Transition appear show={isOpenPrivacy} as={Fragment}>
         <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
