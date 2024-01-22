@@ -51,8 +51,8 @@ const MainPage = () => {
   // popup
   const [openContactModal, setOpenContactModal] = useState(false);
   const [openEmail, setOpenEmail] = useState(false);
-  const [defaultModal, setDefaultModal] = useState(true);
-  const [isOpenPrivacy, setIsOpenPrivacy] = useState(false);
+  const [defaultModal, setDefaultModal] = useState(false);
+  const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isTransition, setIsTransition] = useState(false);
   const [isRotate, setIsRotate] = useState(false);
@@ -72,33 +72,22 @@ const MainPage = () => {
   }, [animate, next, isTransition]);
 
   const changeBackground = () => {
-    // setIsTransition(true)
-    // setTimeout(() => {
-    //   setIsTransition(false)
     setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
     setPrevious(next - 1);
     setCurrent(next);
     setNext((next + 1) % allData?.length);
-    // }, 2000);
   };
 
   const prevBackground = () => {
     setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
-
-    if (previous >= 0) {
-      // setPrevious((prev) => prev - 1);
-      // setCurrent((prev) => prev - 1);
-      // setNext((prev) => prev - 1);
-    }
     setNext(current);
     setCurrent(previous);
     setPrevious((previous - 1 + allData?.length) % allData?.length);
   };
-  // console.log(previous, current, next);
   const onReset = () => {
     window.location.reload();
   };
@@ -221,32 +210,40 @@ const MainPage = () => {
       videoRef.current.play();
     }
   };
+  
+const pauseVideo = () => {
+  if (videoRef.current) {
+    videoRef.current.pause();
+  }
+};
 
-   useEffect(() => {
+
+  useEffect(() => {
     const handleOrientationChange = () => {
-      if (window.orientation === 0 || window.orientation === 180) {
-        // It's in portrait mode, show message or hide content
-        console.log('Portrait Mode');
+      console.log("Window Orientation:", window.orientation);
+  
+      if (window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
+        console.log("Portrait Mode");
         setIsRotate(true);
+        pauseVideo();
+
       } else {
-        // It's in landscape mode, show content
-        console.log('Landscape Mode');
+        console.log("Landscape Mode");
+        playVideo_handler();
         setIsRotate(false);
       }
     };
 
-    // Initial check
+    console.log(isRotate)
     handleOrientationChange();
+    window.addEventListener("orientationchange", handleOrientationChange);
 
-    // Add event listener for orientation change
-    window.addEventListener('orientationchange', handleOrientationChange);
-
-    // Clean up the event listener on component unmount
     return () => {
-      window.removeEventListener('orientationchange', handleOrientationChange);
+      window.removeEventListener("orientationchange", handleOrientationChange);
     };
-  }, []);
+  }, [window.orientation]);
 
+    
   return (
     <>
       <div className="co_create_group">
@@ -477,8 +474,7 @@ const MainPage = () => {
           </>
         )}
 
-        <Transition appear show={defaultModal} as={Fragment} 
-        onClose={() => {}}>
+        <Transition appear show={defaultModal} as={Fragment} onClose={() => {}}>
           <Dialog
             as="div"
             className="relative z-[111] bg-black/70"
@@ -532,7 +528,7 @@ const MainPage = () => {
         </Transition>
 
         <Transition appear show={isOpenPrivacy} as={Fragment}>
-          <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
+          <Dialog as="div" className="relative z-[111] co_create_group" onClose={() => {}}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -582,7 +578,7 @@ const MainPage = () => {
         </Transition>
 
         <Transition appear show={isRotate} as={Fragment}>
-          <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
+          <Dialog as="div" className="relative z-[111]" id="rotate_message" onClose={() => {}}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -596,7 +592,7 @@ const MainPage = () => {
             </Transition.Child>
 
             <div className="fixed inset-0 overflow-y-auto">
-              <div className="flex min-h-full items-center justify-center p-4 text-center ">
+              <div className="flex min-h-full items-center justify-center p-4 text-center bg-[#000000de]">
                 <Transition.Child
                   as={Fragment}
                   enter="ease-out duration-300"
@@ -606,13 +602,22 @@ const MainPage = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                  <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                     <div
-                      className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
+                      className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-black"
                       // onClick={() => setOpenEmail(false)}
                     >
-                      <div className="" id="rotate_message">
-                        <button className="">Please rotate your screen</button>
+                      <div className="" >
+                        <div className="">
+                          <Image
+                            src="/svg/rotate1.svg"
+                            alt="rotate"
+                            height={200}
+                            width={200}
+                          />
+                        </div>
+
+                        <button className="font-medium mt-6">Please rotate your screen</button>
                       </div>
                     </div>
                     {/* <EmailPopup /> */}

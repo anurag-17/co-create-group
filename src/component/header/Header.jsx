@@ -89,14 +89,14 @@ const Header = ({ handleClick, data }) => {
           {openDrawer && (
             <div
               id="drawer-form"
-              className="absolute sm:fixed content-center z-[1111] overflow-y-auto transition-opacity duration-150 ease-in-out delay-75 right-0 top-1 bottom-1 rounded  w-full md:max-w-[400px] max-w-[320px] lg:bg-black/90 min-h-screen  bg-black drawer "
+              className="absolute sm:fixed content-center z-[1111] overflow-y-auto transition-opacity duration-150 ease-in-out delay-75 right-0 top-1 bottom-1 rounded  w-full md:max-w-[400px] max-w-[300px] lg:bg-black/90 min-h-screen  bg-black drawer "
               tabIndex={-1}
               aria-labelledby="drawer-form-label"
             >
               <button
                 type="button"
                 onClick={closeDrawer}
-                className=" shadow-2xl text-sm  top-2 mx-4 my-4 inline-flex items-center justify-center text-white"
+                className=" shadow-2xl text-sm  top-2 mx-4 my-2 md:my-4 inline-flex items-center justify-center text-white"
               >
                 <svg
                   width="30"
@@ -114,7 +114,7 @@ const Header = ({ handleClick, data }) => {
                 <span className="sr-only bg-black">Close menu</span>
               </button>
               <div className="contact-details">
-                <div className="flex flex-col md:gap-10 gap-8 lg:py-[40px] py-[20px] lg:px-[40px] md:px-[20px] mx-[10px] md:mx-0 ">
+                <div className="flex flex-col md:gap-10 gap-5 lg:py-[40px] py-[15px] lg:px-[40px] md:px-[20px] mx-[10px] md:mx-0 ">
                   {contactData.map((item, inx) => (
                      <Link
                       key={inx}
@@ -128,7 +128,7 @@ const Header = ({ handleClick, data }) => {
                      target="_blank"
                    >
                     <div
-                      className="bg-[#F1F1F1] px-[15px] py-[20px] flex flex-col md:flex-row gap-1 md:gap-3 md:items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300 rounded"
+                      className="bg-[#F1F1F1] px-[15px] py-[10px] flex gap-2 md:gap-3 md:items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300 rounded"
                     >
                       <div className="2xl:w-[48px] 2xl:h-[48px] w-[38px] h-[38px] lg:p-2 p-1 rounded-[50%] flex  justify-center items-center sm:bg-[black]">
                         {item.url}

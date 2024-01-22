@@ -46,7 +46,7 @@ const ContactDetails = ({ contactDetails }) => {
   };
   return (
     <>
-      <div className=" 2xl:px-[30px] 2xl:py-[40px] py-[30px] contact-details">
+      <div className=" 2xl:px-[30px] 2xl:py-[40px] md:py-[30px] py-[20px] contact-details">
         <div className="">
           <h6 className="2xl:text-[40px] md:text-[35px] text-[24px] font-[700] xl:leading-[50px] leading-[35px] uppercase text-center">
             contact details

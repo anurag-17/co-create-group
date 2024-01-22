@@ -257,7 +257,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       <Transition appear show={openContactModal} as={Fragment}>
         <Dialog
           as="div"
-          className="relative z-[111]"
+          className="relative z-[111] co_create_group"
           onClose={closeDeleteModal}
         >
           <Transition.Child
@@ -283,7 +283,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 px-[10px] xl:px-12 md:px-4 text-left align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-5 md:py-10 px-[10px] xl:px-12 md:px-4 text-left align-middle shadow-xl transition-all relative">
                   <div
                     className="absolute right-[25px] top-[20px] cursor-pointer "
                     onClick={() => setOpenContactModal(false)}
