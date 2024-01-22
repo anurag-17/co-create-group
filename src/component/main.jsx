@@ -51,10 +51,11 @@ const MainPage = () => {
   // popup
   const [openContactModal, setOpenContactModal] = useState(false);
   const [openEmail, setOpenEmail] = useState(false);
-  const [defaultModal, setDefaultModal] = useState(false);
-  const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
+  const [defaultModal, setDefaultModal] = useState(true);
+  const [isOpenPrivacy, setIsOpenPrivacy] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-const [isTransition, setIsTransition] = useState(false);
+  const [isTransition, setIsTransition] = useState(false);
+  const [isRotate, setIsRotate] = useState(false);
 
   useEffect(() => {
     if (animate) {
@@ -68,18 +69,18 @@ const [isTransition, setIsTransition] = useState(false);
         setHeadanimate(false);
       }, 1000);
     }
-  }, [animate, next,isTransition]);
+  }, [animate, next, isTransition]);
 
   const changeBackground = () => {
     // setIsTransition(true)
     // setTimeout(() => {
     //   setIsTransition(false)
-      setIsPlaying(true);
-      setHeadanimate(true);
-      setAnimate(true);
-      setPrevious(next - 1);
-      setCurrent(next);
-      setNext((next + 1) % allData?.length);
+    setIsPlaying(true);
+    setHeadanimate(true);
+    setAnimate(true);
+    setPrevious(next - 1);
+    setCurrent(next);
+    setNext((next + 1) % allData?.length);
     // }, 2000);
   };
 
@@ -221,164 +222,191 @@ const [isTransition, setIsTransition] = useState(false);
     }
   };
 
-  const playButton = () => {
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
+   useEffect(() => {
+    const handleOrientationChange = () => {
+      if (window.orientation === 0 || window.orientation === 180) {
+        // It's in portrait mode, show message or hide content
+        console.log('Portrait Mode');
+        setIsRotate(true);
+      } else {
+        // It's in landscape mode, show content
+        console.log('Landscape Mode');
+        setIsRotate(false);
+      }
+    };
+
+    // Initial check
+    handleOrientationChange();
+
+    // Add event listener for orientation change
+    window.addEventListener('orientationchange', handleOrientationChange);
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, []);
+
   return (
     <>
-      {isLoader && <Loader />}
-      {Array.isArray(allData) && allData.length > 0 && (
-        <div className={`containerImage `} onClick={playAudio}>
-          <Header handleClick={onReset} data={contactDetails} />
-          {!show ? (
-            <>
-              {/* -------------background video------------------ */}
-              <video
-                autoPlay
-                // loop
-                key={previous + 1}
-                muted
-                className={`background ${animate ? "animate-exit" : ""}`}
-              >
-                <source src={`${allData[previous]?.bgUrl}`} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-              <div className="overlay"></div>
-
-              <video
-                autoPlay
-                // loop
-                muted={isMuted}
-                ref={videoRef}
-                key={current + 2}
-                preload="auto"
-                onCanPlay={() => {
-                  if (autoPlay && videoRef.current) {
-                    videoRef.current.play();
-                  } else if (videoRef.current && !autoPlay) {
-                    videoRef.current.pause();
-                  }
-                }}
-                className={`background ${animate ? "animate-enter" : ""}`}
-              >
-                <source src={allData[current]?.bgUrl} type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
-
-              <div className="w-[80%] mx-auto">
-                {/* -------------heading 1------------------ */}
-                <div
-                  ref={exitingRef}
-                  className={`headCont  ${
-                    headanimate ? "header-exit" : "hidden"
-                  }`}
-                >
-                  <h3 className="main-heading">{allData[previous]?.title} </h3>
-                </div>
-
-                <div
-                  className={`headCont ${headanimate ? "header-enter" : ""}`}
-                >
-                  <h3 className="main-heading">{allData[current]?.title}</h3>
-                </div>
-
-                {/*------ heading two --------*/}
-
-                <div>
-                  <div
-                    ref={exitingRef}
-                    className={`headContTwo ${
-                      headanimate ? "header-exit" : "hidden"
-                    }`}
+      <div className="co_create_group">
+        {isLoader && <Loader />}
+        {Array.isArray(allData) && allData.length > 0 && (
+          <>
+            <div className={`containerImage `} onClick={playAudio}>
+              <Header handleClick={onReset} data={contactDetails} />
+              {!show ? (
+                <>
+                  {/* -------------background video------------------ */}
+                  <video
+                    autoPlay
+                    // loop
+                    key={previous + 1}
+                    muted
+                    className={`background ${animate ? "animate-exit" : ""}`}
                   >
-                    <h3 className="heading2">
-                      <span>{allData[previous]?.subTitle}</span>
-                    </h3>
-                  </div>
+                    <source
+                      src={`${allData[previous]?.bgUrl}`}
+                      type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                  </video>
 
-                  <div
-                    className={`headContTwo ${
-                      headanimate ? "header-enter" : ""
-                    }`}
-                  >
-                    <h3 className="heading2 flex md:gap-x-12 gap-x-6">
-                      <span
-                        className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300" // -------- for help desk modal
-                      >
-                        {allData[current]?.subTitle}
-                      </span>
-                    </h3>
-                  </div>
-                </div>
+                  <div className="overlay"></div>
 
-                {/* -------------heading 3------------------ */}
-                <div>
-                  <div
-                    ref={exitingRef}
-                    className={`headContThree ${
-                      headanimate ? "headerThree-exit" : "hidden"
-                    }`}
+                  <video
+                    autoPlay
+                    // loop
+                    muted={isMuted}
+                    ref={videoRef}
+                    key={current + 2}
+                    preload="auto"
+                    onCanPlay={() => {
+                      if (autoPlay && videoRef.current) {
+                        videoRef.current.play();
+                      } else if (videoRef.current && !autoPlay) {
+                        videoRef.current.pause();
+                      }
+                    }}
+                    className={`background ${animate ? "animate-enter" : ""}`}
                   >
-                    <p className="heading3 cursor-pointer">
-                      {allData[previous]?.paragraph}
-                    </p>
-                  </div>
+                    <source src={allData[current]?.bgUrl} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
 
-                  <div
-                    className={`headContThree ${
-                      headanimate ? "headerThree-enter" : ""
-                    }`}
-                  >
-                    <p
-                      className={`heading3 ${
-                        allData[current]?.isSubpage
-                          ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300"
-                          : ""
+                  <div className="w-[80%] mx-auto">
+                    {/* -------------heading 1------------------ */}
+                    <div
+                      ref={exitingRef}
+                      className={`headCont  ${
+                        headanimate ? "header-exit" : "hidden"
                       }`}
-                      onClick={() => handleHeadingClick(allData[current])}
                     >
-                      {allData[current]?.paragraph
-                        ? allData[current]?.paragraph
-                        : allData[current]?.isSubpage
-                        ? "View"
-                        : ""}
-                    </p>
-                  </div>
-                </div>
+                      <h3 className="main-heading">
+                        {allData[previous]?.title}{" "}
+                      </h3>
+                    </div>
 
-                {/*--------- count -----------*/}
-                <div className={`${myFont2.className}`}>
-                  <div
-                    ref={exitingRef}
-                    className={`serialCount ${
-                      headanimate ? "headerThree-exit" : "hidden"
-                    }`}
-                  >
-                    <p>
-                      {previous + 1 === 0
-                        ? ""
-                        : (previous + 1)?.toString()?.padStart(2, "0")}
-                    </p>
-                  </div>
+                    <div
+                      className={`headCont ${
+                        headanimate ? "header-enter" : ""
+                      }`}
+                    >
+                      <h3 className="main-heading">
+                        {allData[current]?.title}
+                      </h3>
+                    </div>
 
-                  <div
-                    className={`serialCount ${
-                      headanimate ? "headerThree-enter" : ""
-                    }`}
-                  >
-                    <p>{(current + 1)?.toString()?.padStart(2, "0")}</p>
-                  </div>
-                </div>
+                    {/*------ heading two --------*/}
 
-                 {/*------------next button----------------- */}
-              <button
+                    <div>
+                      <div
+                        ref={exitingRef}
+                        className={`headContTwo ${
+                          headanimate ? "header-exit" : "hidden"
+                        }`}
+                      >
+                        <h3 className="heading2">
+                          <span>{allData[previous]?.subTitle}</span>
+                        </h3>
+                      </div>
+
+                      <div
+                        className={`headContTwo ${
+                          headanimate ? "header-enter" : ""
+                        }`}
+                      >
+                        <h3 className="heading2 flex md:gap-x-12 gap-x-6">
+                          <span
+                            className="cursor-pointer  hover:text-[#b3b3b3] transition-all ease-in-out delay-150 duration-300" // -------- for help desk modal
+                          >
+                            {allData[current]?.subTitle}
+                          </span>
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* -------------heading 3------------------ */}
+                    <div>
+                      <div
+                        ref={exitingRef}
+                        className={`headContThree ${
+                          headanimate ? "headerThree-exit" : "hidden"
+                        }`}
+                      >
+                        <p className="heading3 cursor-pointer">
+                          {allData[previous]?.paragraph}
+                        </p>
+                      </div>
+
+                      <div
+                        className={`headContThree ${
+                          headanimate ? "headerThree-enter" : ""
+                        }`}
+                      >
+                        <p
+                          className={`heading3 ${
+                            allData[current]?.isSubpage
+                              ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300"
+                              : ""
+                          }`}
+                          onClick={() => handleHeadingClick(allData[current])}
+                        >
+                          {allData[current]?.paragraph
+                            ? allData[current]?.paragraph
+                            : allData[current]?.isSubpage
+                            ? "View"
+                            : ""}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/*--------- count -----------*/}
+                    <div className={`${myFont2.className}`}>
+                      <div
+                        ref={exitingRef}
+                        className={`serialCount ${
+                          headanimate ? "headerThree-exit" : "hidden"
+                        }`}
+                      >
+                        <p>
+                          {previous + 1 === 0
+                            ? ""
+                            : (previous + 1)?.toString()?.padStart(2, "0")}
+                        </p>
+                      </div>
+
+                      <div
+                        className={`serialCount ${
+                          headanimate ? "headerThree-enter" : ""
+                        }`}
+                      >
+                        <p>{(current + 1)?.toString()?.padStart(2, "0")}</p>
+                      </div>
+                    </div>
+
+                    {/*------------play button----------------- */}
+                    {/* <button
                 onClick={playButton}
                 className={` play-btn icon-hover px-1 py-1 absolute  sm:bottom-[8%] z-[1]`}
               >
@@ -399,158 +427,202 @@ const [isTransition, setIsTransition] = useState(false);
                     className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
                   />
                 )}
-              </button>
-              </div>
-
-              {/*------------next button----------------- */}
-              <div className="flex absolute sm:bottom-[60px] gap-x-5">
-                <button
-                  onClick={prevBackground}
-                  className={
-                    current + 1 === 1
-                      ? "hidden"
-                      : " next-btn icon-hover prev-btn"
-                  }
-                >
-                  <Image
-                    src="/svg/arrow.svg"
-                    width={30}
-                    height={30}
-                    alt="prev"
-                    className=""
-                  />
-                </button>
-                <button
-                  onClick={changeBackground}
-                  className={
-                    current + 1 === allData?.length
-                      ? " next-btn icon-hover"
-                      : "next-btn icon-hover"
-                  }
-                >
-                  <Image
-                    src="/svg/arrow.svg"
-                    width={30}
-                    height={30}
-                    alt="next"
-                  />
-                </button>
-              </div>
-             
-            </>
-          ) : (
-            <Services
-              setShow={setShow}
-              subPagesData={subPagesData}
-              isMuted={isMuted}
-              contactDetails={contactDetails}
-            />
-          )}
-        </div>
-      )}
-
-      <Transition appear show={defaultModal} as={Fragment} onClose={() => {}}>
-        <Dialog
-          as="div"
-          className="relative z-[111] bg-black/70"
-          onClose={() => {}}
-        >
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black/70" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center ">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
-                  <div
-                    className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
-                    onClick={() => {
-                      setDefaultModal(false);
-                      setIsMuted(false);
-                      playVideo_handler();
-                      setAutoPlay(true);
-                      setIsOpenPrivacy(false);
-                      setIsPlaying(true)
-                    }}
-                  >
-                    WAIT! Stay informed and up to date with our latest content
-                    by signing up for our monthly newsletter... We'll even give
-                    you 10% off your first order for joining{" "}
-                    <span className="text-[30px]">→</span>
+              </button> */}
                   </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
-          </div>
-        </Dialog>
-      </Transition>
 
-      <Transition appear show={isOpenPrivacy} as={Fragment}>
-        <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
-          <Transition.Child
-            as={Fragment}
-            enter="ease-out duration-300"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="ease-in duration-200"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-          >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
-          </Transition.Child>
-
-          <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center ">
-              <Transition.Child
-                as={Fragment}
-                enter="ease-out duration-300"
-                enterFrom="opacity-0 scale-95"
-                enterTo="opacity-100 scale-100"
-                leave="ease-in duration-200"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
-                  <div
-                    className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
-                    // onClick={() => setOpenEmail(false)}
-                  >
-                    <p className="mb-6 text-[18px] ">Terms and Conditions</p>
+                  {/*------------next button----------------- */}
+                  <div className="flex absolute bottom-[10%] sm:bottom-[60px] gap-x-5 next">
                     <button
-                      type="submit"
-                      className="w-[200px] bg-[#1f2432] font-medium border hover:border-transparent text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
-                      onClick={() => {
-                        setDefaultModal(true);
-                        setIsOpenPrivacy(false);
-                      }}
+                      onClick={prevBackground}
+                      className={
+                        current + 1 === 1
+                          ? "hidden"
+                          : " next-btn icon-hover prev-btn"
+                      }
                     >
-                      Agree
+                      <Image
+                        src="/svg/arrow.svg"
+                        width={30}
+                        height={30}
+                        alt="prev"
+                        className=""
+                      />
+                    </button>
+                    <button
+                      onClick={changeBackground}
+                      className={
+                        current + 1 === allData?.length
+                          ? " next-btn icon-hover"
+                          : "next-btn icon-hover"
+                      }
+                    >
+                      <Image
+                        src="/svg/arrow.svg"
+                        width={30}
+                        height={30}
+                        alt="next"
+                      />
                     </button>
                   </div>
-                  {/* <EmailPopup /> */}
-                </Dialog.Panel>
-              </Transition.Child>
+                </>
+              ) : (
+                <Services
+                  setShow={setShow}
+                  subPagesData={subPagesData}
+                  isMuted={isMuted}
+                  contactDetails={contactDetails}
+                />
+              )}
             </div>
-          </div>
-        </Dialog>
-      </Transition>
+          </>
+        )}
+
+        <Transition appear show={defaultModal} as={Fragment} 
+        onClose={() => {}}>
+          <Dialog
+            as="div"
+            className="relative z-[111] bg-black/70"
+            onClose={() => {}}
+          >
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black/70" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center ">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                    <div
+                      className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
+                      onClick={() => {
+                        setDefaultModal(false);
+                        setIsMuted(false);
+                        playVideo_handler();
+                        setAutoPlay(true);
+                        setIsOpenPrivacy(false);
+                        setIsPlaying(true);
+                      }}
+                    >
+                      WAIT! Stay informed and up to date with our latest content
+                      by signing up for our monthly newsletter... We'll even
+                      give you 10% off your first order for joining{" "}
+                      <span className="text-[30px]">→</span>
+                    </div>
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+
+        <Transition appear show={isOpenPrivacy} as={Fragment}>
+          <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center ">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                    <div
+                      className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
+                      // onClick={() => setOpenEmail(false)}
+                    >
+                      <p className="mb-6 text-[18px] ">Terms and Conditions</p>
+                      <button
+                        type="submit"
+                        className="w-[200px] bg-[#1f2432] font-medium border hover:border-transparent text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
+                        onClick={() => {
+                          setDefaultModal(true);
+                          setIsOpenPrivacy(false);
+                        }}
+                      >
+                        Agree
+                      </button>
+                    </div>
+                    {/* <EmailPopup /> */}
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+
+        <Transition appear show={isRotate} as={Fragment}>
+          <Dialog as="div" className="relative z-[111]" onClose={() => {}}>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
+            </Transition.Child>
+
+            <div className="fixed inset-0 overflow-y-auto">
+              <div className="flex min-h-full items-center justify-center p-4 text-center ">
+                <Transition.Child
+                  as={Fragment}
+                  enter="ease-out duration-300"
+                  enterFrom="opacity-0 scale-95"
+                  enterTo="opacity-100 scale-100"
+                  leave="ease-in duration-200"
+                  leaveFrom="opacity-100 scale-100"
+                  leaveTo="opacity-0 scale-95"
+                >
+                  <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                    <div
+                      className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
+                      // onClick={() => setOpenEmail(false)}
+                    >
+                      <div className="" id="rotate_message">
+                        <button className="">Please rotate your screen</button>
+                      </div>
+                    </div>
+                    {/* <EmailPopup /> */}
+                  </Dialog.Panel>
+                </Transition.Child>
+              </div>
+            </div>
+          </Dialog>
+        </Transition>
+      </div>
     </>
   );
 };

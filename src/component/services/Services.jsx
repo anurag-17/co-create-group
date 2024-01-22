@@ -128,7 +128,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       {/* -------------heading 1------------------ */}
       <div className="container" onClick={playAudio}>
         <div
-          className="flex gap-2 absolute z-10 top-[13%] text-[white] 2xl:text-[16px] text-[12px] font-bold leading-[26px] cursor-pointer"
+          className="flex gap-2 absolute z-[1] top-[20%] text-[white] 2xl:text-[16px] text-[12px] font-bold leading-[26px] cursor-pointer"
           onClick={() => setShow(false)}
         >
           <Image src="/svg/left-arrow.svg" alt="back" height={16} width={16} />
@@ -199,7 +199,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
         </div>
 
         {/*------------play button----------------- */}
-        <button
+        {/* <button
           onClick={playButton}
           className={` play-btn icon-hover px-1 py-1 absolute  sm:bottom-[8%] z-[1]`}
         >
@@ -220,12 +220,12 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
               className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
             />
           )}
-        </button>
+        </button> */}
       </div>
 
       {/*------------next button----------------- */}
       {subPagesData?.length > 1 && (
-        <div className="flex absolute sm:bottom-[60px] gap-x-5">
+        <div className="next flex absolute bottom-[10%] sm:bottom-[60px] gap-x-5">
           <button
             onClick={prevBackgroundVid}
             className={

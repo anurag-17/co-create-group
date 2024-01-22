@@ -1,20 +1,16 @@
-import { useState } from 'react';
+import axios from "axios";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { BASE_URL } from "../config";
 
-const YourComponent = ({handleClose}) => {
-  const [email, setEmail] = useState('');
-  const [isMessage, setMessage] = useState('');
+const EmailPopup = ({ handleClose }) => {
+  const [email, setEmail] = useState("");
   const [isLoading, setLoading] = useState(false);
+  const [isMessage, setMessage] = useState("");
 
   const submitEmail = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      handleClose();
-    }, 1000);
-    setLoading(false);
-    return
     console.log(email);
 
     try {
@@ -54,65 +50,50 @@ const YourComponent = ({handleClose}) => {
       }
     }
   };
-
+  // onSubmit={submitEmail}
   return (
-    <div id="mc_embed_shell">
-      <div id="mc_embed_signup">
-        <form
-          // onSubmit={submitEmail}
-          method="post"
-          id="mc-embedded-subscribe-form"
-          name="mc-embedded-subscribe-form"
-          className="validate"
-          target="_target"
-          noValidate
-          action="https://thecocreategroup.us21.list-manage.com/subscribe/post?u=6c603f25a9c0afd6338056f72&amp;id=9c33e76f8a&amp;f_id=00aefbe6f0"
-        >
-          <div id="mc_embed_signup_scroll">
-            <div className="indicates-required">
-            <h6 className="2xl:text-[40px] md:text-[35px] text-[28px] font-[700] xl:leading-[50px] leading-[35px] uppercase">
+    <>
+      <div className="2xl:py-[32px] py-[10px] 2xl:px-[32px] px-[10px]">
+        <div className="flex flex-col 2xl:gap-6 gap-4 2xl:max-w-[75%] sm:max-w-[85%] w-full">
+          <h6 className="2xl:text-[40px] md:text-[35px] text-[28px] font-[700] xl:leading-[50px] leading-[35px] uppercase">
             email
           </h6>
-            </div>
-            <div className="mc-field-group">
-              <label htmlFor="mce-EMAIL" className="2xl:text-[16px] text-[14px] font-[500] md:leading-[26px] leading-normal py-5">Please enter your mail <span className="asterisk">*</span></label>
-              <input
-                type="email"
-                name="EMAIL"
-                className="required email custom_input"
-                id="mce-EMAIL"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <span id="mce-EMAIL-HELPERTEXT" className="helper_text"></span>
-            </div>
-            <div id="mce-responses" className="clear foot">
-              <div className="response" id="mce-error-response" style={{ display: 'none' }}></div>
-              <div className="response" id="mce-success-response" style={{ display: 'none' }}></div>
-            </div>
-            <div aria-hidden="true" style={{ position: 'absolute', left: '-5000px' }}>
-              {/* Real people should not fill this in and expect good things - do not remove this or risk form bot signups */}
-              <input type="text" name="b_6c603f25a9c0afd6338056f72_9c33e76f8a" tabIndex="-1" value="" />
-            </div>
-            <div className="optionalParent">
-              <div className="clear foot">
-              <div className="mt-4">
+          <p className="2xl:text-[16px] text-[14px] font-[500] md:leading-[26px] leading-normal">
+         Please enter your mail
+          </p>
+
+          <form onSubmit={submitEmail}>
+            <div className="flex flex-col gap-4">
+              <div className="">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="custom_input"
+                  onChange={(e) => {
+                    setEmail(e.target.value), setMessage("");
+                  }}
+                  required
+                />
+              </div>
+              {isMessage && (
+                <div className="text-[13px] font-normal text-[red] px-4 py-2 rounded bg-red-100">
+                  {isMessage}
+                </div>
+              )}
+              <div className="">
                 <button
                   type="submit"
-                  // onClick={()=>handleClose}
                   className="custom_button"
                 >
                   {isLoading ? "Loading.." : "submit"}
                 </button>
               </div>
-              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
-export default YourComponent;
+export default EmailPopup;
