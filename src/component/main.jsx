@@ -222,7 +222,7 @@ const pauseVideo = () => {
     const handleOrientationChange = () => {
       console.log("Window Orientation:", window.orientation);
   
-      if (window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
+      if (isMuted && window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
         console.log("Portrait Mode");
         setIsRotate(true);
         pauseVideo();
