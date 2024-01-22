@@ -225,11 +225,11 @@ const pauseVideo = () => {
       if (isMuted && window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
         console.log("Portrait Mode");
         setIsRotate(true);
-        pauseVideo();
+        // pauseVideo();
 
       } else {
         console.log("Landscape Mode");
-        playVideo_handler();
+        // playVideo_handler();
         setIsRotate(false);
       }
     };
