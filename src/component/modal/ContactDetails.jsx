@@ -8,9 +8,10 @@ import EmailPopup from "./EmailPopup";
 import Link from "next/link";
 import ScheduleModal from "./ScheduleModal";
 
-const ContactDetails = ({ contactDetails }) => {
+const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot }) => {
   const [openEmail, setOpenEmail] = useState(false);
   const [openSchedule, setOpenSchedule] = useState(false);
+  // const [IsChat, setIsChat] = useState(false);
 
   // console.log(contactDetails);
   const encodedAddress = encodeURIComponent(contactDetails[0]?.address);
@@ -93,7 +94,7 @@ const ContactDetails = ({ contactDetails }) => {
                   ? setOpenEmail(true)
                   : item === "schedule"
                   ? setOpenSchedule(true)
-                  : null;
+                  : setIsChatbot(!isChatbot);
               }}
             >
               {item}
@@ -101,6 +102,7 @@ const ContactDetails = ({ contactDetails }) => {
           ))}
         </div>
       </div>
+
 
       {/*------- schedule call------- */}
       <Transition appear show={openSchedule} as={Fragment}>
@@ -183,7 +185,7 @@ const ContactDetails = ({ contactDetails }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[800px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[700px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 md:px-12 px-4 text-left align-middle shadow-xl transition-all relative">
                   <div
                     className="absolute right-[25px] top-[20px] cursor-pointer "
                     onClick={() => setOpenEmail(false)}

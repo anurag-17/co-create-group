@@ -108,7 +108,7 @@ const YourComponent = ({ handleClose }) => {
         >
           <div id="mc_embed_signup_scroll">
             <div className="indicates-required">
-              <h6 className="2xl:text-[40px] md:text-[35px] text-[28px] font-[700] xl:leading-[50px] leading-[35px] uppercase">
+              <h6 className="2xl:text-[40px] md:text-[35px] text-[28px] font-[700] xl:leading-[50px] leading-[35px] uppercase mb-3">
                 email
               </h6>
             </div>
@@ -122,7 +122,7 @@ const YourComponent = ({ handleClose }) => {
               <input
                 type="email"
                 name="EMAIL"
-                className="required email custom_input"
+                className="required email custom_input py-4"
                 id="mce-EMAIL"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}

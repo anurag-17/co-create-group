@@ -97,6 +97,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
 
   const closeDeleteModal = () => {
     setOpenContactModal(false);
+    setIsChatbot(false)
   };
 
   const playButton = () => {
@@ -305,7 +306,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                       width={20}
                     />
                   </div>
-                  <ContactDetails contactDetails={contactDetails} />
+                  <ContactDetails contactDetails={contactDetails} isChatbot={isChatbot}  setIsChatbot={setIsChatbot}/>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
