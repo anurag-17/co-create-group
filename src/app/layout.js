@@ -47,6 +47,8 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${myFont.className}`}>
         <main className="">{children}</main>
+
+       
       </body>
     </html>
   );

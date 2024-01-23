@@ -5,6 +5,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import { myFont2 } from "@/app/font";
 import ContactDetails from "../modal/ContactDetails";
 import EmailPopup from "../modal/EmailPopup";
+import Chatbot from "../modal/chatbot";
 
 const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -14,6 +15,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const exitingRef = useRef();
   const [headanimate, setHeadanimate] = useState(true);
   const [isMutedPage, setIsMutedPage] = useState(isMuted);
+  const [isChatbot, setIsChatbot] = useState(false);
   const videoRef = useRef(null);
 
   // popup
@@ -75,7 +77,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       //  alert(title)
       setOpenContactModal(true);
     } else if (title.toLowerCase().trim() == "help and faqs") {
-      // alert(title)
+      setIsChatbot(!isChatbot);
       return;
     } else {
       return;
@@ -129,7 +131,9 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       <div className="container" onClick={playAudio}>
         <div
           className="flex gap-2 absolute z-[1] top-[20%] text-[white] 2xl:text-[16px] text-[12px] font-bold leading-[26px] cursor-pointer"
-          onClick={() => setShow(false)}
+          onClick={() => {
+            setShow(false), setIsChatbot(!isChatbot)
+          }}
         >
           <Image src="/svg/left-arrow.svg" alt="back" height={16} width={16} />
           Back
@@ -171,7 +175,14 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                 {subPagesData[currentPage]?.paragraph}
               </span>
               {subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
-                "help desk" && <span className="cursor-pointer">FAQs</span>}
+                "help desk" && (
+                <span
+                  className="cursor-pointer"
+                  onClick={() => setIsChatbot(!isChatbot)}
+                >
+                  FAQs
+                </span>
+              )}
             </p>
           </div>
         </div>
@@ -197,30 +208,6 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
             <p>{(currentPage + 1)?.toString()?.padStart(2, "0")}</p>
           </div>
         </div>
-
-        {/*------------play button----------------- */}
-        {/* <button
-          onClick={playButton}
-          className={` play-btn icon-hover px-1 py-1 absolute  sm:bottom-[8%] z-[1]`}
-        >
-          {isPlaying ? (
-            <Image
-              src="/svg/pause.svg"
-              width={40}
-              height={40}
-              alt="pause"
-              className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
-            />
-          ) : (
-            <Image
-              src="/svg/play.svg"
-              width={40}
-              height={40}
-              alt="play"
-              className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
-            />
-          )}
-        </button> */}
       </div>
 
       {/*------------next button----------------- */}
@@ -253,6 +240,17 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
         </div>
       )}
 
+      {isChatbot && (
+        <>
+          <iframe
+            src={`https://www.chatbase.co/chatbot-iframe/${process.env.NEXT_PUBLIC_chat_id}`}
+            width="100%"
+            // style={{ backgroundColor:"black"}}
+            frameBorder="0"
+            className="custom_bot"
+          ></iframe>
+        </>
+      )}
       {/*------ contat details ------*/}
       <Transition appear show={openContactModal} as={Fragment}>
         <Dialog

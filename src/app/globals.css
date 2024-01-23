@@ -290,6 +290,18 @@ button {
 .contact-details svg {
   fill: white;
 }
+
+.custom_bot{
+  z-index: 11111;
+  min-height: 500px;
+  min-width: 320px;
+  width: 400px;
+  position: absolute;
+  bottom: 2%;
+  border-radius: 20px;
+  right: 3%;
+}
+
 @keyframes rotateUp {
   from {
     transform: rotateZ(0);
@@ -431,16 +443,14 @@ button {
 }
 
 
-@media screen and (max-width: 1024px) and  (orientation: landscape) {
+/* @media screen and (max-width: 1024px) and  (orientation: landscape) {
   #rotate_message{
   display: none;
   }
   .co_create_group {
   display: block;
   }
-  /* .containerImage video {
-    display: block;
-  } */
+
   }
-  
+   */
   

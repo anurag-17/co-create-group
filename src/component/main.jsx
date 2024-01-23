@@ -56,7 +56,6 @@ const MainPage = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isTransition, setIsTransition] = useState(false);
   const [isRotate, setIsRotate] = useState(false);
-
   useEffect(() => {
     if (animate) {
       setTimeout(() => {
@@ -217,31 +216,35 @@ const pauseVideo = () => {
   }
 };
 
+console.log("Window:", window?.orientation);
 
   useEffect(() => {
     const handleOrientationChange = () => {
-      console.log("Window Orientation:", window.orientation);
   
-      if (isMuted && window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
+      if ( window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
         console.log("Portrait Mode");
         setIsRotate(true);
-        // pauseVideo();
+        pauseVideo()
 
       } else {
         console.log("Landscape Mode");
-        // playVideo_handler();
         setIsRotate(false);
+      }
+
+      // Play the video when in landscape mode
+      if (videoRef.current && autoPlay) {
+        videoRef.current.play();
       }
     };
 
-    console.log(isRotate)
+    // console.log(isRotate)
     handleOrientationChange();
     window.addEventListener("orientationchange", handleOrientationChange);
 
     return () => {
       window.removeEventListener("orientationchange", handleOrientationChange);
     };
-  }, [window.orientation]);
+  }, [window?.orientation, isRotate]);
 
     
   return (
@@ -578,7 +581,7 @@ const pauseVideo = () => {
         </Transition>
 
         <Transition appear show={isRotate} as={Fragment}>
-          <Dialog as="div" className="relative z-[111]" id="rotate_message" onClose={() => {}}>
+          <Dialog as="div" className="relative z-[111]"  id="rotate_message" onClose={() => {}}>
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
