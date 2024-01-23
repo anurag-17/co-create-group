@@ -334,6 +334,7 @@ button {
   }
   .heading3 {
     font-size: 14px;
+    letter-spacing:none;
   }
   .serialCount p {
     font-size: 35px;
@@ -353,12 +354,23 @@ button {
   .containerImage {
     height: 100vh;
   }
-
   .main-head2 {
     font-size: 62px;
   }
 }
 
+@media (max-width: 1024px) {
+  .main-head2 {
+    font-size: 50px;
+}
+.custom_bot{
+  max-height: 320px;
+  height: 100%;
+  min-height: 95%;
+width: 320px
+
+}
+}
 @media (max-width: 767px) {
   .main-heading {
     font-size: 40px;
@@ -380,18 +392,7 @@ button {
     top: auto;
     bottom: auto;
   }
-  /* .headCont {
-    bottom: auto;
-    top: 40%;
-  } */
-  /* .headContTwo {
-    bottom: auto;
-    top: 45%;
-  }
-  .headContThree {
-    bottom: auto;
-    top: 48%;
-  } */
+
   .heading2 {
     font-size: 20px;
   }
@@ -406,10 +407,6 @@ button {
     bottom: 5%;
     top: auto;
   }
-  /* .sub-headContThree {
-    top: 48%;
-    bottom: auto;
-  } */
 }
 
 @media (max-width: 520px) {
@@ -427,8 +424,12 @@ button {
   .header {
     display: none;
   }
+  .custom_bot{
+  min-width: 250px;
+  width :250px ;
+  right: 0;
+  }
 }
-
 
 @media screen and (max-width: 1024px) and (orientation: portrait) {
   .co_create_group  {
@@ -436,14 +437,10 @@ button {
   }
   #rotate_message {
     display: block;
-  }
-  /* .containerImage video {
-    display: none;
-  } */
+  } 
 }
 
-
-/* @media screen and (max-width: 1024px) and  (orientation: landscape) {
+@media screen and (max-width: 1024px) and  (orientation: landscape) {
   #rotate_message{
   display: none;
   }
@@ -451,6 +448,7 @@ button {
   display: block;
   }
 
+
   }
-   */
+  
   

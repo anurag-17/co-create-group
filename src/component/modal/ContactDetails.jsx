@@ -65,7 +65,7 @@ const ContactDetails = ({ contactDetails }) => {
               }
               target="_blank"
             >
-              <div className="bg-[#F1F1F1] px-[15px] py-[20px] flex gap-3 items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300">
+              <div className="bg-[#F1F1F1] px-[15px] py-[20px] flex gap-3 items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300 2xl:min-h-[140px]">
                 <div className="2xl:w-[48px] 2xl:h-[48px] w-[38px] h-[38px] lg:p-2 p-1 rounded-[50%] flex  justify-center items-center sm:bg-[black]">
                   {item.url}
                 </div>

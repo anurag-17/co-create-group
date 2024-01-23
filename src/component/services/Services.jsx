@@ -6,6 +6,7 @@ import { myFont2 } from "@/app/font";
 import ContactDetails from "../modal/ContactDetails";
 import EmailPopup from "../modal/EmailPopup";
 import Chatbot from "../modal/chatbot";
+import Loader from "../websiite-loader/Index";
 
 const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -21,6 +22,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   // popup
   const [openContactModal, setOpenContactModal] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [loader, setLodaer] = useState(false);
 
   useEffect(() => {
     if (animate) {
@@ -77,11 +79,20 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       //  alert(title)
       setOpenContactModal(true);
     } else if (title.toLowerCase().trim() == "help and faqs") {
-      setIsChatbot(!isChatbot);
+      setChatBox();
       return;
     } else {
       return;
     }
+  };
+
+  const setChatBox = () => {
+    setLodaer(true);
+    setIsChatbot(!isChatbot);
+
+    setTimeout(() => {
+      setLodaer(false);
+    }, 1000);
   };
 
   const closeDeleteModal = () => {
@@ -100,6 +111,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
 
   return (
     <>
+      {loader && <Loader />}
       {/* <button onClick={changeBackgroundVid}>Change Background</button> */}
       {/* <Header handleClick={onReset} /> */}
       <video
@@ -132,7 +144,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
         <div
           className="flex gap-2 absolute z-[1] top-[20%] text-[white] 2xl:text-[16px] text-[12px] font-bold leading-[26px] cursor-pointer"
           onClick={() => {
-            setShow(false), setIsChatbot(!isChatbot)
+            setShow(false), setIsChatbot(!isChatbot);
           }}
         >
           <Image src="/svg/left-arrow.svg" alt="back" height={16} width={16} />
@@ -281,7 +293,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-5 md:py-10 px-[10px] xl:px-12 md:px-4 text-left align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="w-full 2xl:max-w-[1250px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-5 md:py-10 px-[10px] xl:px-12 2xl:px-8 md:px-4 text-left align-middle shadow-xl transition-all relative">
                   <div
                     className="absolute right-[25px] top-[20px] cursor-pointer "
                     onClick={() => setOpenContactModal(false)}

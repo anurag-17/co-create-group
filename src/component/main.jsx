@@ -1,36 +1,16 @@
 "use client";
-import Image from "next/image";
 import React, { Fragment, useState, useEffect, useRef } from "react";
+import Image from "next/image";
 import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
-import video1 from "../../public/contact_us.mp4";
-import video2 from "../../public/help_faq.mp4";
-import co_create from "../../public/co-create.mp4";
 
 import Header from "./header/Header";
 import Services from "./services/Services";
 import { myFont2 } from "../app/font";
-import ContactDetails from "./modal/ContactDetails";
-import EmailPopup from "./modal/EmailPopup";
 import { BASE_URL } from "./config";
 import Loader from "./websiite-loader/Index";
 
-const staticPages = [
-  {
-    title: "contact US",
-    paragraph: "I'm Ready!",
-    // isSubpage: false,
-    // paragraph: "LETS CONNECT",
-    bgUrl: video1,
-  },
-  {
-    title: "HELP AND FAQS",
-    paragraph: "Help Desk",
-    // isSubpage: false,
-    // paragraph: "SUPPORT",
-    bgUrl: video2,
-  },
-];
+
 
 const MainPage = () => {
   const [current, setCurrent] = useState(0);
@@ -49,12 +29,8 @@ const MainPage = () => {
   const videoRef = useRef(null);
   const [autoPlay, setAutoPlay] = useState(false);
   // popup
-  const [openContactModal, setOpenContactModal] = useState(false);
-  const [openEmail, setOpenEmail] = useState(false);
   const [defaultModal, setDefaultModal] = useState(false);
   const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [isTransition, setIsTransition] = useState(false);
   const [isRotate, setIsRotate] = useState(false);
   useEffect(() => {
     if (animate) {
@@ -68,10 +44,9 @@ const MainPage = () => {
         setHeadanimate(false);
       }, 1000);
     }
-  }, [animate, next, isTransition]);
+  }, [animate, next, ]);
 
   const changeBackground = () => {
-    setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
     setPrevious(next - 1);
@@ -80,7 +55,6 @@ const MainPage = () => {
   };
 
   const prevBackground = () => {
-    setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
     setNext(current);
@@ -89,10 +63,6 @@ const MainPage = () => {
   };
   const onReset = () => {
     window.location.reload();
-  };
-
-  const closeDeleteModal = () => {
-    setOpenContactModal(false);
   };
 
   useEffect(() => {
@@ -118,14 +88,10 @@ const MainPage = () => {
     axios
       .request(options)
       .then((response) => {
-        // console.log(response?.data);
         if (response.status === 200) {
           setLoader(false);
           setAllData(response?.data?.pages);
           setDataLength(response?.data?.pages?.length - 1);
-          // const mergedArray = response?.data?.pages.concat(staticPages);
-          // setAllData(mergedArray);
-          // setDataLength(mergedArray?.length - 1);
         } else {
           setLoader(false);
           return;
@@ -209,44 +175,87 @@ const MainPage = () => {
       videoRef.current.play();
     }
   };
-  
-const pauseVideo = () => {
-  if (videoRef.current) {
-    videoRef.current.pause();
-  }
-};
 
-console.log("Window:", window?.orientation);
+  const handleOrientationChange = () => {
+    if (typeof window !== 'undefined' && 'orientation' in screen) {
+      const screenOrientation = screen.orientation || screen.mozOrientation || screen.msOrientation;
+
+      if (screenOrientation) {
+        const { type } = screenOrientation;
+        
+        if (type.includes('portrait')) {
+          console.log("Portrait Mode");
+          setIsRotate(true);
+          pauseVideo();
+        } else {
+          console.log("Landscape Mode");
+          setIsRotate(false);
+
+          if (videoRef.current && autoPlay) {
+            videoRef.current.play();
+          }
+        }
+      }
+    }
+  };
+
+  const pauseVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.pause();
+    }
+  };
 
   useEffect(() => {
-    const handleOrientationChange = () => {
-  
-      if ( window?.innerWidth < 1024 &&(window?.orientation === 0 || window?.orientation === 180)) {
-        console.log("Portrait Mode");
-        setIsRotate(true);
-        pauseVideo()
-
-      } else {
-        console.log("Landscape Mode");
-        setIsRotate(false);
-      }
-
-      // Play the video when in landscape mode
-      if (videoRef.current && autoPlay) {
-        videoRef.current.play();
-      }
-    };
-
-    // console.log(isRotate)
     handleOrientationChange();
-    window.addEventListener("orientationchange", handleOrientationChange);
+
+    if (typeof window !== 'undefined' && 'orientation' in screen) {
+      window.addEventListener('orientationchange', handleOrientationChange);
+    }
 
     return () => {
-      window.removeEventListener("orientationchange", handleOrientationChange);
+      if (typeof window !== 'undefined' && 'orientation' in screen) {
+        window.removeEventListener('orientationchange', handleOrientationChange);
+      }
     };
-  }, [window?.orientation, isRotate]);
+  }, [isRotate]);
 
-    
+  // useEffect(() => {
+  //   const handleOrientationChange = () => {
+  //     if (typeof window !== "undefined") {
+  //       if (
+  //         window.innerWidth < 1024 &&
+  //         (window.orientation === 0 || window.orientation === 180)
+  //       ) {
+  //         console.log("Portrait Mode");
+  //         setIsRotate(true);
+  //         pauseVideo();
+  //       } else {
+  //         console.log("Landscape Mode");
+  //         setIsRotate(false);
+
+  //         if (videoRef.current && autoPlay) {
+  //           videoRef.current.play();
+  //         }
+  //       }
+  //     }
+  //   };
+
+  //   handleOrientationChange();
+
+  //   if (typeof window !== "undefined") {
+  //     window.addEventListener("orientationchange", handleOrientationChange);
+  //   }
+
+  //   return () => {
+  //     if (typeof window !== "undefined") {
+  //       window.removeEventListener(
+  //         "orientationchange",
+  //         handleOrientationChange
+  //       );
+  //     }
+  //   };
+  // }, [ typeof window !== "undefined"  && window.orientation, isRotate]);
+
   return (
     <>
       <div className="co_create_group">
@@ -404,30 +413,6 @@ console.log("Window:", window?.orientation);
                         <p>{(current + 1)?.toString()?.padStart(2, "0")}</p>
                       </div>
                     </div>
-
-                    {/*------------play button----------------- */}
-                    {/* <button
-                onClick={playButton}
-                className={` play-btn icon-hover px-1 py-1 absolute  sm:bottom-[8%] z-[1]`}
-              >
-                {isPlaying ? (
-                  <Image
-                    src="/svg/pause.svg"
-                    width={40}
-                    height={40}
-                    alt="pause"
-                    className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
-                  />
-                ) : (
-                  <Image
-                    src="/svg/play.svg"
-                    width={40}
-                    height={40}
-                    alt="play"
-                    className="lg:w-[48px] w-[38px] lg:h-[48px] h-[38px]"
-                  />
-                )}
-              </button> */}
                   </div>
 
                   {/*------------next button----------------- */}
@@ -437,7 +422,7 @@ console.log("Window:", window?.orientation);
                       className={
                         current + 1 === 1
                           ? "hidden"
-                          : " next-btn icon-hover prev-btn"
+                          : "prev-btn  next-btn icon-hover "
                       }
                     >
                       <Image
@@ -515,7 +500,6 @@ console.log("Window:", window?.orientation);
                         playVideo_handler();
                         setAutoPlay(true);
                         setIsOpenPrivacy(false);
-                        setIsPlaying(true);
                       }}
                     >
                       WAIT! Stay informed and up to date with our latest content
@@ -531,7 +515,11 @@ console.log("Window:", window?.orientation);
         </Transition>
 
         <Transition appear show={isOpenPrivacy} as={Fragment}>
-          <Dialog as="div" className="relative z-[111] co_create_group" onClose={() => {}}>
+          <Dialog
+            as="div"
+            className="relative z-[111] co_create_group"
+            onClose={() => {}}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -558,7 +546,6 @@ console.log("Window:", window?.orientation);
                   <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                     <div
                       className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-white"
-                      // onClick={() => setOpenEmail(false)}
                     >
                       <p className="mb-6 text-[18px] ">Terms and Conditions</p>
                       <button
@@ -572,7 +559,6 @@ console.log("Window:", window?.orientation);
                         Agree
                       </button>
                     </div>
-                    {/* <EmailPopup /> */}
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
@@ -581,7 +567,12 @@ console.log("Window:", window?.orientation);
         </Transition>
 
         <Transition appear show={isRotate} as={Fragment}>
-          <Dialog as="div" className="relative z-[111]"  id="rotate_message" onClose={() => {}}>
+          <Dialog
+            as="div"
+            className="relative z-[111]"
+            id="rotate_message"
+            onClose={() => {}}
+          >
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -610,7 +601,7 @@ console.log("Window:", window?.orientation);
                       className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-black"
                       // onClick={() => setOpenEmail(false)}
                     >
-                      <div className="" >
+                      <div className="">
                         <div className="">
                           <Image
                             src="/svg/rotate1.svg"
@@ -620,7 +611,9 @@ console.log("Window:", window?.orientation);
                           />
                         </div>
 
-                        <button className="font-medium mt-6">Please rotate your screen</button>
+                        <button className="font-medium mt-6">
+                          Please rotate your screen
+                        </button>
                       </div>
                     </div>
                     {/* <EmailPopup /> */}
