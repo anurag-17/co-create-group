@@ -6,6 +6,10 @@ yarn-debug.log*
 yarn-error.log*
 package-lock.json*
 node_modules*
+
+sw.*
+workbox-*
+swe-worker-*
 # Runtime data
 pids
 *.pid
