@@ -8,8 +8,8 @@ package-lock.json*
 node_modules*
 
 # sw.*
-workbox-*
-swe-worker-*
+# workbox-*
+# swe-worker-*
 # Runtime data
 pids
 *.pid
