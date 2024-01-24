@@ -55,12 +55,6 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
     setIsPlaying(true);
     setHeadanimate(true);
     setAnimate(true);
-
-    // if (previousPage >= 0) {
-    //   setPreviousPage(prev => prev - 1);
-    //   setCurrentPage(prev => prev - 1);
-    //   setNextPage(prev => prev - 1);
-    // }
     setNextPage(currentPage);
     setCurrentPage(previousPage);
     setPreviousPage(
@@ -73,10 +67,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   };
 
   const handleClickOpen = (title) => {
-    // console.log(title.toLowerCase().trim() == "help and faqs")
-
     if (title?.toLowerCase()?.trim() == "contact us") {
-      //  alert(title)
       setOpenContactModal(true);
     } else if (title.toLowerCase().trim() == "help and faqs") {
       setChatBox();
@@ -184,7 +175,9 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
             onClick={() => handleClickOpen(subPagesData[currentPage]?.title)}
           >
             <p className="heading3 flex gap-x-5">
-              <span className="cursor-pointer">
+              <span className= {subPagesData[currentPage]?.title?.toLowerCase()?.trim() ==
+                "contact us" || subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
+                "help desk" ? "cursor-pointer" : ""}>
                 {subPagesData[currentPage]?.paragraph}
               </span>
               {subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
