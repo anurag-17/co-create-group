@@ -7,7 +7,7 @@ yarn-error.log*
 package-lock.json*
 node_modules*
 
-sw.*
+# sw.*
 workbox-*
 swe-worker-*
 # Runtime data
