@@ -2,8 +2,8 @@ import localFont from "next/font/local";
 import Head from "next/head";
 
 import '../../public/service-worker';
-import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+
 
 const myFont = localFont({
   name: "Montserrat",
@@ -44,7 +44,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* <link rel="manifest" href="/manifest.json" /> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <body className={`${myFont.className}`}>

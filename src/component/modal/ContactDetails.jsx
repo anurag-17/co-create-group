@@ -1,12 +1,12 @@
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
-import React, { Fragment, useState } from "react";
+import Link from "next/link";
+import { Dialog, Transition } from "@headlessui/react";
 import Email from "./svg/Email";
 import Location from "./svg/Location";
 import Phone from "./svg/Phone";
-import { Dialog, Transition } from "@headlessui/react";
 import EmailPopup from "./EmailPopup";
-import Link from "next/link";
-import ScheduleModal from "./ScheduleModal";
+import ScheduleModal from "./ScheduleModal-copy";
 
 const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot }) => {
   const [openEmail, setOpenEmail] = useState(false);
@@ -65,6 +65,7 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot }) => {
                   : `tel:${item.info}`
               }
               target="_blank"
+              key={inx}
             >
               <div className="bg-[#F1F1F1] px-[15px] py-[20px] flex gap-3 items-center hover:shadow-xl hover:rounded transition ease-in-out delay-150  duration-300 2xl:min-h-[140px]">
                 <div className="2xl:w-[48px] 2xl:h-[48px] w-[38px] h-[38px] lg:p-2 p-1 rounded-[50%] flex  justify-center items-center sm:bg-[black]">
