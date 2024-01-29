@@ -22,7 +22,25 @@ body {
 button:focus-visible {
   outline: none;
 }
+/* ////////scrollbar/////// */
+/* WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 4px; /* Set the width of the scrollbar */
+}
 
+::-webkit-scrollbar-thumb {
+  background-color: #1f2432; /* Set the color of the thumb */
+  border-radius: 6px; /* Set the border radius of the thumb */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f0f0f0; /* Set the color of the track */
+}
+
+
+
+
+/* ////////// */
 .video-background {
   position: fixed;
   top: 0;

@@ -6,7 +6,7 @@ const ScheduleModal = ({ handleClose }) => {
   return (
     <>
      <div className="App">
-      <InlineWidget url="https://calendly.com/negisapna2208/secheduling-a-call" />
+      <InlineWidget url="https://calendly.com/mpricharda/30min" />
     </div>
     </>
   );
