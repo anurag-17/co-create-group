@@ -6,7 +6,7 @@ import Email from "./svg/Email";
 import Location from "./svg/Location";
 import Phone from "./svg/Phone";
 import EmailPopup from "./EmailPopup";
-import ScheduleModal from "./ScheduleModal-copy";
+import ScheduleModal from "./ScheduleModal";
 
 const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot }) => {
   const [openEmail, setOpenEmail] = useState(false);

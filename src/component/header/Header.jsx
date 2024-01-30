@@ -61,12 +61,12 @@ const Header = ({ handleClick, data }) => {
                     className="cursor-pointer icon-hover"
                   />
                 </Link>
-                <Link href="#">
+                <Link href="https://www.linkedin.com/in/michael-pricharda-791399234/" className="bg-[#fff] h-[22px] w-[22px] rounded-[50%] flex justify-center items-center">
                   <Image
                     src="/svg/icon2.svg"
                     alt="logo"
-                    width={20}
-                    height={20}
+                    width={19}
+                    height={19}
                     className="cursor-pointer icon-hover"
                   />
                 </Link>
