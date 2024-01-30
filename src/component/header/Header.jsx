@@ -214,7 +214,7 @@ const Header = ({ handleClick, data }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                <Dialog.Panel className="relative w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[20px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all">
                   <div
                     className="absolute right-2 top-1 cursor-pointer"
                     onClick={() => {

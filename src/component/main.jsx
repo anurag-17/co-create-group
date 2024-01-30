@@ -522,12 +522,12 @@ const MainPage = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                  <Dialog.Panel className="w-full 2xl:max-w-[900px] xl:max-w-[700px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                     <div className="w-full cursor-pointer text-justify  flex flex-col items-center gap-3 justify-center text-white">
-                      <p className="mb-2 text-[18px] ">Terms and Conditions</p>
+                      <p className="mb-2 xl:text-[20px] text-[18px] ">Terms and Conditions</p>
                       <div className="h-[70vh] overflow-y-auto">
                         <section className="mb-2 mr-3">
-                          <h2 className="text-[13px]">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1 ">
                             Agreement between User and{" "}
                             <a
                               className="border-none focus-visible:outline-none underline"
@@ -538,7 +538,7 @@ const MainPage = () => {
                             </a>{" "}
                             <br />
                           </h2>
-                          <p className="text-[12px] ">
+                          <p className="xl:text-[16px] text-[14px] ">
                             Welcome to thecocreategroup.org. The{" "}
                             <a
                               className="border-none focus-visible:outline-none underline"
@@ -575,10 +575,10 @@ const MainPage = () => {
                           </p>
                         </section>
                         <section className="mb-2 mr-3">
-                          <h2 className="text-[13px]">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
                             Electronic Communications
                           </h2>
-                          <p className="text-[12px] ">
+                          <p className="xl:text-[16px] text-[14px] ">
                             Visiting{" "}
                             <a
                               className="border-none focus-visible:outline-none underline"
@@ -598,10 +598,10 @@ const MainPage = () => {
                           </p>
                         </section>
                         <section className="mb-2 mr-3">
-                          <h2 className="text-[13px]">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
                             Children Under Thirteen
                           </h2>
-                          <p className="text-[12px]">
+                          <p className="xl:text-[16px] text-[14px]">
                             TrAIned OSAI does not knowingly collect, either
                             online or offline, personal information from persons
                             under the age of thirteen. If you are under 18, you
@@ -616,8 +616,8 @@ const MainPage = () => {
                             only with the permission of a parent or guardian.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
                             Cancellation/Refund Policy
                           </h2>
                           <p>
@@ -631,8 +631,8 @@ const MainPage = () => {
                             with any questions.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
                             Links to Third Party Sites/Third Party Services
                           </h2>
                           <p>
@@ -670,8 +670,8 @@ const MainPage = () => {
                             users and customers.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
                             No Unlawful or Prohibited Use/Intellectual Property
                           </h2>
                           <p>
@@ -719,8 +719,8 @@ const MainPage = () => {
                             authorized by these Terms.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">International Users</h2>
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">International Users</h2>
                           <p>
                             The Service is controlled, operated, and
                             administered by TrAIned OSAI from our offices within
@@ -734,8 +734,8 @@ const MainPage = () => {
                             applicable laws, restrictions, or regulations.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">Indemnification</h2>
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">Indemnification</h2>
                           <p>
                             You agree to indemnify, defend, and hold harmless
                             TrAIned OSAI, its officers, directors, employees,
@@ -754,8 +754,8 @@ const MainPage = () => {
                             OSAI in asserting any available defenses.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">Arbitration</h2>
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">Arbitration</h2>
                           <p>
                             In the event the parties are not able to resolve any
                             dispute between them arising out of or concerning
@@ -790,8 +790,8 @@ const MainPage = () => {
                             of these Terms and Conditions.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">Class Action Waiver</h2>
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">Class Action Waiver</h2>
                           <p>
                             Any arbitration under these Terms and Conditions
                             will take place on an individual basis; class
@@ -809,8 +809,8 @@ const MainPage = () => {
                             proceeding.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">Liability Disclaimer</h2>
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">Liability Disclaimer</h2>
                           <p>
                             THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES
                             INCLUDED IN OR AVAILABLE THROUGH THE SITE MAY
@@ -859,8 +859,8 @@ const MainPage = () => {
                             DISCONTINUE USING THE SITE.
                           </p>
                         </section>
-                        <section className="mb-2 text-[12px] mr-3">
-                          <h2 className="text-[13px]">
+                        <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
                             Termination/Access Restriction
                           </h2>
                           <p>
@@ -913,7 +913,7 @@ const MainPage = () => {
                             documents be written in English.
                           </p>
                         </section>
-                        <section className="mb-3 text-[12px] mr-3">
+                        <section className="mb-3 xl:text-[16px] text-[14px] mr-3">
                           Changes to Terms TrAIned OSAI reserves the right, in
                           its sole discretion, to change the Terms under which{" "}
                           <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
@@ -925,9 +925,9 @@ const MainPage = () => {
                           stay informed of our updates.
                         </section>
                       </div>
-                      <button
+                     <button
                         type="submit"
-                        className="w-[200px] bg-[#1f2432] font-medium border hover:border-transparent text-white p-2 rounded-lg  hover:border hover:border-gray-300 h-[50px] login-btn"
+                        className="w-[150px] bg-[#1f2432]xl:text-[16px] text-[14px] font-medium border h text-white px-2 py-1 rounded-lg  hover:border-[#f3f3f3] h-[42px] login-btn"
                         onClick={() => {
                           setDefaultModal(true);
                           setIsOpenPrivacy(false);
