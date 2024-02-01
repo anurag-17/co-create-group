@@ -524,7 +524,9 @@ const MainPage = () => {
                 >
                   <Dialog.Panel className="w-full 2xl:max-w-[900px] xl:max-w-[700px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                     <div className="w-full cursor-pointer text-justify  flex flex-col items-center gap-3 justify-center text-white">
-                      <p className="mb-2 xl:text-[20px] text-[18px] ">Terms and Conditions</p>
+                      <p className="mb-2 xl:text-[20px] text-[18px] ">
+                        Terms and Conditions
+                      </p>
                       <div className="h-[70vh] overflow-y-auto">
                         <section className="mb-2 mr-3">
                           <h2 className="xl:text-[18px] text-[16px] pb-1 ">
@@ -586,7 +588,7 @@ const MainPage = () => {
                               target="_blank"
                             >
                               thecocreategroup.org
-                            </a>
+                            </a>{" "}
                             or sending emails to TrAIned OSAI constitutes
                             electronic communications. You consent to receive
                             electronic communications and you agree that all
@@ -625,7 +627,11 @@ const MainPage = () => {
                             Any cancellations made after 60 days of service or
                             use will not qualify for a refund. Please contact us
                             at{" "}
-                            <a href="info@thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                            <a
+                              href="mailto:info@thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               info@thecocreategroup.org
                             </a>{" "}
                             with any questions.
@@ -636,7 +642,11 @@ const MainPage = () => {
                             Links to Third Party Sites/Third Party Services
                           </h2>
                           <p>
-                            <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                            <a
+                              href="https://thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               thecocreategroup.org
                             </a>{" "}
                             may contain links to other websites ("Linked
@@ -650,21 +660,33 @@ const MainPage = () => {
                             not imply endorsement by TrAIned OSAI of the site or
                             any association with its operators. Certain services
                             made available via{" "}
-                            <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                            <a
+                              href="https://thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               thecocreategroup.org
                             </a>{" "}
                             are delivered by third party sites and
                             organizations. By using any product, service, or
                             functionality originating from the{" "}
-                            <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                            <a
+                              href="https://thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               thecocreategroup.org
                             </a>{" "}
                             domain, you hereby acknowledge and consent that
                             TrAIned OSAI may share such information and data
                             with any third party with whom TrAIned OSAI has a
                             contractual relationship to provide the requested
-                            product, service, or functionality on behalf of
-                            <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                            product, service, or functionality on behalf of{" "}
+                            <a
+                              href="https://thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               thecocreategroup.org
                             </a>{" "}
                             users and customers.
@@ -676,7 +698,12 @@ const MainPage = () => {
                           </h2>
                           <p>
                             You are granted a non-exclusive, non-transferable,
-                            revocable license to access and use <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                            revocable license to access and use{" "}
+                            <a
+                              href="https://thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               thecocreategroup.org
                             </a>{" "}
                             strictly in accordance with these terms of use. As a
@@ -720,22 +747,31 @@ const MainPage = () => {
                           </p>
                         </section>
                         <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
-                          <h2 className="xl:text-[18px] text-[16px] pb-1">International Users</h2>
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
+                            International Users
+                          </h2>
                           <p>
                             The Service is controlled, operated, and
                             administered by TrAIned OSAI from our offices within
                             the USA. If you access the Service from a location
                             outside the USA, you are responsible for compliance
                             with all local laws. You agree that you will not use
-                            the Content accessed through <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline"> 
+                            the Content accessed through{" "}
+                            <a
+                              href="https://thecocreategroup.org"
+                              target="_blank"
+                              className="border-none focus-visible:outline-none underline"
+                            >
                               thecocreategroup.org
-                            </a>
+                            </a>{" "}
                             in any country or in any manner prohibited by any
                             applicable laws, restrictions, or regulations.
                           </p>
                         </section>
                         <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
-                          <h2 className="xl:text-[18px] text-[16px] pb-1">Indemnification</h2>
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
+                            Indemnification
+                          </h2>
                           <p>
                             You agree to indemnify, defend, and hold harmless
                             TrAIned OSAI, its officers, directors, employees,
@@ -755,7 +791,9 @@ const MainPage = () => {
                           </p>
                         </section>
                         <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
-                          <h2 className="xl:text-[18px] text-[16px] pb-1">Arbitration</h2>
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
+                            Arbitration
+                          </h2>
                           <p>
                             In the event the parties are not able to resolve any
                             dispute between them arising out of or concerning
@@ -791,7 +829,9 @@ const MainPage = () => {
                           </p>
                         </section>
                         <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
-                          <h2 className="xl:text-[18px] text-[16px] pb-1">Class Action Waiver</h2>
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
+                            Class Action Waiver
+                          </h2>
                           <p>
                             Any arbitration under these Terms and Conditions
                             will take place on an individual basis; class
@@ -810,7 +850,9 @@ const MainPage = () => {
                           </p>
                         </section>
                         <section className="mb-2 xl:text-[16px] text-[14px] mr-3">
-                          <h2 className="xl:text-[18px] text-[16px] pb-1">Liability Disclaimer</h2>
+                          <h2 className="xl:text-[18px] text-[16px] pb-1">
+                            Liability Disclaimer
+                          </h2>
                           <p>
                             THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES
                             INCLUDED IN OR AVAILABLE THROUGH THE SITE MAY
@@ -916,7 +958,11 @@ const MainPage = () => {
                         <section className="mb-3 xl:text-[16px] text-[14px] mr-3">
                           Changes to Terms TrAIned OSAI reserves the right, in
                           its sole discretion, to change the Terms under which{" "}
-                          <a href="https://thecocreategroup.org" className="border-none focus-visible:outline-none underline">
+                          <a
+                            href="https://thecocreategroup.org"
+                            target="_blank"
+                            className="border-none focus-visible:outline-none underline"
+                          >
                             thecocreategroup.org
                           </a>{" "}
                           is offered. The most current version of the Terms will
@@ -925,7 +971,7 @@ const MainPage = () => {
                           stay informed of our updates.
                         </section>
                       </div>
-                     <button
+                      <button
                         type="submit"
                         className="w-[150px] bg-[#1f2432]xl:text-[16px] text-[14px] font-medium border h text-white px-2 py-1 rounded-lg  hover:border-[#f3f3f3] h-[42px] login-btn"
                         onClick={() => {

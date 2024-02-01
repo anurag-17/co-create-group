@@ -142,7 +142,7 @@ const Privacy = () => {
           the disclosure of your personal information. To opt-out of the
           disclosure of your personal information, email{" "}
           <a
-            href="info@thecocreategroup.org"
+            href="mailto:info@thecocreategroup.org" target="_blank"
             className="border-none focus-visible:outline-none underline"
           >
             info@thecocreategroup.org
@@ -157,6 +157,7 @@ const Privacy = () => {
           within{" "}
           <a
             href="https://thecocreategroup.org"
+            target="_blank"
             className="border-none focus-visible:outline-none underline"
           >
             thecocreategroup.org
@@ -335,7 +336,8 @@ const Privacy = () => {
           <li>
             Email:{" "}
             <a
-              href="info@thecocreategroup.org"
+              href="mailto:info@thecocreategroup.org"
+              target="_blank"
               className="border-none focus-visible:outline-none underline"
             >
               info@thecocreategroup.org
@@ -355,7 +357,8 @@ const Privacy = () => {
           email from TrAIned OSAI, you may opt out of such communications by
           emailing us at{" "}
           <a
-            href="info@thecocreategroup.org"
+            href="mailto:info@thecocreategroup.org"
+            target="_blank"
             className="border-none focus-visible:outline-none underline"
           >
             info@thecocreategroup.org
@@ -392,7 +395,8 @@ const Privacy = () => {
         <p className="xl:text-[16px] text-[14px]">
           Email Address:{" "}
           <a
-            href="info@thecocreategroup.org"
+            href="mailto:info@thecocreategroup.org"
+            target="_blank"
             className="border-none focus-visible:outline-none underline"
           >
             info@thecocreategroup.org
