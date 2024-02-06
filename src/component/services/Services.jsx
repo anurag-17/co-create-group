@@ -7,6 +7,7 @@ import ContactDetails from "../modal/ContactDetails";
 import EmailPopup from "../modal/EmailPopup";
 import Chatbot from "../modal/chatbot";
 import Loader from "../websiite-loader/Index";
+import { ChatBot } from "../ChatBot";
 
 const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -79,7 +80,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
 
   const setChatBox = () => {
     setLodaer(true);
-    setIsChatbot(!isChatbot);
+    setIsChatbot(true);
 
     setTimeout(() => {
       setLodaer(false);
@@ -88,7 +89,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
 
   const closeDeleteModal = () => {
     setOpenContactModal(false);
-    setIsChatbot(false)
+    // setIsChatbot(false)
   };
 
   const playButton = () => {
@@ -136,7 +137,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
         <div
           className="flex gap-2 absolute z-[1] top-[20%] text-[white] 2xl:text-[16px] text-[12px] font-bold leading-[26px] cursor-pointer"
           onClick={() => {
-            setShow(false), setIsChatbot(!isChatbot);
+            setShow(false), setIsChatbot(false);
           }}
         >
           <Image src="/svg/left-arrow.svg" alt="back" height={16} width={16} />
@@ -248,13 +249,14 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
 
       {isChatbot && (
         <>
-          <iframe
+          {/* <iframe
             src={`https://www.chatbase.co/chatbot-iframe/${process.env.NEXT_PUBLIC_chat_id}`}
             width="100%"
             // style={{ backgroundColor:"black"}}
             frameBorder="0"
             className="custom_bot"
-          ></iframe>
+          ></iframe> */}
+          <ChatBot setIsChatbot={setIsChatbot} />
         </>
       )}
       {/*------ contat details ------*/}
@@ -299,7 +301,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                       width={20}
                     />
                   </div>
-                  <ContactDetails contactDetails={contactDetails} isChatbot={isChatbot}  setIsChatbot={setIsChatbot}/>
+                  <ContactDetails contactDetails={contactDetails} isChatbot={isChatbot}  setIsChatbot={setIsChatbot} closeModal = {closeDeleteModal} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

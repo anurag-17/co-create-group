@@ -8,7 +8,7 @@ import Phone from "./svg/Phone";
 import EmailPopup from "./EmailPopup";
 import ScheduleModal from "./ScheduleModal";
 
-const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot }) => {
+const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal}) => {
   const [openEmail, setOpenEmail] = useState(false);
   const [openSchedule, setOpenSchedule] = useState(false);
   // const [IsChat, setIsChat] = useState(false);
@@ -95,7 +95,7 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot }) => {
                   ? setOpenEmail(true)
                   : item === "schedule"
                   ? setOpenSchedule(true)
-                  : setIsChatbot(!isChatbot);
+                  : setIsChatbot(true), closeModal();
               }}
             >
               {item}
