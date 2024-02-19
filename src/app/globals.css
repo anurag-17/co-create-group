@@ -469,4 +469,86 @@ width: 320px
 
   }
   
-  
+  .chatgpt::-webkit-scrollbar {
+    display: none;
+}
+
+/* @keyframes flash {
+  0% {
+    background-color: #FFF2;
+    box-shadow: 32px 0 #ffffff78, -32px 0 #FFF;
+  }
+  50% {
+    background-color: #FFF;
+    box-shadow: 32px 0 #ffffff78, -32px 0 #ffffff78;
+  }
+  100% {
+    background-color: #ffffff78;
+    box-shadow: 32px 0 #FFF, -32px 0 #ffffff78;
+  }
+/* } 
+.chat_loader { */
+  /* display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: flash 1.5s infinite;
+} */
+    
+
+.chat_loader, .chat_loader:before, .chat_loader:after {
+  border-radius: 50%;
+  width: 1.5em;
+  height: 1.5em;
+  animation-fill-mode: both;
+  animation: bblFadInOut 1.8s infinite ease-in-out;
+}
+.chat_loader {
+  color: #000;
+  font-size: 7px;
+  position: relative;
+  text-indent: -9999em;
+  transform: translateZ(0);
+  animation-delay: -0.16s;
+}
+.chat_loader:before,
+.chat_loader:after {
+  content: '';
+  position: absolute;
+  top: 0;
+}
+.chat_loader:before {
+  left: -3.5em;
+  animation-delay: -0.32s;
+}
+.chat_loader:after {
+  left: 3.5em;
+}
+
+@keyframes bblFadInOut {
+  0%, 80%, 100% { box-shadow: 0 2.5em 0 -1.3em }
+  40% { box-shadow: 0 2.5em 0 0 }
+}
+    
+
+
+.typed  {
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}

@@ -23,12 +23,12 @@ const Header = ({ handleClick, data }) => {
     {
       label: "phone",
       url: <Phone />,
-      info: data ? data[0]?.number : "+89 8974 4895 586",
+      info: data ? data[0]?.number : "+1-866-376-1970,",
     },
     {
       label: "email",
       url: <Email />,
-      info: data ? data[0]?.email : "info@support.com",
+      info: data ? data[0]?.email : "info@thecocreategroup.org",
     },
     {
       label: "location",

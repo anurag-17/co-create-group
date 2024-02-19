@@ -21,12 +21,12 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal})
     {
       label: "phone",
       url: <Phone />,
-      info: contactDetails ? contactDetails[0]?.number : "+89 8974 4895 586",
+      info: contactDetails ? contactDetails[0]?.number : "+1-866-376-1970,",
     },
     {
       label: "email",
       url: <Email />,
-      info: contactDetails ? contactDetails[0]?.email : "info@support.com",
+      info: contactDetails ? contactDetails[0]?.email : "info@thecocreategroup.org",
     },
     {
       label: "location",
@@ -50,7 +50,7 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal})
       <div className=" 2xl:px-[30px] 2xl:py-[40px] md:py-[30px] py-[20px] contact-details">
         <div className="">
           <h6 className="2xl:text-[40px] md:text-[35px] text-[24px] font-[700] xl:leading-[50px] leading-[35px] uppercase text-center">
-            contact details
+            contact detail
           </h6>
         </div>
 

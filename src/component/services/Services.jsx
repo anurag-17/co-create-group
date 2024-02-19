@@ -8,6 +8,7 @@ import EmailPopup from "../modal/EmailPopup";
 import Chatbot from "../modal/chatbot";
 import Loader from "../websiite-loader/Index";
 import { ChatBot } from "../ChatBot";
+import CreateAssistant from "@/app/chat/CreateAssistant";
 
 const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -256,7 +257,8 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
             frameBorder="0"
             className="custom_bot"
           ></iframe> */}
-          <ChatBot setIsChatbot={setIsChatbot} />
+          {/* <ChatBot setIsChatbot={setIsChatbot} /> */}
+          <CreateAssistant setIsChatbot={setIsChatbot}  />
         </>
       )}
       {/*------ contat details ------*/}
