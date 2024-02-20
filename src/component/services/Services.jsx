@@ -92,6 +92,10 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
     setOpenContactModal(false);
     // setIsChatbot(false)
   };
+  const closeChatModal = () => {
+    setIsChatbot(false);
+    // setIsChatbot(false)
+  };
 
   const playButton = () => {
     if (videoRef.current.paused) {
@@ -248,19 +252,50 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
         </div>
       )}
 
-      {isChatbot && (
+      {/* {isChatbot && (
         <>
-          {/* <iframe
-            src={`https://www.chatbase.co/chatbot-iframe/${process.env.NEXT_PUBLIC_chat_id}`}
-            width="100%"
-            // style={{ backgroundColor:"black"}}
-            frameBorder="0"
-            className="custom_bot"
-          ></iframe> */}
-          {/* <ChatBot setIsChatbot={setIsChatbot} /> */}
           <CreateAssistant setIsChatbot={setIsChatbot}  />
         </>
-      )}
+      )} */}
+      {/*------ chatbot  ------*/}
+      <Transition appear show={isChatbot} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111] co_create_group"
+          onClose={()=>{}}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 " />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-end p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="transform overflow-hidden max-w-[600px] w-full transition-all relative">
+                <CreateAssistant setIsChatbot={setIsChatbot}  />
+
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
       {/*------ contat details ------*/}
       <Transition appear show={openContactModal} as={Fragment}>
         <Dialog

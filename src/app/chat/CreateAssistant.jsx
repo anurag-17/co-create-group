@@ -1,12 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 import { BASE_URL } from "@/component/config";
 
 function CreateAssistant({ setIsChatbot }) {
   const [question, setQuestion] = useState("");
-  const [chat, setChat] = useState([ { role: "assistant", message: "Hello! how can I help you?" },]);
+  const [chat, setChat] = useState([]);
   const [loading, setLoading] = useState(false);
   const [thread, setThread] = useState(null);
 
@@ -33,10 +33,11 @@ function CreateAssistant({ setIsChatbot }) {
 
   const sendMessage = async (threadId) => {
     let getQuestion = question;
-    setQuestion("");
     let chatList = [...chatRef.current, { role: "user", message: getQuestion }];
-    setLoading(true);
     setChat(chatList);
+    setQuestion("");
+
+    setLoading(true);
 
     const options = {
       method: "POST",
@@ -46,51 +47,52 @@ function CreateAssistant({ setIsChatbot }) {
       },
       data: {
         threadId: threadId,
-        message: question,
+        message: getQuestion,
       },
     };
     const res = await axios.request(options);
-    console.log("res===", res);
+    // console.log("res===", res);
     if (res.statusText === "OK") {
+
       setChat(res?.data?.messages);
       setQuestion("");
     }
     setLoading(false);
   };
 
-  // const getAllmessage = async (threadId) => {
-  //   const options = {
-  //     method: "GET",
-  //     url: `api/auth/get-messages/${threadId} `,
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   };
-
-  //   const res = await axios.request(options);
-  //   console.log("chat==>>>" , res);
-  // };
-
-  // useEffect(() => {
-  //   if(thread?.id){
-  //     getAllmessage(thread?.id);
-  //   }
-  // }, []);
-
   return (
-    <div className=" h-[600px] w-screen md:p-4 flex flex-col bg-myBg gap-4 max-w-[500px] rounded-md shadow-2xl m-[20px] bg-white z-[111] relative">
-      <div className="absolute cursor-pointer right-3" onClick={()=>setIsChatbot(false)}> 
-        <Image src="/svg/close.svg" alt="close" height={20} width={20} />
+    <div className=" h-[600px] flex flex-col bg-myBg gap-4 max-w-[500px] rounded-[30px] shadow-2xl m-[20px] bg-white z-[111] pb-[30px]">
+      <div className="bg-black py-[25px] flex rounded-t-[30px] gap-2 justify-between px-[20px] items-center">
+        <div className="flex  gap-3  items-center">
+          <div className="h-[40px] w-[40px] bg-white rounded-[50%] font-bold text-[18px] flex justify-center items-center">
+            B
+          </div>
+          <div className="flex flex-col text-white text-left">
+            <p className="font-semibold text-[16px]">
+              Chatbot
+            </p>
+            <p className="font-medium text-[15px] ">The Co-create Group </p>
+          </div>
+        </div>
+        <div
+          className=" cursor-pointer right-3"
+          onClick={() => setIsChatbot(false)}
+        >
+          <Image src="/svg/closeWhite.svg" alt="close" height={20} width={20} />
+        </div>
       </div>
       <div className="chatgpt flex flex-col gap-2 w-full h-full overflow-y-auto scroll py-[30px] px-[20px]">
+        <div className="text-black bg-gray-100 self-start border-2 rounded-[10px] px-3 py-3 max-w-md flex text-[16px]">
+          Hello, How can I help you?
+        </div>
         {chat?.map((msg, index) => (
           <div
             key={index}
             className={`${
               msg?.role === "assistant"
-                ? "bg-black text-gray-100 self-start flex "
-                : "text-black bg-gray-100 self-end border-2 "
-            } rounded-lg  px-3 py-2 max-w-sm flex text-[14px]`}
+                ? "text-black bg-gray-100 self-start flex  "
+                : "bg-black text-gray-100 self-end border-2 "
+            } rounded-[10px]  px-3 py-3 max-w-sm min-w-[100px] flex text-[16px] text-left `}
           >
             <span className="">{msg?.message}</span>
           </div>
@@ -99,15 +101,16 @@ function CreateAssistant({ setIsChatbot }) {
           <div
             className={` text-gray-100 self-start rounded-lg px-3 py-2 w-[100px] flex justify-center items-center`}
           >
-              <span className="chat_loader"></span>
+            <span className="chat_loader"></span>
           </div>
         )}
       </div>
-      <div className="flex gap-2 mt-auto">
+      <div className="bg-[#E0E0E0] h-[1px] w-[90%] px-[20px] mx-auto"></div>
+      <div className="flex gap-2 mt-auto px-[20px] ">
         <input
           id="question"
-          className="bg-gray-50 border border-gray-300 text-sm rounded-lg block w-full p-2.5 focus-visible:outline-none placeholder:text-[14px]"
-          placeholder="Ask a question"
+          className="border text-sm rounded-lg block w-full p-2.5 focus-visible:outline-none placeholder:text-[15px] text-[16px] border-none"
+          placeholder="Enter you message..."
           required
           value={question}
           onKeyDown={(e) => {
@@ -117,10 +120,10 @@ function CreateAssistant({ setIsChatbot }) {
         />
         <button
           onClick={askAssistant}
-          className=" flex items-center justify-center text-white bg-black focus-visible:outline-none font-semibold rounded-lg text-sm w-full sm:w-auto px-4 py-2.5 text-center "
+          className=" flex items-center justify-center text-white bg-black focus-visible:outline-none font-semibold rounded-[50%] text-sm w-[50px] h-[50px] sm:w-auto px-4 py-2.5 text-center "
         >
           {/* Send */}
-          <Image height={20} width={20} src="/svg/send.svg" alt="send" />
+          <Image height={25} width={25} src="/svg/send.svg" alt="send" />
         </button>
       </div>
     </div>
