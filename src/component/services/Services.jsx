@@ -287,7 +287,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="transform overflow-hidden max-w-[600px] w-full transition-all relative">
+                <Dialog.Panel className="transform overflow-hidden max-w-[450px] w-full transition-all relative">
                 <CreateAssistant setIsChatbot={setIsChatbot}  />
 
                 </Dialog.Panel>

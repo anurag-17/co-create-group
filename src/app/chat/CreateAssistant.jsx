@@ -62,17 +62,17 @@ function CreateAssistant({ setIsChatbot }) {
   };
 
   return (
-    <div className=" h-[600px] flex flex-col bg-myBg gap-4 max-w-[500px] rounded-[30px] shadow-2xl m-[20px] bg-white z-[111] pb-[30px]">
-      <div className="bg-black py-[25px] flex rounded-t-[30px] gap-2 justify-between px-[20px] items-center">
+    <div className=" h-[500px] flex flex-col bg-myBg gap-4 max-w-[500px] rounded-[30px] shadow-2xl m-[20px] bg-white z-[111] pb-[30px]">
+      <div className="bg-black py-[15px] flex rounded-t-[30px] gap-2 justify-between px-[20px] items-center">
         <div className="flex  gap-3  items-center">
           <div className="h-[40px] w-[40px] bg-white rounded-[50%] font-bold text-[18px] flex justify-center items-center">
             B
           </div>
           <div className="flex flex-col text-white text-left">
-            <p className="font-semibold text-[16px]">
+            <p className="font-semibold text-[13px]">
               Chatbot
             </p>
-            <p className="font-medium text-[15px] ">The Co-create Group </p>
+            <p className="font-medium text-[13px] ">The Co-create Group </p>
           </div>
         </div>
         <div
@@ -83,7 +83,7 @@ function CreateAssistant({ setIsChatbot }) {
         </div>
       </div>
       <div className="chatgpt flex flex-col gap-2 w-full h-full overflow-y-auto scroll py-[30px] px-[20px]">
-        <div className="text-black bg-gray-100 self-start border-2 rounded-[10px] px-3 py-3 max-w-md flex text-[16px]">
+        <div className="text-black bg-gray-100 self-start border-2 rounded-[10px] px-3 py-3 max-w-md flex text-[14px]">
           Hello, How can I help you?
         </div>
         {chat?.map((msg, index) => (
@@ -93,7 +93,7 @@ function CreateAssistant({ setIsChatbot }) {
               msg?.role === "assistant"
                 ? "text-black bg-gray-100 self-start flex  "
                 : "bg-black text-gray-100 self-end border-2 "
-            } rounded-[10px]  px-3 py-3 max-w-sm min-w-[100px] flex text-[16px] text-left `}
+            } rounded-[10px]  px-3 py-3 max-w-sm min-w-[100px] flex text-[14px] text-left `}
           >
             <span className="">{msg?.message}</span>
           </div>
