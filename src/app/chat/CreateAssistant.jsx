@@ -13,7 +13,8 @@ function CreateAssistant({ setIsChatbot }) {
   // console.log("chat",chat);
   const chatRef = useRef(null);
   chatRef.current = chat;
-  const askAssistant = async () => {
+  const askAssistant = async (e) => {
+    e.preventDefault()
     if (thread === null) {
       const options = {
         method: "POST",
@@ -106,6 +107,8 @@ function CreateAssistant({ setIsChatbot }) {
         )}
       </div>
       <div className="bg-[#E0E0E0] h-[1px] w-[90%] px-[20px] mx-auto"></div>
+         
+      <form  onSubmit={askAssistant} >
       <div className="flex gap-2 mt-auto px-[20px] ">
         <input
           id="question"
@@ -113,19 +116,20 @@ function CreateAssistant({ setIsChatbot }) {
           placeholder="Enter you message..."
           required
           value={question}
-          onKeyDown={(e) => {
-            e.code == "Enter" && !e.shiftKey && askAssistant();
-          }}
+          // onKeyDown={(e) => {
+          //   e.code == "Enter" && !e.shiftKey && askAssistant(e);
+          // }}
           onChange={(e) => setQuestion(e.target.value)}
         />
         <button
-          onClick={askAssistant}
+        type="submit"
           className=" flex items-center justify-center text-white bg-black focus-visible:outline-none font-semibold rounded-[50%] text-sm w-[50px] h-[50px] sm:w-auto px-4 py-2.5 text-center "
         >
           {/* Send */}
           <Image height={25} width={25} src="/svg/send.svg" alt="send" />
         </button>
       </div>
+      </form>
     </div>
   );
 }
