@@ -471,21 +471,32 @@ const MainPage = () => {
                   leaveTo="opacity-0 scale-95"
                 >
                   <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                    <form action="" onSubmit={(e)=>{e.preventDefault()
+                      setDefaultModal(false);
+                      setIsMuted(false);
+                      playVideo_handler();
+                      setAutoPlay(true);
+                      setIsOpenPrivacy(false);}}>
                     <div
                       className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
-                      onClick={() => {
-                        setDefaultModal(false);
-                        setIsMuted(false);
-                        playVideo_handler();
-                        setAutoPlay(true);
-                        setIsOpenPrivacy(false);
-                      }}
+                      // onClick={() => {
+                      
+                      // }}
                     >
                       WAIT! Stay informed and up to date with our latest content
                       by signing up for our monthly newsletter... We'll even
                       give you 10% off your first order for joining{" "}
-                      <span className="text-[30px]">→</span>
                     </div>
+                      <div className="flex  justify-center gap-10 items-center mt-4">
+                      <div className="">
+                        <input required type="email" placeholder="Enter your mail" className="rounded-md bg-[#f3f3f3]  px-4 py-2 placeholder:text-[black] focus-visible:outline-none" />
+                      </div>
+                      <div className="">
+                        <button type="submit"> <span className="text-[30px] text-white">→</span></button>
+                     
+                      </div>
+                      </div>
+                    </form>
                   </Dialog.Panel>
                 </Transition.Child>
               </div>
