@@ -243,7 +243,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
             onClick={changeBackgroundVid}
             className={
               currentPage + 1 === subPagesData?.length
-                ? " next-btn icon-hover"
+                ? " hidden"
                 : "next-btn icon-hover"
             }
           >
@@ -259,10 +259,10 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       )} */}
       {/*------ chatbot  ------*/}
       <Transition appear show={isChatbot} as={Fragment}>
-        <Dialog
+        <Dialog 
           as="div"
           className="relative z-[111] co_create_group"
-          onClose={()=>{}}
+          onClose={()=>setIsChatbot(false)}
         >
           <Transition.Child
             as={Fragment}

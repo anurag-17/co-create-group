@@ -416,7 +416,7 @@ const MainPage = () => {
                       onClick={changeBackground}
                       className={
                         current + 1 === allData?.length
-                          ? " next-btn icon-hover"
+                          ? " hidden"
                           : "next-btn icon-hover"
                       }
                     >

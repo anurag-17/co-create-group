@@ -33,7 +33,7 @@ const Header = ({ handleClick, data }) => {
     {
       label: "location",
       url: <Location />,
-      info: data ? data[0]?.address : "123 lorem ipsum, xyz colony, USA 452896",
+      info: data ? data[0]?.address : "534 Walnut St, Unit 2, Reading, PA 19601",
     },
     // {
     //   label: "Privacy Policy",
@@ -61,7 +61,7 @@ const Header = ({ handleClick, data }) => {
                     className="cursor-pointer icon-hover"
                   />
                 </Link>
-                <Link href="https://www.linkedin.com/in/michael-pricharda-791399234/" className="bg-[#fff] h-[22px] w-[22px] rounded-[50%] flex justify-center items-center">
+                <Link href="https://www.linkedin.com/company/the-cocreate-group" className="bg-[#fff] h-[22px] w-[22px] rounded-[50%] flex justify-center items-center">
                   <Image
                     src="/svg/icon2.svg"
                     alt="logo"

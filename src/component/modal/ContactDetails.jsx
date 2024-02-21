@@ -8,7 +8,12 @@ import Phone from "./svg/Phone";
 import EmailPopup from "./EmailPopup";
 import ScheduleModal from "./ScheduleModal";
 
-const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal}) => {
+const ContactDetails = ({
+  contactDetails,
+  isChatbot,
+  setIsChatbot,
+  closeModal,
+}) => {
   const [openEmail, setOpenEmail] = useState(false);
   const [openSchedule, setOpenSchedule] = useState(false);
   // const [IsChat, setIsChat] = useState(false);
@@ -26,14 +31,16 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal})
     {
       label: "email",
       url: <Email />,
-      info: contactDetails ? contactDetails[0]?.email : "info@thecocreategroup.org",
+      info: contactDetails
+        ? contactDetails[0]?.email
+        : "info@thecocreategroup.org",
     },
     {
       label: "location",
       url: <Location />,
       info: contactDetails
         ? contactDetails[0]?.address
-        : "123 lorem ipsum, xyz colony, USA 452896",
+        : "534 Walnut St, Unit 2, Reading, PA 19601",
     },
   ];
 
@@ -44,6 +51,10 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal})
   };
   const handleScheduleClose = () => {
     setOpenSchedule(false);
+  };
+  const handleChatbot = () => {
+    setIsChatbot(true);
+    closeModal();
   };
   return (
     <>
@@ -95,7 +106,7 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal})
                   ? setOpenEmail(true)
                   : item === "schedule"
                   ? setOpenSchedule(true)
-                  : setIsChatbot(true), closeModal();
+                  : handleChatbot();
               }}
             >
               {item}
@@ -103,7 +114,6 @@ const ContactDetails = ({ contactDetails, isChatbot, setIsChatbot , closeModal})
           ))}
         </div>
       </div>
-
 
       {/*------- schedule call------- */}
       <Transition appear show={openSchedule} as={Fragment}>
