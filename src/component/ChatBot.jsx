@@ -134,6 +134,10 @@ export const ChatBot = ({ setIsChatbot }) => {
                       />
                       <Message.Content style={{ fontSize: "13px" }}>
                         {message.message}
+                        {
+                        message.message.include("sorry") && 
+                        "Please connect to our live agent"
+                        } 
                       </Message.Content>
                     </Message>
                   );

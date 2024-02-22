@@ -61,7 +61,7 @@ const Header = ({ handleClick, data }) => {
                     className="cursor-pointer icon-hover"
                   />
                 </Link>
-                <Link href="https://www.linkedin.com/company/the-cocreate-group" className="bg-[#fff] h-[22px] w-[22px] rounded-[50%] flex justify-center items-center">
+                <Link href="https://www.linkedin.com/company/the-cocreate-group" className="bg-[#fff] h-[22px] w-[22px] rounded-[50%] flex justify-center items-center" target="_blank">
                   <Image
                     src="/svg/icon2.svg"
                     alt="logo"

@@ -123,6 +123,7 @@ function CreateAssistant({ setIsChatbot }) {
         />
         <button
         type="submit"
+        disabled={loading }
           className=" flex items-center justify-center text-white bg-black focus-visible:outline-none font-semibold rounded-[50%] text-sm w-[50px] h-[50px] sm:w-auto px-4 py-2.5 text-center "
         >
           {/* Send */}

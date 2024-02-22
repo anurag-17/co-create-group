@@ -3,6 +3,7 @@ import React, { Fragment, useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import axios from "axios";
 import { Dialog, Transition } from "@headlessui/react";
+import { toast } from "react-toastify";
 
 import Header from "./header/Header";
 import Services from "./services/Services";
@@ -30,6 +31,8 @@ const MainPage = () => {
   const [defaultModal, setDefaultModal] = useState(false);
   const [isOpenPrivacy, setIsOpenPrivacy] = useState(true);
   const [isRotate, setIsRotate] = useState(false);
+  const [signEmail, setSignEmail] = useState("");
+  const [isSignup, setIsSignup] = useState(false);
   useEffect(() => {
     if (animate) {
       setTimeout(() => {
@@ -100,7 +103,8 @@ const MainPage = () => {
         if (response.status === 200) {
           setLoader(false);
           setAllData(response?.data?.pages);
-          setDataLength(response?.data?.pages?.length - 1);
+          console.log(response?.data);
+          setDataLength("res===>", response?.data?.pages?.length - 1);
         } else {
           setLoader(false);
           return;
@@ -235,6 +239,41 @@ const MainPage = () => {
         }
       });
   }
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+
+    try {
+      setIsSignup(true);
+      const options = {
+        method: "POST",
+        url: `${BASE_URL}/api/auth/signup`,
+        data: { email: signEmail },
+      };
+
+      const res = await axios.request(options);
+      console.log(res);
+      if (res.status === 200) {
+        setIsMuted(false);
+        playVideo_handler();
+        setAutoPlay(true);
+        setIsOpenPrivacy(false);
+        setTimeout(() => {
+          setDefaultModal(false);
+        }, 1000);
+        // toast.success("Successfully signup !")
+        setIsSignup(false);
+      } else {
+        setIsSignup(false);
+        // toast.warn("Server error!")
+        return;
+      }
+    } catch (error) {
+      setIsSignup(false);
+      console.log(error);
+      toast.error("Server error!");
+    }
+  };
   return (
     <>
       <div className="co_create_group">
@@ -470,31 +509,39 @@ const MainPage = () => {
                   leaveFrom="opacity-100 scale-100"
                   leaveTo="opacity-0 scale-95"
                 >
-                  <Dialog.Panel className="w-full 2xl:max-w-[1100px] xl:max-w-[1000px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
-                    <form action="" onSubmit={(e)=>{e.preventDefault()
-                      setDefaultModal(false);
-                      setIsMuted(false);
-                      playVideo_handler();
-                      setAutoPlay(true);
-                      setIsOpenPrivacy(false);}}>
-                    <div
-                      className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
-                      // onClick={() => {
-                      
-                      // }}
-                    >
-                      WAIT! Stay informed and up to date with our latest content
-                      by signing up for our monthly newsletter... We'll even
-                      give you 10% off your first order for joining{" "}
-                    </div>
-                      <div className="flex  justify-center gap-10 items-center mt-4">
-                      <div className="">
-                        <input required type="email" placeholder="Enter your mail" className="rounded-md bg-[#f3f3f3]  px-4 py-2 placeholder:text-[black] focus-visible:outline-none" />
+                  <Dialog.Panel className="w-full 2xl:max-w-[1000px] xl:max-w-[900px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-black py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
+                    <form action="" onSubmit={handleSignup}>
+                      <div
+                        className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
+                        // onClick={() => {
+
+                        // }}
+                      >
+                        WAIT! Stay informed and up to date with our latest
+                        content by signing up for our monthly newsletter...
+                        We'll even give you 10% off your first order for joining{" "}
                       </div>
-                      <div className="">
-                        <button type="submit"> <span className="text-[30px] text-white">→</span></button>
-                     
-                      </div>
+                      <div className="flex flex-col md:flex-row justify-center gap-5 items-center mt-6">
+                        <div className="">
+                          <input
+                            required
+                            type="email"
+                            placeholder="Enter your mail"
+                            className="border px-4 placeholder:text-[black] focus-visible:outline-none text-black login-btn font-medium  py-1 rounded-lg h-[42px] flex justify-center items-center xl:text-[16px] text-[14px]"
+                            onChange={(e) => setSignEmail(e.target.value)}
+                          />
+                        </div>
+                        <div className="">
+                          <button
+                            type="submit"
+                            disabled={isSignup}
+                            className="w-[145px] bg-[#1f2432] xl:text-[16px] text-[14px] font-medium border  text-white px-2  rounded-lg h-[40px] login-btn flex justify-center items-center gap-2"
+                          >
+                            {" "}
+                          { isSignup ? "Loading.." : "Submit"}  {" "}
+                            <span className="text-[25px] text-white">→</span>
+                          </button>
+                        </div>
                       </div>
                     </form>
                   </Dialog.Panel>
@@ -1039,7 +1086,7 @@ const MainPage = () => {
                         <div className="">
                           <Image
                             src="/svg/rotate1.svg"
-                            alt="rotate"
+                            alt="Signup"
                             height={200}
                             width={200}
                           />
