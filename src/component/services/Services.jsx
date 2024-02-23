@@ -9,6 +9,7 @@ import Chatbot from "../modal/chatbot";
 import Loader from "../websiite-loader/Index";
 import { ChatBot } from "../ChatBot";
 import CreateAssistant from "@/app/chat/CreateAssistant";
+import FaqChatAssistant from "@/app/chat/FaqChatAssistant";
 
 const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -19,6 +20,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   const [headanimate, setHeadanimate] = useState(true);
   const [isMutedPage, setIsMutedPage] = useState(isMuted);
   const [isChatbot, setIsChatbot] = useState(false);
+  const [isFaqbot, setIsFaqbot] = useState(false);
   const videoRef = useRef(null);
 
   // popup
@@ -80,7 +82,7 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
   };
 
   const setChatBox = () => {
-    setLodaer(true);
+    // setLodaer(true);
     setIsChatbot(true);
 
     setTimeout(() => {
@@ -178,19 +180,29 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
             className={`sub-headContThree ${
               headanimate ? "headerThree-enter" : ""
             }`}
-            onClick={() => handleClickOpen(subPagesData[currentPage]?.title)}
           >
             <p className="heading3 flex gap-x-5">
-              <span className= {subPagesData[currentPage]?.title?.toLowerCase()?.trim() ==
-                "contact us" || subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
-                "help desk" ? "cursor-pointer" : ""}>
+              <span
+                onClick={() =>
+                  handleClickOpen(subPagesData[currentPage]?.title)
+                }
+                className={
+                  subPagesData[currentPage]?.title?.toLowerCase()?.trim() ==
+                    "contact us" ||
+                  subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
+                    "help desk"
+                    ? "cursor-pointer"
+                    : ""
+                }
+              >
                 {subPagesData[currentPage]?.paragraph}
               </span>
               {subPagesData[currentPage]?.paragraph?.toLowerCase()?.trim() ==
                 "help desk" && (
                 <span
                   className="cursor-pointer"
-                  onClick={() => setIsChatbot(!isChatbot)}
+                  onClick={() => setIsFaqbot(true)}
+                  // onClick={() => handleClickOpen(subPagesData[currentPage]?.title)}
                 >
                   FAQs
                 </span>
@@ -259,10 +271,10 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
       )} */}
       {/*------ chatbot  ------*/}
       <Transition appear show={isChatbot} as={Fragment}>
-        <Dialog 
+        <Dialog
           as="div"
           className="relative z-[111] co_create_group"
-          onClose={()=>setIsChatbot(false)}
+          onClose={() => setIsChatbot(false)}
         >
           <Transition.Child
             as={Fragment}
@@ -288,14 +300,53 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="transform overflow-hidden max-w-[450px] w-full transition-all relative">
-                <CreateAssistant setIsChatbot={setIsChatbot}  />
-
+                  <CreateAssistant setIsChatbot={setIsChatbot} />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
+
+      {/*------ FAQ chatbot  ------*/}
+      <Transition appear show={isFaqbot} as={Fragment}>
+        <Dialog
+          as="div"
+          className="relative z-[111] co_create_group"
+          onClose={() => setIsFaqbot(false)}
+        >
+          <Transition.Child
+            as={Fragment}
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 " />
+          </Transition.Child>
+
+          <div className="fixed inset-0 overflow-y-auto">
+            <div className="flex min-h-full items-center justify-end p-4 text-center ">
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0 scale-95"
+                enterTo="opacity-100 scale-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100 scale-100"
+                leaveTo="opacity-0 scale-95"
+              >
+                <Dialog.Panel className="transform overflow-hidden max-w-[450px] w-full transition-all relative">
+                  <FaqChatAssistant setIsFaqbot={setIsFaqbot} />
+                </Dialog.Panel>
+              </Transition.Child>
+            </div>
+          </div>
+        </Dialog>
+      </Transition>
+
       {/*------ contat details ------*/}
       <Transition appear show={openContactModal} as={Fragment}>
         <Dialog
@@ -338,7 +389,12 @@ const Services = ({ setShow, subPagesData, isMuted, contactDetails }) => {
                       width={20}
                     />
                   </div>
-                  <ContactDetails contactDetails={contactDetails} isChatbot={isChatbot}  setIsChatbot={setIsChatbot} closeModal = {closeDeleteModal} />
+                  <ContactDetails
+                    contactDetails={contactDetails}
+                    isChatbot={isChatbot}
+                    setIsChatbot={setIsChatbot}
+                    closeModal={closeDeleteModal}
+                  />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
