@@ -263,6 +263,9 @@ const MainPage = () => {
         }, 1000);
         // toast.success("Successfully signup !")
         setIsSignup(false);
+        if (typeof window !== "undefined" && window.localStorage) {
+          sessionStorage.setItem("signed", JSON.stringify("true"));
+        }
       } else {
         setIsSignup(false);
         // toast.warn("Server error!")
@@ -538,7 +541,7 @@ const MainPage = () => {
                             className="w-[145px] bg-[#1f2432] xl:text-[16px] text-[14px] font-medium border  text-white px-2  rounded-lg h-[40px] login-btn flex justify-center items-center gap-2"
                           >
                             {" "}
-                          { isSignup ? "Loading.." : "Submit"}  {" "}
+                            {isSignup ? "Loading.." : "Submit"}{" "}
                             <span className="text-[25px] text-white">→</span>
                           </button>
                         </div>
@@ -1033,7 +1036,28 @@ const MainPage = () => {
                         type="submit"
                         className="w-[150px] bg-[#1f2432]xl:text-[16px] text-[14px] font-medium border h text-white px-2 py-1 rounded-lg  hover:border-[#f3f3f3] h-[42px] login-btn"
                         onClick={() => {
-                          setDefaultModal(true);
+                          if (
+                            typeof window !== "undefined" &&
+                            window.sessionStorage
+                          ) {
+                            const check = sessionStorage.getItem("signed");
+                            // console.log(check);
+                            if (check && JSON.parse(check) === "true") {
+                              // alert("dasd")
+                              setDefaultModal(false);
+                              setIsMuted(false);
+                              playVideo_handler();
+                              setAutoPlay(true);
+                              setIsOpenPrivacy(false);
+                              setTimeout(() => {
+                                setDefaultModal(false);
+                              }, 1000);
+                              // toast.success("Successfully signup !")
+                              setIsSignup(false);
+                            } else {
+                              setDefaultModal(true);
+                            }
+                          }
                           setIsOpenPrivacy(false);
                         }}
                       >
