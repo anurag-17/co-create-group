@@ -328,9 +328,8 @@ const MainPage = () => {
                     {/* -------------heading 1------------------ */}
                     <div
                       ref={exitingRef}
-                      className={`headCont  ${
-                        headanimate ? "header-exit" : "hidden"
-                      }`}
+                      className={`headCont  ${headanimate ? "header-exit" : "hidden"
+                        }`}
                     >
                       <h3 className="main-heading">
                         {allData[previous]?.title}{" "}
@@ -338,9 +337,8 @@ const MainPage = () => {
                     </div>
 
                     <div
-                      className={`headCont ${
-                        headanimate ? "header-enter" : ""
-                      }`}
+                      className={`headCont ${headanimate ? "header-enter" : ""
+                        }`}
                     >
                       <h3 className="main-heading">
                         {allData[current]?.title}
@@ -352,9 +350,8 @@ const MainPage = () => {
                     <div>
                       <div
                         ref={exitingRef}
-                        className={`headContTwo ${
-                          headanimate ? "header-exit" : "hidden"
-                        }`}
+                        className={`headContTwo ${headanimate ? "header-exit" : "hidden"
+                          }`}
                       >
                         <h3 className="heading2">
                           <span>{allData[previous]?.subTitle}</span>
@@ -362,9 +359,8 @@ const MainPage = () => {
                       </div>
 
                       <div
-                        className={`headContTwo ${
-                          headanimate ? "header-enter" : ""
-                        }`}
+                        className={`headContTwo ${headanimate ? "header-enter" : ""
+                          }`}
                       >
                         <h3 className="heading2 flex md:gap-x-12 gap-x-6">
                           <span
@@ -380,9 +376,8 @@ const MainPage = () => {
                     <div>
                       <div
                         ref={exitingRef}
-                        className={`headContThree ${
-                          headanimate ? "headerThree-exit" : "hidden"
-                        }`}
+                        className={`headContThree ${headanimate ? "headerThree-exit" : "hidden"
+                          }`}
                       >
                         <p className="heading3 cursor-pointer">
                           {allData[previous]?.paragraph}
@@ -390,23 +385,21 @@ const MainPage = () => {
                       </div>
 
                       <div
-                        className={`headContThree ${
-                          headanimate ? "headerThree-enter" : ""
-                        }`}
+                        className={`headContThree ${headanimate ? "headerThree-enter" : ""
+                          }`}
                       >
                         <p
-                          className={`heading3 ${
-                            allData[current]?.isSubpage
-                              ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300"
-                              : ""
-                          }`}
+                          className={`heading3 ${allData[current]?.isSubpage
+                            ? "cursor-pointer hover:text-white transition-all ease-in-out delay-150 duration-300"
+                            : ""
+                            }`}
                           onClick={() => handleHeadingClick(allData[current])}
                         >
                           {allData[current]?.paragraph
                             ? allData[current]?.paragraph
                             : allData[current]?.isSubpage
-                            ? "View"
-                            : ""}
+                              ? "View"
+                              : ""}
                         </p>
                       </div>
                     </div>
@@ -415,9 +408,8 @@ const MainPage = () => {
                     <div className={`${myFont2.className}`}>
                       <div
                         ref={exitingRef}
-                        className={`serialCount ${
-                          headanimate ? "headerThree-exit" : "hidden"
-                        }`}
+                        className={`serialCount ${headanimate ? "headerThree-exit" : "hidden"
+                          }`}
                       >
                         <p>
                           {previous + 1 === 0
@@ -427,9 +419,8 @@ const MainPage = () => {
                       </div>
 
                       <div
-                        className={`serialCount ${
-                          headanimate ? "headerThree-enter" : ""
-                        }`}
+                        className={`serialCount ${headanimate ? "headerThree-enter" : ""
+                          }`}
                       >
                         <p>{(current + 1)?.toString()?.padStart(2, "0")}</p>
                       </div>
@@ -483,11 +474,11 @@ const MainPage = () => {
           </>
         )}
 
-        <Transition appear show={defaultModal} as={Fragment} onClose={() => {}}>
+        <Transition appear show={defaultModal} as={Fragment} onClose={() => { }}>
           <Dialog
             as="div"
             className="relative z-[111] bg-black/70"
-            onClose={() => {}}
+            onClose={() => { }}
           >
             <Transition.Child
               as={Fragment}
@@ -516,9 +507,9 @@ const MainPage = () => {
                     <form action="" onSubmit={handleSignup}>
                       <div
                         className="w-full cursor-pointer text-center flex items-center gap-3 justify-center text-white"
-                        // onClick={() => {
+                      // onClick={() => {
 
-                        // }}
+                      // }}
                       >
                         WAIT! Stay informed and up to date with our latest
                         content by signing up for our monthly newsletter...
@@ -546,6 +537,24 @@ const MainPage = () => {
                           </button>
                         </div>
                       </div>
+                      <div className="flex justify-end items-center">
+                        <button
+                          type="button"
+                          className="w-[145px]  xl:text-[16px] text-[14px] font-medium  text-white px-2  rounded-lg h-[40px] login-btn flex justify-center items-center gap-2"
+                          onClick={() => {
+                            setIsMuted(false);
+                            playVideo_handler();
+                            setAutoPlay(true);
+                            setIsOpenPrivacy(false);
+                            setTimeout(() => {
+                              setDefaultModal(false);
+                            }, 1000);
+                            // setIsSignup(false);
+                          }}
+                        >
+                          Skip for now
+                        </button>
+                      </div>
                     </form>
                   </Dialog.Panel>
                 </Transition.Child>
@@ -558,7 +567,7 @@ const MainPage = () => {
           <Dialog
             as="div"
             className="relative z-[111] co_create_group"
-            onClose={() => {}}
+            onClose={() => { }}
           >
             <Transition.Child
               as={Fragment}
@@ -1076,7 +1085,7 @@ const MainPage = () => {
             as="div"
             className="relative z-[111]"
             id="rotate_message"
-            onClose={() => {}}
+            onClose={() => { }}
           >
             <Transition.Child
               as={Fragment}
@@ -1104,7 +1113,7 @@ const MainPage = () => {
                   <Dialog.Panel className="w-full 2xl:max-w-[600px] xl:max-w-[600px] sm:max-w-[600px] transform overflow-hidden rounded-[30px] bg-white py-10 px-[10px] xl:px-12 md:px-4 text-center align-middle shadow-xl transition-all relative">
                     <div
                       className="w-full cursor-pointer text-center flex flex-col items-center gap-3 justify-center text-black"
-                      // onClick={() => setOpenEmail(false)}
+                    // onClick={() => setOpenEmail(false)}
                     >
                       <div className="">
                         <div className="">
